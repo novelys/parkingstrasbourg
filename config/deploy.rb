@@ -24,6 +24,9 @@ after "deploy:update_code", "db:symlink"
 after "deploy:setup", "db:mkdir"
 after "deploy", "deploy:cleanup"
 
+set :whenever_command, "bundle exec whenever"
+require "whenever/capistrano"
+
 namespace :db do
   desc "Make symlink for database yaml"
   task :symlink do
