@@ -19,6 +19,6 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 5.minutes do
+every 5.minutes, :roles => [:jobs] do
   rake "cron:refresh_parkings"
 end

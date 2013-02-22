@@ -15,5 +15,5 @@ role :web, "webapp01.novelys.com", :primary => true
 role :web, "webapp02.novelys.com"
 role :db, "webapp01.novelys.com", :primary => true
 role :db, "webapp02.novelys.com"
-role :indexer, "webapp01.novelys.com"
+role :jobs, "webapp01.novelys.com"
 
