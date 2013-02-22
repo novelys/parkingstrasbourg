@@ -8,6 +8,7 @@ class Parking
   has_many :availabilities
 
   field :name, type: String
+  field :internal_name, type: String
   field :external_id, type: Integer
 
   cattr_accessor :name_and_identifier_flux
@@ -19,7 +20,18 @@ class Parking
   delegate :total,
     :available,
     :user_info,
+    :is_closed?,
     :to => :last_availability
+
+  default_scope asc(:internal_name)
+
+  index internal_name: 1
+
+  before_save :set_internal_name
+
+  def set_internal_name
+    self.internal_name = name =~ /P\+R/ ? (name.gsub("P+R ", "")+" (P+R)") : name
+  end
 
   def last_availability
     @last_availability ||= availabilities.last
@@ -42,9 +54,9 @@ class Parking
         availability = parking.availabilities.build
         availability.is_closed = case parking_data["Etat"].to_s
         when "2"
-          false
-        when "1"
           true
+        when "1"
+          false
         else
           raise StandardError
         end

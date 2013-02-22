@@ -1,5 +1,13 @@
-%h1 Liste des parkings
+%h1 Liste des parkings de Strasbourg
 
-%ul
+%ul.parkings
   - Parking.all.each do |parking|
-    %li= parking.name
+    %li.clearfix
+      .pull-left{class: parking.is_closed? && "closed"}
+        = parking.internal_name
+      .pull-right
+        - if parking.is_closed?
+          .important= parking.user_info
+        - else
+          %span.available= parking.available
+          %span.total= "/ #{parking.total}"
