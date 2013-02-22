@@ -24,6 +24,9 @@ gem 'jquery-rails'
 gem 'haml-rails'
 gem 'mongoid'
 gem 'nokogiri'
+gem 'capistrano'
+gem 'capistrano-ext'
+gem 'whenever'
 
 group :development do
   # Debugging
