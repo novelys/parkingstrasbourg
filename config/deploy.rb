@@ -58,6 +58,3 @@ namespace :deploy do
     start
   end
 end
-
-        require './config/boot'
-        require 'airbrake/capistrano'
