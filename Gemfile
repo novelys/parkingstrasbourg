@@ -20,15 +20,29 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'haml-rails'
+gem 'mongoid'
+gem 'nokogiri'
 
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+group :development do
+  # Debugging
+  gem 'pry'
+  gem 'pry-nav'
+  gem 'debugger'
+  gem 'delorean'
+  gem 'pry-rails'
+end
 
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
+# Webserver
+group :development do  
+  gem 'thin'
+  gem 'quiet_assets'
+  gem 'sextant'
+end
 
-# Use unicorn as the app server
-# gem 'unicorn'
+group :staging, :production do
+  gem 'unicorn'
+end
 
 # Deploy with Capistrano
 # gem 'capistrano'
