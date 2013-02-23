@@ -9,5 +9,5 @@
         - if parking.is_closed?
           .important= parking.user_info
         - else
-          %span.available= parking.available
+          %span.available= "#{parking.available} libres"
           %span.total= "/ #{parking.total}"
