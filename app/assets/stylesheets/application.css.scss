@@ -97,6 +97,9 @@ ul li:hover {
       padding: 2%;
       list-style-type: none;
       font-size: 2em;
+      .free {
+        font-size: 0.5em;
+      }
       .total {
         font-family: SignikaLight;
         color: #4c4c4c;
