@@ -24,6 +24,8 @@ after "deploy:update_code", "db:symlink"
 after "deploy:setup", "db:mkdir"
 after "deploy", "deploy:cleanup"
 
+set :whenever_roles, "whenever"
+
 set :whenever_command, "bundle exec whenever"
 require "whenever/capistrano"
 
