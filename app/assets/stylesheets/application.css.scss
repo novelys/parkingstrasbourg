@@ -11,6 +11,7 @@
  *= require normalize
  *= require clearfix
  *= require_self
+ *= require icomoon
  */
 
 @import "compass/css3/border-radius";
@@ -21,6 +22,7 @@
 @include font-face("SignikaSemiBold", font-files("Signika-Semibold-webfont.woff", woff, "Signika-Semibold-webfont.ttf", truetype, "Signika-Semibold-webfont.svg", svg), "Signika-Semibold-webfont.eot", normal, normal);
 @include font-face("SignikaRegular", font-files("Signika-Regular-webfont.woff", woff, "Signika-Regular-webfont.ttf", truetype, "Signika-Regular-webfont.svg", svg), "Signika-Regular-webfont.eot", normal, normal);
 @include font-face("SignikaLight", font-files("Signika-Light-webfont.woff", woff, "Signika-Light-webfont.ttf", truetype, "Signika-Light-webfont.svg", svg), "Signika-Light-webfont.eot", normal, normal);
+@include font-face("icomoon", font-files("icomoon.woff", woff, "icomoon.ttf", truetype, "icomoons.svg", svg), "icomoon.eot", normal, normal);
 
 @mixin radial-gradient($color1, $color2) {
   background: -moz-radial-gradient(center, ellipse cover,  $color1 0%, $color2 100%);
@@ -70,6 +72,18 @@ ul li:hover {
   padding: 0.1em;
 }
 
+.icon-arrow-down-right {
+  color: #b93c3a;
+}
+
+.icon-arrow-up-right {
+  color: green;
+}
+
+.icon-arrow-right {
+
+}
+
 .content {
   h1 {
     padding-top: 0.2em;
@@ -104,6 +118,10 @@ ul li:hover {
         font-family: SignikaLight;
         color: #4c4c4c;
         font-size: 0.5em;
+      }
+      .trend {
+        position: relative;
+        top: 4px;
       }
     }
   }

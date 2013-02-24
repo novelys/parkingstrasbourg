@@ -37,6 +37,25 @@ class Parking
     @last_availability ||= availabilities.last
   end
 
+  def previous_availability
+    @previous_availability ||= availabilities.where(:created_at.gte => 30.minutes.ago, :created_at.lte => 25.minutes.ago).first
+  end
+
+  def trend_and_previous_available
+    current_available = self.available
+    previous_available = previous_availability.available
+
+    trend = if current_available > previous_available
+      :up
+    elsif current_available < previous_available
+      :down
+    else
+      :flat
+    end
+
+    [trend, previous_available]
+  end
+
   def self.fetch_all
     doc = Nokogiri::XML(open(name_and_identifier_flux))
 
