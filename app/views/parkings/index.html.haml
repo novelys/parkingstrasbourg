@@ -1,7 +1,9 @@
+- @parkings = Parking.all
 %h1 Liste des p<span class='icon-Acoeur'></span>rkings de Strasbourg
-
+%p.pull-right.muted Dernier rafraîchissement : #{@parkings.first.last_refresh_at}
+.clearfix
 %ul.parkings
-  - Parking.all.each do |parking|
+  - @parkings.each do |parking|
     %li.clearfix
       .pull-left{class: parking.is_closed? && "closed"}
         = parking.internal_name

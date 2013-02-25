@@ -21,6 +21,7 @@ class Parking
     :available,
     :user_info,
     :is_closed?,
+    :last_refresh_at,
     :to => :last_availability
 
   default_scope asc(:internal_name)

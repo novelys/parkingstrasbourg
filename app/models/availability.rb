@@ -12,4 +12,6 @@ class Availability
   default_scope order_by(created_at: :asc)
 
   index created_at: 1
+
+  alias :last_refresh_at :created_at
 end
