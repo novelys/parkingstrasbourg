@@ -8,4 +8,11 @@
   %body
     .content
       = yield
+      .footer
+        %p.muted
+          Données rafraîchies toutes les 5 minutes depuis les sources <a href='http://www.strasbourg.eu/fr/ma-situation/professionnel/open-data/donnees'>OpenData de la Ville de Strasbourg</a>.
+          %br
+          Projet réalisé par <a href='https://twitter.com/yannski'>yannski</a> durant le <a href='http://www.hacksxb.com'>HackSXB</a> spécial OpenData du mois de février 2013.
+          %br
+          Sur une idée originale de <a href='https://twitter.com/toutielicious'>Justine</a>.
     =# javascript_include_tag "application"
