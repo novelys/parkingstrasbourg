@@ -29,7 +29,7 @@ gem 'capistrano-ext'
 gem 'whenever'
 
 gem 's3'
-gem 'production_chain', git: "https://github.com/novelys/production_chain.git"
+gem 'production_chain'
 
 group :development do
   # Debugging
