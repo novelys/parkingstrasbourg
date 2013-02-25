@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/novelys/production_chain.git
+  revision: 9f0e21a99484c08bf69e2cfdaf82cda97233b09a
+  specs:
+    production_chain (0.0.5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -108,6 +114,7 @@ GEM
     nokogiri (1.5.6)
     origin (1.0.11)
     polyglot (0.3.3)
+    proxies (0.2.1)
     pry (0.9.12)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
@@ -144,6 +151,8 @@ GEM
     rake (10.0.3)
     rdoc (3.12.1)
       json (~> 1.4)
+    s3 (0.3.11)
+      proxies (~> 0.2.0)
     sass (3.2.5)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -193,11 +202,13 @@ DEPENDENCIES
   jquery-rails
   mongoid
   nokogiri
+  production_chain!
   pry
   pry-nav
   pry-rails
   quiet_assets
   rails (= 3.2.12)
+  s3
   sass-rails (~> 3.2.3)
   sextant
   thin

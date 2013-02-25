@@ -28,6 +28,9 @@ gem 'capistrano'
 gem 'capistrano-ext'
 gem 'whenever'
 
+gem 's3'
+gem 'production_chain', git: "https://github.com/novelys/production_chain.git"
+
 group :development do
   # Debugging
   gem 'pry'
