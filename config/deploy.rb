@@ -63,3 +63,7 @@ namespace :deploy do
     start
   end
 end
+
+        require 'bundler/setup'
+        require 'production_chain/capistrano'
+
