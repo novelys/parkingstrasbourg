@@ -24,6 +24,8 @@ gem 'jquery-rails'
 gem 'haml-rails'
 gem 'mongoid'
 gem 'nokogiri'
+gem 'rails-i18n'
+
 gem 'capistrano'
 gem 'capistrano-ext'
 gem 'whenever'
