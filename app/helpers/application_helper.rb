@@ -8,8 +8,10 @@ module ApplicationHelper
       "icon-arrow-down-right"
     when :up
       "icon-arrow-up-right"
-    else
+    when :flat
       "icon-arrow-right"
+    when :unknown
+      "icon-question-mark"
     end
 
     content_tag("span", nil, class: "trend #{klass}", alt: previous_available, title: previous_available)

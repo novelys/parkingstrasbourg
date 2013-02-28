@@ -15,7 +15,7 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-"]:before {
 */
-.icon-Acoeur:before, .icon-arrow-up-right:before, .icon-arrow-down-right:before, .icon-arrow-right:before {
+.icon-Acoeur:before, .icon-arrow-up-right:before, .icon-arrow-down-right:before, .icon-arrow-right:before, .icon-question-mark:before {
 	font-family: 'icomoon';
 	speak: none;
 	font-style: normal;
@@ -34,4 +34,7 @@ you can use the generic selector below, but it's slower:
 }
 .icon-arrow-right:before {
 	content: "\e003";
+}
+.icon-question-mark:before {
+	content: "?";
 }

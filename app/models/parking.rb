@@ -1,6 +1,8 @@
 require 'nokogiri'
 require 'open-uri'
 
+class UnknownTrend < StandardError; end;
+
 class Parking
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -40,11 +42,12 @@ class Parking
   end
 
   def previous_availability
-    @previous_availability ||= availabilities.where(:created_at.gte => 30.minutes.ago, :created_at.lte => 25.minutes.ago).first
+    @previous_availability ||= availabilities.where(:created_at.gte => 30.minutes.ago, :created_at.lte => 25.minutes.ago).first || availabilities.where(:created_at.lte => 30.minutes.ago).first
   end
 
   def trend_and_previous_available
     current_available = self.available
+    raise UnknownTrend if previous_availability.nil?
     previous_available = previous_availability.available
 
     trend = if current_available > previous_available
@@ -56,6 +59,8 @@ class Parking
     end
 
     [trend, previous_available]
+  rescue UnknownTrend
+    [:unknown, "N/A"]
   end
 
   def self.fetch_all
