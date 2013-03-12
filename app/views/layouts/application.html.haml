@@ -11,14 +11,22 @@
     .content
       = yield
       .footer
-        .pull-left{style: "width: 80%;"}
+        .pull-left{style: embedded? ?  "width: 100%" : "width: 80%;"}
           %p.muted
             Données rafraîchies toutes les 5 minutes depuis les <a href='http://www.strasbourg.eu/fr/ma-situation/professionnel/open-data/donnees'>sources OpenData de la Ville de Strasbourg</a>.
             - unless embedded?
               %br
               Projet réalisé par <a href='https://twitter.com/yannski'>yannski</a> (<a href='http://www.novelys.com'>Novelys</a>) durant le <a href='http://www.hacksxb.com'>HackSXB</a> spécial OpenData du mois de février 2013. Sur une idée originale de <a href='https://twitter.com/toutielicious'>toutielicious</a>.
-        .pull-left{style: "width: 20%; max-width: 160px;"}
-          = link_to image_tag("strasbourgtheeuroptimist.jpg", style: "width: 100%; max-width: 100%;"), "http://www.strasbourg.eu"
+              %br
+              %br
+              Pour intégrer ces résultats dans votre site, copier/coller le code suivant :
+              %br
+              %textarea{style: "width: 100%;", rows: "1"}
+                :escaped
+                  <iframe src="http://www.parking-strasbourg.eu/embed" width="100%" height="1200px"></iframe>
+        - unless embedded?
+          .pull-left{style: "width: 20%; max-width: 160px;"}
+            = link_to image_tag("strasbourgtheeuroptimist.jpg", style: "width: 100%; max-width: 100%;"), "http://www.strasbourg.eu"
       .clearfix
     =# javascript_include_tag "application"
     :javascript
