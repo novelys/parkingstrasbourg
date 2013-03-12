@@ -16,4 +16,8 @@ module ApplicationHelper
 
     content_tag("span", nil, class: "trend #{klass}", alt: previous_available, title: previous_available)
   end
+
+  def embedded?
+    controller.action_name == "embed"
+  end
 end

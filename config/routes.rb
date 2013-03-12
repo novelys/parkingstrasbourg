@@ -1,6 +1,8 @@
 Parkingstrasbourg::Application.routes.draw do
   root :to => 'parkings#index'
 
+  match 'embed' => 'parkings#embed'
+
   resources :parkings
 
   # The priority is based upon order of creation:
