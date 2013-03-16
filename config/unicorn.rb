@@ -1,4 +1,4 @@
-APP_PATH = "/home/rails19/www/parkingstrasbourg/"
+APP_PATH = "/home/parkingstrasbourg/www/parkingstrasbourg/"
 
 # Sample verbose configuration file for Unicorn (not Rack)
 #
