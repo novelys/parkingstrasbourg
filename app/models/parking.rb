@@ -79,7 +79,7 @@ class Parking
       if parking
         availability = parking.availabilities.build
         availability.is_closed = case parking_data["Etat"].to_s
-        when "2", "9"
+        when "2", "9", "0", "3"
           true
         when "1"
           false
