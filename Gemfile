@@ -25,6 +25,7 @@ gem 'haml-rails'
 gem 'mongoid'
 gem 'nokogiri'
 gem 'rails-i18n'
+gem 'http_accept_language', '~> 2.0.0.pre'
 
 gem 'capistrano'
 gem 'capistrano-ext'
@@ -43,7 +44,7 @@ group :development do
 end
 
 # Webserver
-group :development do  
+group :development do
   gem 'thin'
   gem 'quiet_assets'
   gem 'sextant'

@@ -1,9 +1,9 @@
 !!! 5
 %html
   %head
-    %title Liste des parkings de Strasbourg et les places disponibles
+    %title= t("app_title")
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
-    %meta{name: "description", content: "Liste des parkings de Strasbourg et leur taux de remplissage"}
+    %meta{name: "description", content: t("app_title")}
     %meta{name: "author", content: "Yann Klis"}
     = stylesheet_link_tag    "application", :media => "all"
     = csrf_meta_tags
@@ -13,10 +13,10 @@
       .footer
         .pull-left{style: embedded? ?  "width: 100%" : "width: 80%;"}
           %p.muted
-            Données rafraîchies toutes les 5 minutes depuis les <a href='http://www.strasbourg.eu/fr/ma-situation/professionnel/open-data/donnees' target='_blank'>sources OpenData de la Ville de Strasbourg</a>.
+            != t("footer_text")
             - unless embedded?
               %br
-              Projet réalisé par <a href='https://twitter.com/yannski' target='_blank'>yannski</a> (<a href='http://www.novelys.com' target='_blank'>Novelys</a>) durant le <a href='http://www.hacksxb.com' target='_blank'>HackSXB</a> spécial OpenData du mois de février 2013. Sur une idée originale de <a href='https://twitter.com/toutielicious' target='_blank'>toutielicious</a>.
+              != t("footer_addenum")
               %br
               %br
               Pour intégrer ces résultats dans votre site, copier/coller le code suivant :

@@ -2,4 +2,10 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  app_title: "Free parking spaces available in Strasbourg"
+  last_refresh_at: "Last refresh at: "
+  free: "free"
+  footer_text: "Refreshed every 5 minutes thanks to the <a href='http://www.strasbourg.eu/fr/ma-situation/professionnel/open-data/donnees' target='_blank'>City of Strasbourg OpenData</a>."
+  footer_addenum: "This project is built by <a href='https://twitter.com/yannski' target='_blank'>yannski</a> (<a href='http://www.novelys.com' target='_blank'>Novelys</a>) during the <a href='http://www.hacksxb.com' target='_blank'>HackSXB</a> meeting of february 2013."
+
+

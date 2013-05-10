@@ -1,0 +1,9 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+de:
+  app_title: "Freie Plätze in Parkhäusern in Straßburg"
+  last_refresh_at: "letzten refrest bei : "
+  free: "frei"
+  footer_text: "Données rafraîchies toutes les 5 minutes depuis les <a href='http://www.strasbourg.eu/fr/ma-situation/professionnel/open-data/donnees' target='_blank'>sources OpenData de la Ville de Strasbourg</a>."
+  footer_addenum: "Projet réalisé par <a href='https://twitter.com/yannski' target='_blank'>yannski</a> (<a href='http://www.novelys.com' target='_blank'>Novelys</a>) durant le <a href='http://www.hacksxb.com' target='_blank'>HackSXB</a> spécial OpenData du mois de février 2013. Sur une idée originale de <a href='https://twitter.com/toutielicious' target='_blank'>toutielicious</a>."
