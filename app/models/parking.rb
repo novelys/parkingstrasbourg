@@ -9,15 +9,20 @@ class Parking
 
   has_many :availabilities
 
-  field :name, type: String
+  field :name,          type: String
   field :internal_name, type: String
-  field :external_id, type: Integer
+  field :external_id,   type: Integer
+  field :lat,           type: Float
+  field :lng,           type: Float
 
   cattr_accessor :name_and_identifier_flux
   @@name_and_identifier_flux = 'http://jadyn.strasbourg.eu/jadyn/config.xml'
 
   cattr_accessor :availabilities_flux
   @@availabilities_flux = 'http://jadyn.strasbourg.eu/jadyn/dynn.xml'
+
+  cattr_accessor :coordinates_endpoint
+  @@coordinates_endpoint = 'http://parkings.api.strasbourg-data.fr/parkings'
 
   delegate :total,
     :available,
@@ -100,6 +105,20 @@ class Parking
         availability.save
       else
         raise StandardError
+      end
+    end
+  end
+
+  def self.fetch_coords
+    response = JSON.parse(open(coordinates_endpoint).read)
+
+    response.each do |parking_data|
+      p = where(external_id: parking_data['id']).first
+
+      if p.present?
+        p.lat = parking_data['latitude']
+        p.lng = parking_data['longitude']
+        p.save
       end
     end
   end

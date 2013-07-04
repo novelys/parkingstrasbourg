@@ -1,5 +1,5 @@
 class ParkingSerializer < ActiveModel::Serializer
-  attributes :name, :available, :total, :opened, :trend
+  attributes :name, :available, :total, :opened, :trend, :lat, :lng
   attribute :external_id, key: :id
 
   def opened
