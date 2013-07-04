@@ -1,4 +1,3 @@
-- @parkings = Parking.all
 - unless embedded?
   %h1= t("app_title")
 %p.pull-right.muted= "#{ t("last_refresh_at") }#{l @parkings.first.last_refresh_at.localtime, format: :short}"
