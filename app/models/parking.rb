@@ -45,20 +45,28 @@ class Parking
     @previous_availability ||= availabilities.where(:created_at.gte => 30.minutes.ago, :created_at.lte => 25.minutes.ago).first || availabilities.where(:created_at.lte => 30.minutes.ago).first
   end
 
-  def trend_and_previous_available
+  def trend
     current_available = self.available
     raise UnknownTrend if previous_availability.nil?
     previous_available = previous_availability.available
 
-    trend = if current_available > previous_available
+    if current_available > previous_available
       :up
     elsif current_available < previous_available
       :down
     else
       :flat
     end
+  rescue UnknownTrend
+    :unknown
+  end
 
-    [trend, previous_available]
+  def trend_and_previous_available
+    current_trend = trend
+
+    raise UnknownTrend if current_trend == :unknown
+
+    [current_trend, previous_availability.available]
   rescue UnknownTrend
     [:unknown, "N/A"]
   end
