@@ -25,12 +25,12 @@ gem 'haml-rails'
 gem 'mongoid'
 gem 'nokogiri'
 gem 'rails-i18n'
-gem 'http_accept_language', '~> 2.0.0.pre'
+gem 'http_accept_language', github: 'sespindola/http_accept_language'
 
 gem 'capistrano'
 gem 'capistrano-ext'
 gem 'whenever'
-
+gem "active_model_serializers"
 gem 's3'
 gem 'production_chain'
 
