@@ -30,7 +30,8 @@ gem 'http_accept_language', github: 'sespindola/http_accept_language'
 gem 'capistrano'
 gem 'capistrano-ext'
 gem 'whenever'
-gem "active_model_serializers"
+gem 'geocoder'
+gem 'active_model_serializers'
 gem 's3'
 gem 'production_chain'
 

@@ -6,6 +6,7 @@ class UnknownTrend < StandardError; end;
 class Parking
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Geocoder::Model::Mongoid
 
   has_many :availabilities
 
@@ -14,6 +15,8 @@ class Parking
   field :external_id,   type: Integer
   field :lat,           type: Float
   field :lng,           type: Float
+  field :address,       type: String
+  reverse_geocoded_by :coordinates
 
   cattr_accessor :name_and_identifier_flux
   @@name_and_identifier_flux = 'http://jadyn.strasbourg.eu/jadyn/config.xml'
@@ -48,6 +51,10 @@ class Parking
 
   def previous_availability
     @previous_availability ||= availabilities.where(:created_at.gte => 30.minutes.ago, :created_at.lte => 25.minutes.ago).first || availabilities.where(:created_at.lte => 30.minutes.ago).first
+  end
+
+  def coordinates
+    [lng, lat]
   end
 
   def trend
