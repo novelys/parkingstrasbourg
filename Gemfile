@@ -1,62 +1,41 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.12'
+## Base
+gem 'rails',                    '~> 4.0.0'
+gem 'sass-rails',               '~> 4.0.0'
+gem 'coffee-rails',             '~> 4.0.0'
+gem 'jquery-rails',             '~> 2.2.1'
+gem 'uglifier',                 '~> 2.2.1'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+## Domain layer
+gem 'mongoid',                  github: 'mongoid/mongoid'
+gem 'geocoder',                 '~> 1.1.8'
+gem 'nokogiri',                 '~> 1.5.6'
 
+## View stuff
+gem 'active_model_serializers', '~> 0.8.1'
+gem 'compass-rails',            '~> 2.0.alpha.0'
+gem 'haml-rails',               '~> 0.3.5'
 
+## I18n
+gem 'http_accept_language',     github: 'sespindola/http_accept_language'
+gem 'rails-i18n',               '~> 0.6.4'
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'compass-rails'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
-
-  gem 'uglifier', '>= 1.0.3'
-end
-
-gem 'jquery-rails'
-gem 'haml-rails'
-gem 'mongoid'
-gem 'nokogiri'
-gem 'rails-i18n'
-gem 'http_accept_language', github: 'sespindola/http_accept_language'
-
-gem 'capistrano'
-gem 'capistrano-ext'
-gem 'whenever'
-gem 'geocoder'
-gem 'active_model_serializers'
-gem 's3'
-gem 'production_chain'
+## Deployment
+gem 'production_chain',         github: 'novelys/production_chain'
+gem 'capistranovelys',          git: 'git@github.com:novelys/capistranovelys.git'
+gem 'whenever',                 '~> 0.8.2'
 
 group :development do
-  # Debugging
+  gem 'thin'
   gem 'pry'
   gem 'pry-nav'
   gem 'debugger'
   gem 'delorean'
   gem 'pry-rails'
-end
-
-# Webserver
-group :development do
-  gem 'thin'
   gem 'quiet_assets'
-  gem 'sextant'
 end
 
 group :staging, :production do
   gem 'unicorn'
 end
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'debugger'
