@@ -6,4 +6,8 @@ class ParkingSerializer < ActiveModel::Serializer
   def opened
     !object.is_closed?
   end
+
+  def trend
+    object.trend.value
+  end
 end

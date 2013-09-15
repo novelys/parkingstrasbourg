@@ -1,17 +1,13 @@
 class ParkingsController < ApplicationController
   before_filter :load_data
+  respond_to :html, :json
 
   def index
-    respond_to do |format|
-      format.html
-      format.json do
-        render json: @parkings
-      end
-    end
+    respond_with @parkings
   end
 
   def embed
-    render :action => "index"
+    render action: :index
   end
 
   private

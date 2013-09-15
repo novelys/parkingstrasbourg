@@ -3,11 +3,9 @@ class ApplicationController < ActionController::Base
 
   before_filter :set_locale
 
-protected
+  private
 
   def set_locale
-    available = I18n.available_locales
-    I18n.locale = http_accept_language.compatible_language_from(available)
+    I18n.locale = http_accept_language.compatible_language_from(I18n.available_locales)
   end
-
 end

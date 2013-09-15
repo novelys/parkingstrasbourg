@@ -1,17 +1,7 @@
 - unless embedded?
-  %h1= t("app_title")
-%p.pull-right.muted= "#{ t("last_refresh_at") }#{l @parkings.first.last_refresh_at.localtime, format: :short}"
+  %h1= t 'app_title'
+%p.pull-right.muted
+  = last_refresh
 .clearfix
 %ul.parkings
-  - @parkings.each do |parking|
-    %li.clearfix
-      .pull-left{class: parking.is_closed? && "closed"}
-        = parking.internal_name
-      .pull-right
-        - if parking.is_closed?
-          .important= parking.user_info
-        - else
-          %span.available= parking.available
-          %span.free= t("free")
-          %span.total= "/ #{parking.total}"
-          = trend_node(parking)
+  = render @parkings
