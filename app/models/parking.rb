@@ -73,7 +73,7 @@ class Parking
 
       raise StandardError if parking.nil?
 
-      parking.availabilities.create_from_endpoint_data(parking_data)
+      parking.availabilities.create_from_parking_data(parking_data)
     end
   end
 
