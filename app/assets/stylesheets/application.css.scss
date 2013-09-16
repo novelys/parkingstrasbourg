@@ -44,7 +44,6 @@ body {
 body.nonembedded {
   background-color: #267CC1;
   @include radial-gradient(rgba(167,216,246,0.65), rgba(38,124,193,1));
-  
 }
 
 .pull-left {
@@ -67,16 +66,16 @@ body.nonembedded {
   text-decoration: line-through;
 }
 
-ul li {
-  background-color: #efefef;
-}
-
-ul li:nth-child(even) {
-  background-color: #fff;
-}
-
-ul li:hover {
-  background-color: #dbdbdb;
+ul.parkings {
+  li {
+    background-color: #efefef;
+    &:nth-child(even) {
+      background-color: #fff;
+    }
+    &:hover {
+      background-color: #dbdbdb;
+    }
+  }
 }
 
 .important {
@@ -91,10 +90,6 @@ ul li:hover {
 
 .icon-arrow-up-right {
   color: green;
-}
-
-.icon-arrow-right {
-
 }
 
 .content {
@@ -113,13 +108,12 @@ ul li:hover {
   }
   background-color: #FFF;
   width: 60%;
-  // width: 100%;
   margin: 0 auto;
   padding-left: 3%;
   padding-right: 3%;
   padding-bottom: 1%;
   margin-bottom: 1%;
-  ul {
+  ul.parkings {
     padding-left: 0;
     li {
       border: 1px solid #efefef;
@@ -138,6 +132,43 @@ ul li:hover {
         position: relative;
         top: 4px;
       }
+    }
+  }
+
+  ul.nav {
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    list-style: none;
+    text-align: center;
+    li {
+      width: 49%;
+      margin-left: 2px;
+      float: left;
+      position: relative;
+      display: block;
+      border: 1px solid #efefef;
+      list-style-type: none;
+      font-size: 2em;
+      &.active a {
+        color: rgb(255, 255, 255);
+        background-color: rgb(66, 139, 202);
+      }
+      a {
+        border-radius: 5px;
+        position: relative;
+        display: block;
+        padding: 10px 15px;
+        color: rgb(66, 139, 202);
+        text-decoration: none;
+      }
+    }
+    &:after {
+      clear: both;
+    }
+    &:before, &:after {
+      display: table;
+      content: " ";
     }
   }
 }
@@ -187,6 +218,9 @@ body.nonembedded {
     box-shadow: none;
     ul.parkings {
       margin: 0;
+    }
+    ul.nav {
+      margin-bottom: 10px;
     }
     p.muted {
       margin: 0;
