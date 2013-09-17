@@ -1,0 +1,13 @@
+.parking-node{data: {'parking-id' => parking.external_id.to_s}}
+  %h3{class: parking.is_closed? && :closed}
+    = parking.internal_name
+    = trend_node(parking)
+  .content-node
+    - if parking.is_closed?
+      .important= parking.user_info
+    - else
+      %span.available
+        = parking.available
+      %span.free
+        = t 'free'
+      %span.total= "/ #{parking.total}"
