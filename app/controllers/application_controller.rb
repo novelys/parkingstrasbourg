@@ -8,4 +8,8 @@ class ApplicationController < ActionController::Base
   def set_locale
     I18n.locale = http_accept_language.compatible_language_from(I18n.available_locales)
   end
+
+  def load_parkings
+    @parkings = Parking.all
+  end
 end

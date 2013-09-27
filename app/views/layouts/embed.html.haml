@@ -1,0 +1,22 @@
+!!! 5
+%html
+  %head
+    %title= t 'app_title'
+    %meta{content: 'width=device-width, initial-scale=1.0', name: 'viewport'}
+    %meta{name: 'description', content: t('app_title')}
+    %meta{name: 'author', content: 'Yann Klis'}
+    = stylesheet_link_tag :application, media: :all
+    = csrf_meta_tags
+  %body.embed
+    .content
+      %p.pull-right.muted
+        = last_refresh
+      .clearfix
+      = yield
+      .footer
+        .pull-left{style: 'width: 100%'}
+          %p.muted
+            = t('footer_text').html_safe
+      .clearfix
+    = render partial: 'shared/analytics'
+    = javascript_include_tag :application

@@ -7,11 +7,10 @@
     %meta{name: 'author', content: 'Yann Klis'}
     = stylesheet_link_tag :application, media: :all
     = csrf_meta_tags
-  %body{class: embedded? ? 'embed' : 'nonembedded'}
+  %body.nonembedded
     .content
-      - unless embedded?
-        %h1.main-title
-          = t 'app_title'
+      %h1.main-title
+        = t 'app_title'
       %p.pull-right.muted
         = last_refresh
       .clearfix
@@ -19,22 +18,20 @@
       = yield
 
       .footer
-        .pull-left{style: embedded? ?  'width: 100%' : 'width: 80%;'}
+        .pull-left{style: 'width: 80%;'}
           %p.muted
             = t('footer_text').html_safe
-            - unless embedded?
-              %br
-              = t('footer_addenum').html_safe
-              %br
-              %br
-              Pour intégrer ces résultats dans votre site, copier/coller le code suivant :
-              %br
-              %textarea{style: 'width: 100%;', rows: 1}
-                :escaped
-                  <iframe src="http://www.parking-strasbourg.eu/embed" width="100%" height="1200px"></iframe>
-        - unless embedded?
-          .pull-left{style: 'width: 20%; max-width: 160px;'}
-            = link_to image_tag('strasbourgtheeuroptimist.jpg', style: 'width: 100%; max-width: 100%;'), 'http://www.strasbourg.eu'
+            %br
+            = t('footer_addenum').html_safe
+            %br
+            %br
+            Pour intégrer ces résultats dans votre site, copier/coller le code suivant :
+            %br
+            %textarea{style: 'width: 100%;', rows: 1}
+              :escaped
+                <iframe src="http://www.parking-strasbourg.eu/embed" width="100%" height="1200px"></iframe>
+        .pull-left{style: 'width: 20%; max-width: 160px;'}
+          = link_to image_tag('strasbourgtheeuroptimist.jpg', style: 'width: 100%; max-width: 100%;'), 'http://www.strasbourg.eu'
       .clearfix
     = render partial: 'shared/analytics'
     = javascript_include_tag :application
