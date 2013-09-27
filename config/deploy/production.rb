@@ -1,19 +1,3 @@
-set :default_environment, {
-  'PATH' => "~/.rbenv/shims:~/.rbenv/bin:$PATH"
-}
+set(:deploy_to) { '/home/parkingstrasbourg/www/parkingstrasbourg' }
 
-set :user, "parkingstrasbourg"
-set :runner, "parkingstrasbourg"
-set :use_sudo, false
-set :rails_env, "production"
-
-set :branch, "production"
-
-#role :app, "webapp01.novelys.com", :primary => true
-role :app, "webapp02.novelys.com"
-#role :web, "webapp01.novelys.com", :primary => true
-role :web, "webapp02.novelys.com"
-#role :db, "webapp01.novelys.com", :primary => true
-role :db, "webapp02.novelys.com", :primary => true
-role :whenever, "webapp02.novelys.com", :primary => true
-
+server 'webapp02.novelys.com', :app, :web, :db, :whenever, primary: true
