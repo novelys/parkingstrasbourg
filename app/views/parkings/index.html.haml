@@ -1,2 +1,11 @@
+#map-canvas.map-container{data: {behavior: :map}}
+
+.hidden
+  = render partial: 'info_window', collection: @parkings, as: :parking
+
+- content_for :additional_javascript do
+  :javascript
+    window.parkings = new App.ParkingCollection(#{@json});
+
 %ul.parkings
   = render @parkings

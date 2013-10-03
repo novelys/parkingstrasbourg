@@ -4,22 +4,34 @@
 
 // Parkings list
 .parkings {
-  padding-left: 0;
+  margin-top: 0px;
+  padding-left: 0px;
+  float: right;
+  width: 30%;
 }
 
 // Parking row
 .parking {
-  background-color: #efefef;
-  border: 1px solid #efefef;
-  padding: 2%;
+  background-color: red;
+  border: none;
+  padding: 0;
   list-style-type: none;
-  font-size: 2em;
+  font-size: 1.2em;
 
   &:nth-child(even) {
-    background-color: #fff;
+    //background-color: #fff;
   }
   &:hover {
     background-color: #dbdbdb;
+  }
+
+  .progress-container {
+    height: 100%;
+    width: 100%;
+    background-color: green;
+    display: inline-block;
+    border: 1px solid #efefef;
+    padding: 4px;
   }
 
   .important {

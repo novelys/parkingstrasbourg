@@ -1,11 +1,12 @@
 %li.parking.clearfix{data: {'parking-id' => parking.external_id.to_s}}
-  .pull-left{class: parking.is_closed? && :closed}
-    = parking.internal_name
-  .pull-right
-    - if parking.is_closed?
-      .important= parking.user_info
-    - else
-      %span.available= parking.available
-      %span.free= t 'free'
-      %span.total= "/ #{parking.total}"
-      = trend_node(parking)
+  .progress-container
+    .pull-left{class: parking.is_closed? && :closed}
+      = parking.internal_name
+    .pull-right
+      - if parking.is_closed?
+        .important= parking.user_info
+      - else
+        %span.available= parking.available
+        %span.free= t 'free'
+        %span.total= "/ #{parking.total}"
+        = trend_node(parking)

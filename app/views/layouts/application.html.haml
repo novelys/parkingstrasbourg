@@ -7,14 +7,19 @@
     %meta{name: 'author', content: 'Yann Klis'}
     = stylesheet_link_tag :application, media: :all
     = csrf_meta_tags
-  %body.nonembedded
-    .content
+  %body
+    .top-content
       %h1.main-title
         = t 'app_title'
-      %p.pull-right.muted
+      %h2.subtitle
+        = t 'app_subtitle'
+        = t 'app_city'
+      %p.muted
         = last_refresh
+    .content
+
+
       .clearfix
-      = render 'shared/navbar'
       = yield
 
       .footer

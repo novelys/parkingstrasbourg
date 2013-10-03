@@ -2,7 +2,9 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 fr:
-  app_title: "Places disponibles dans les parkings de Strasbourg"
+  app_title: "Places disponibles"
+  app_subtitle: "dans les parkings de"
+  app_city: "Strasbourg"
   last_refresh_at: "Dernier rafraîchissement : "
   free: "libres"
   footer_text: "Données rafraîchies toutes les 5 minutes depuis les <a href='http://www.strasbourg.eu/fr/ma-situation/professionnel/open-data/donnees' target='_blank'>sources OpenData de la Ville de Strasbourg</a>."
