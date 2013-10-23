@@ -5,5 +5,8 @@
   = last_refresh
 .clearfix
 
+- unless embedded?
+  .filters
+    %input#name-filter{type: :text, placeholder: "Rechercher par nom..."}
 .parkings
   = render @parkings

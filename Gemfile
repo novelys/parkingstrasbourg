@@ -18,6 +18,7 @@ gem 'compass-rails',            '~> 2.0.alpha.0'
 gem 'haml-rails',               '~> 0.3.5'
 gem 'bourbon'
 gem 'neat'
+gem 'underscore-rails'
 
 ## I18n
 gem 'http_accept_language',     github: 'sespindola/http_accept_language'
