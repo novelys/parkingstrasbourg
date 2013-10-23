@@ -1,4 +1,4 @@
-if Rails.env.production?
+if ENV['RAILS_ENV'] == 'production'
   APP_PATH = "/home/parkingstrasbourg/www/parkingstrasbourg/"
 else
   APP_PATH = "/home/rails19/www/parkingstrasbourg/"
