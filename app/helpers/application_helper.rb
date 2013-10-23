@@ -14,4 +14,14 @@ module ApplicationHelper
     time = l parkings.first.last_refresh_at.localtime, format: :short
     "#{desc}#{time}"
   end
+
+  def parking_class(parking = @parking)
+    klasses = []
+
+    klasses << :closed if parking.is_closed?
+    klasses << :full if parking.is_full?
+    klasses << :pr if parking.pr?
+
+    klasses
+  end
 end

@@ -19,4 +19,8 @@ class Availability
 
   ## Methods
   alias :last_refresh_at :created_at
+
+  def is_full?
+    available == 0
+  end
 end

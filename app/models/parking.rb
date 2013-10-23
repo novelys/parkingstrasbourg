@@ -93,7 +93,7 @@ class Parking
   end
 
   ## Methods
-  delegate :total, :available, :user_info, :is_closed?, :last_refresh_at,
+  delegate :total, :available, :user_info, :is_closed?, :is_full?, :last_refresh_at,
     to: :last_availability, allow_nil: true
 
   def last_availability
@@ -128,7 +128,7 @@ class Parking
   end
 
   def sort_criteria
-    is_closed? && 1 || 0
+    is_full? && 1 || is_closed? && 2 || 0
   end
 
   private

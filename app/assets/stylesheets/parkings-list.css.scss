@@ -69,7 +69,7 @@
   }
 
   // Parking item when closed
-  &.closed, &.veiled {
+  &.closed, &.veiled, &.full {
     opacity: 0.25;
   }
 

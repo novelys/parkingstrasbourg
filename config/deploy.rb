@@ -15,6 +15,7 @@ require 'capistrano/ext/multistage'
 require 'bundler/capistrano'
 
 set :stages, %w(staging production)
+set(:deploy_to) { "/home/#{application}/www/#{application}" }
 
 after "deploy:update_code", "db:symlink"
 # before "deploy:assets:precompile", "db:symlink"

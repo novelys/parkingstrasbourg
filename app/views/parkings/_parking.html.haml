@@ -1,10 +1,10 @@
-%span.parking{data: {index: parking_counter}, class: parking.is_closed? && :closed}
-  %h3.parking-name{data: {clean: parking.internal_name}, class: parking.pr? && :pr}
+%span.parking{data: {index: parking_counter}, class: parking_class(parking)}
+  %h3.parking-name{data: {clean: parking.internal_name}, class: parking_class(parking)}
     = parking.base_name
     - if parking.pr?
       %br
       P+R
-  .parking-data{class: parking.is_closed? && :closed}
+  .parking-data{class: parking_class(parking)}
     - if parking.is_closed?
       %span.available= t('closed')
       %br
