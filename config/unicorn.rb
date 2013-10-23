@@ -1,4 +1,8 @@
-APP_PATH = "/home/parkingstrasbourg/www/parkingstrasbourg/"
+if Rails.env.production?
+  APP_PATH = "/home/parkingstrasbourg/www/parkingstrasbourg/"
+else
+  APP_PATH = "/home/rails19/www/parkingstrasbourg/"
+end
 
 # Sample verbose configuration file for Unicorn (not Rack)
 #
