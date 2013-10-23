@@ -10,8 +10,7 @@
   %body{class: embedded? ? 'embed' : 'nonembedded'}
     .content
       - unless embedded?
-        %h1.main-title
-          = t 'app_title'
+        %h1= t 'app_title'
       %p.pull-right.muted
         = last_refresh
       .clearfix
@@ -38,5 +37,4 @@
       .clearfix
     = render partial: 'shared/analytics'
     = javascript_include_tag :application
-    = google_maps_tag
     = yield :additional_javascript

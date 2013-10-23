@@ -11,9 +11,7 @@ class ParkingsController < ApplicationController
   end
 
   def map
-    @json = @parkings.map { |o| ParkingSerializer.new(o) }.to_json.html_safe
   end
-
   private
 
   def load_data

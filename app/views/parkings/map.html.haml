@@ -1,8 +1,6 @@
-#map-canvas.map-container{data: {behavior: :map}}
-
-.hidden
-  = render partial: 'info_window', collection: @parkings, as: :parking
+#map-canvas{style: "width: 100%; height: 600px"}
 
 - content_for :additional_javascript do
+  = google_maps_tag
   :javascript
-    window.parkings = new App.ParkingCollection(#{@json});
+    window.parkings = new App.ParkingCollection(#{@parkings.to_json.html_safe});
