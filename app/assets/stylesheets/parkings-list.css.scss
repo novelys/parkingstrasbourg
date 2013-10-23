@@ -1,0 +1,125 @@
+// Parkings list
+.parkings {
+  @include outer-container;
+}
+
+// Parking item
+.parking {
+  @include box-shadow(#555 0px 0px 10px);
+
+  padding: 4px;
+  margin-bottom: 10px;
+  height: 70px;
+
+  &:hover {
+    background-color: #E0F2FF;
+  }
+
+  .parking-name {
+    @include span-columns(2 of 4, collapse);
+    margin: 0;
+    margin-top: 20px;
+
+    &.pr {
+      margin-top: 10px;
+    }
+  }
+
+  .parking-data, .parking-trend {
+    @include span-columns(1 of 4, collapse);
+    text-align: right;
+  }
+
+  .parking-data {
+    margin-top: 6px;
+  }
+
+  .available {
+    font-size: 1.4em;
+    font-weight: bold;
+  }
+
+  .free {
+    font-size: 1em;
+  }
+
+  .total {
+    color: #4c4c4c;
+    font-size: 1em;
+  }
+
+  .trend {
+    position: relative;
+    top: 10px;
+    right: 10px;
+    font-size: 2.4em;
+  }
+
+  // Parking item when closed
+  &.closed {
+    opacity: 0.25;
+
+    .parking-name {
+      @include span-columns(2 of 4, collapse);
+    }
+
+    .parking-data {
+      @include span-columns(2 of 4, collapse);
+      font-weight: bold;
+      margin-top: 8px;
+    }
+  }
+}
+
+@media (min-width: 1181px) {
+  .parking {
+    @include span-columns(4);
+    @include omega(3n);
+  }
+}
+
+@media (max-width: 1180px) {
+  .parking {
+    @include span-columns(6);
+    @include omega(2n);
+  }
+}
+
+@media (max-width: 668px) {
+  .parking {
+    @include span-columns(12);
+    @include row(table);
+    @include box-shadow(none);
+
+    height: 54px;
+    margin-bottom: 0;
+    border: 1px solid lightGray;
+    border-bottom: none;
+    padding-top: 0px;
+    padding-bottom: 0px;
+
+    &:nth-child(even) {
+      background-color: #EEE;
+    }
+
+    &:last-child {
+      border-bottom: 1px solid lightGray;
+    }
+
+    .parking-name {
+      margin-top: 14px;
+
+      &.pr {
+        margin-top: 4px;
+      }
+    }
+
+    .parking-data {
+      margin-top: 2px;
+    }
+
+    .trend {
+      font-size: 1.8em;
+    }
+  }
+}
