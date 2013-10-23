@@ -6,7 +6,6 @@ gem 'sass-rails',               '~> 4.0.0'
 gem 'coffee-rails',             '~> 4.0.0'
 gem 'jquery-rails',             '~> 2.2.1'
 gem 'uglifier',                 '~> 2.2.1'
-gem 'turbolinks',               '~> 1.2.0'
 
 ## Domain layer
 gem 'mongoid',                  github: 'mongoid/mongoid'
@@ -34,7 +33,6 @@ group :development do
   gem 'debugger'
   gem 'delorean'
   gem 'pry-rails'
-  gem 'dotenv-rails'
   gem 'quiet_assets'
 end
 
