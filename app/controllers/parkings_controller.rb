@@ -3,6 +3,7 @@ class ParkingsController < ApplicationController
   respond_to :html, :json
 
   def index
+    @parkings = @parkings.to_a.sort {|x,y| x.is_closed? && 1 || 0}
     respond_with @parkings
   end
 

@@ -14,6 +14,7 @@
  *= require_self
  */
 
+@import "bootstrap";
 @import "compass/css3/border-radius";
 @import "compass/css3/box-shadow";
 @import "compass/css3/font-face";
@@ -125,11 +126,11 @@ body {
 @media (min-width: 980px) {}
 
 // Portrait tablets
-@media (min-width: 768px) and (max-width: 979px) {
-  .content {
-    width: 80%;
-  }
-}
+// @media (min-width: 768px) and (max-width: 979px) {
+//   .content {
+//     width: 80%;
+//   }
+// }
 
 // Phones to tablets
 @media (min-width: 481px) and (max-width: 767px) {}
