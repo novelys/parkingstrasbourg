@@ -1,6 +1,7 @@
 // Filters
 .filters {
-  padding: 10px 3px;
+  padding: 10px 0;
+  @include outer-container;
 
   input {
     width: 100%;
@@ -22,7 +23,6 @@
   padding: 4px;
   margin-bottom: 10px;
   height: 70px;
-  transition: opacity .15s ease-in-out;
 
   &:hover {
     background-color: #E0F2FF;
