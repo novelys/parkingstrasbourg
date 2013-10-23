@@ -10,52 +10,102 @@
  *
  *= require normalize
  *= require clearfix
- *= require icomoon
  *= require_self
+ *= require icomoon
  */
 
 @import "compass/css3/border-radius";
 @import "compass/css3/box-shadow";
 @import "compass/css3/font-face";
 
-@import "mixins";
-@import "config";
-@import "fonts";
-@import "list";
-@import "map";
-@import "parking";
+@include font-face("SignikaBold", font-files("Signika-Bold-webfont.woff", woff, "Signika-Bold-webfont.ttf", truetype, "Signika-Bold-webfont.svg", svg), "Signika-Bold-webfont.eot", normal, normal);
+@include font-face("SignikaSemiBold", font-files("Signika-Semibold-webfont.woff", woff, "Signika-Semibold-webfont.ttf", truetype, "Signika-Semibold-webfont.svg", svg), "Signika-Semibold-webfont.eot", normal, normal);
+@include font-face("SignikaRegular", font-files("Signika-Regular-webfont.woff", woff, "Signika-Regular-webfont.ttf", truetype, "Signika-Regular-webfont.svg", svg), "Signika-Regular-webfont.eot", normal, normal);
+@include font-face("SignikaLight", font-files("Signika-Light-webfont.woff", woff, "Signika-Light-webfont.ttf", truetype, "Signika-Light-webfont.svg", svg), "Signika-Light-webfont.eot", normal, normal);
+@include font-face("icomoon", font-files("icomoon.woff", woff, "icomoon.ttf", truetype, "icomoons.svg", svg), "icomoon.eot", normal, normal);
 
-// Global styles
+@mixin radial-gradient($color1, $color2) {
+  background: -moz-radial-gradient(center, ellipse cover,  $color1 0%, $color2 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,$color1), color-stop(100%,$color2));
+  background: -webkit-radial-gradient(center, ellipse cover,  $color1 0%,$color2 100%);
+  background: -o-radial-gradient(center, ellipse cover,  $color1 0%,$color2 100%);
+  background: -ms-radial-gradient(center, ellipse cover,  $color1 0%,$color2 100%);
+  background: radial-gradient(ellipse at center,  $color1 0%,$color2 100%);
+}
+
+$lightblue: #a7d8f6;
+$brown: #3f3d40;
+
 body {
   font-family: SignikaRegular;
   background-color: white;
-
-  &.nonembedded {
-    background-color: #267CC1;
-    @include radial-gradient(rgba(167,216,246,0.65), rgba(38,124,193,1));
-
-    .content {
-      @include border-radius(5px 5px, 5px 5px);
-      @include box-shadow(black 2px 2px 10px);
-    }
-  }
 }
 
-// Helpers
-.pull-left  { float:left; }
-.pull-right { float:right; }
-.hidden     { display: none; }
+body.nonembedded {
+  background-color: #267CC1;
+  @include radial-gradient(rgba(167,216,246,0.65), rgba(38,124,193,1));
+}
+
+.pull-left {
+  float:left;
+}
+
+.pull-right {
+  float:right;
+}
 
 .muted {
   color: #999;
   font-size: 0.7em;
-  a, a:hover, a:visited {
+  a, a:hover a:visited {
     color: rgba(38,124,193,1);
   }
 }
 
-// Content container
+.closed {
+  text-decoration: line-through;
+}
+
+ul.parkings {
+  li {
+    background-color: #efefef;
+    &:nth-child(even) {
+      background-color: #fff;
+    }
+    &:hover {
+      background-color: #dbdbdb;
+    }
+  }
+}
+
+.important {
+  color: white;
+  background-color: #b93c3a;
+  padding: 0.1em;
+}
+
+.icon-arrow-down-right {
+  color: #b93c3a;
+}
+
+.icon-arrow-up-right {
+  color: green;
+}
+
 .content {
+  h1 {
+    padding-top: 0.2em;
+    text-align: center;
+    font-family: SignikaBold;
+    font-size: 4em;
+    margin: 0;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    .icon-Acoeur {
+      color: #b93c3a;
+      font-size: 0.6em;
+    }
+  }
   background-color: #FFF;
   width: 60%;
   margin: 0 auto;
@@ -63,67 +113,90 @@ body {
   padding-right: 3%;
   padding-bottom: 1%;
   margin-bottom: 1%;
+  ul.parkings {
+    padding-left: 0;
+    li {
+      border: 1px solid #efefef;
+      padding: 2%;
+      list-style-type: none;
+      font-size: 2em;
+      .free {
+        font-size: 0.5em;
+      }
+      .total {
+        font-family: SignikaLight;
+        color: #4c4c4c;
+        font-size: 0.5em;
+      }
+      .trend {
+        position: relative;
+        top: 4px;
+      }
+    }
+  }
+
+  ul.nav {
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    list-style: none;
+    text-align: center;
+    li {
+      width: 49%;
+      margin-left: 2px;
+      float: left;
+      position: relative;
+      display: block;
+      border: 1px solid #efefef;
+      list-style-type: none;
+      font-size: 2em;
+      &.active a {
+        color: rgb(255, 255, 255);
+        background-color: rgb(66, 139, 202);
+      }
+      a {
+        border-radius: 5px;
+        position: relative;
+        display: block;
+        padding: 10px 15px;
+        color: rgb(66, 139, 202);
+        text-decoration: none;
+      }
+    }
+    &:after {
+      clear: both;
+    }
+    &:before, &:after {
+      display: table;
+      content: " ";
+    }
+  }
 }
 
-.main-title {
-  padding-top: 0.2em;
-  text-align: center;
-  font-family: SignikaBold;
-  font-size: 4em;
-  margin: 0;
-  margin-top: 3%;
-  margin-bottom: 3%;
-}
-
-// Nav bar
-.nav {
-  padding-left: 0;
-  margin-top: 0;
-  margin-bottom: 10px;
-  list-style: none;
-  text-align: center;
-
-  &:after {
-    clear: both;
-  }
-
-  &:before, &:after {
-    display: table;
-    content: " ";
+body.nonembedded {
+  .content {
+    @include border-radius(5px 5px, 5px 5px);
+    @include box-shadow(black 2px 2px 10px);
   }
 }
 
-// Navigation item
-.nav-item {
-  width: 49%;
-  float: left;
-  position: relative;
-  display: block;
-  border: 1px solid #efefef;
-  border-radius: 5px;
-  list-style-type: none;
-  font-size: 2em;
 
-  &:last-child {
-    float: right;
-  }
-  &.active a {
-    color: rgb(255, 255, 255);
-    background-color: rgb(66, 139, 202);
-  }
-
-  a {
-    border-radius: 5px;
-    position: relative;
-    display: block;
-    padding: 10px 15px;
-    color: rgb(66, 139, 202);
-    text-decoration: none;
+@media (min-width: 768px) {
+  .content {
+    li:first-child {
+      @include border-top-left-radius(5px);
+      @include border-top-right-radius(5px);
+    }
+    li:last-child {
+      @include border-bottom-left-radius(5px);
+      @include border-bottom-right-radius(5px);
+    }
   }
 }
 
-// Desktop
-@media (min-width: 980px) {}
+// default
+// @media (min-width: 980px) {
+// }
 
 // Portrait tablets
 @media (min-width: 768px) and (max-width: 979px) {
@@ -132,8 +205,10 @@ body {
   }
 }
 
-// Phones to tablets
-@media (min-width: 481px) and (max-width: 767px) {}
+// phones to tablets
+@media (min-width: 481px) and (max-width: 767px) {
+}
+
 @media (max-width: 767px) {
   .content {
     width: 100%;
@@ -141,43 +216,35 @@ body {
     padding: 0;
     border-radius: 0;
     box-shadow: none;
-  }
-
-  .main-title {
-    font-size: 2em;
-    margin: 0;
-  }
-
-  .nav {
-    margin-bottom: 10px;
-  }
-
-  .muted {
-    margin: 0;
-    padding: 5px;
-  }
-
-  .nav-item {
-    font-size: 1.4em;
-
-    a {
-      padding-top: 8px;
-      padding-bottom: 8px;
+    ul.parkings {
+      margin: 0;
     }
+    ul.nav {
+      margin-bottom: 10px;
+    }
+    p.muted {
+      margin: 0;
+      padding: 5px;
+    }
+    h1 {
+      font-size: 2em;
+      margin: 0;
+    }
+  }
+  .content ul li {
+    font-size: 1.3em;
+  }
+}
+
+// phones
+@media (max-width: 480px) {
+  .content ul li {
+    font-size: 1.1em;
   }
 }
 
 @media (max-width: 430px) {
-  .main-title {
+  .content h1 {
     font-size: 1.4em;
-  }
-
-  .nav-item {
-    font-size: 1.1em;
-
-    a {
-      padding-top: 5px;
-      padding-bottom: 5px;
-    }
   }
 }
