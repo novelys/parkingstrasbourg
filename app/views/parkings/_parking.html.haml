@@ -1,11 +1,20 @@
-%li.clearfix
-  .pull-left{class: parking.is_closed? && :closed}
-    = parking.internal_name
-  .pull-right
+%span.parking{class: parking.is_closed? && :closed}
+  %h3.parking-name{class: parking.pr? && :pr}
+    = parking.base_name
+    - if parking.pr?
+      %br
+      P+R
+  .parking-data{class: parking.is_closed? && :closed}
     - if parking.is_closed?
-      .important= parking.user_info
+      %span.available= t('closed')
+      %br
     - else
       %span.available= parking.available
-      %span.free= t 'free'
-      %span.total= "/ #{parking.total}"
+      %span.free= t('free').pluralize(parking.available)
+      %br
+    %span.total
+      = "#{parking.total}"
+      = t('place').pluralize
+  - unless parking.is_closed?
+    .parking-trend
       = trend_node(parking)

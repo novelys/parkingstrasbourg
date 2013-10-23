@@ -119,6 +119,18 @@ class Parking
     [trend, previous]
   end
 
+  def pr?
+    name =~ /P\+R/
+  end
+
+  def base_name
+    pr? && name[4..-1] || name
+  end
+
+  def sort_criteria
+    is_closed? && 1 || 0
+  end
+
   private
 
   def set_internal_name

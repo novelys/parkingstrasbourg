@@ -59,6 +59,9 @@ GEM
       tzinfo (~> 0.3.37)
     arel (4.0.0)
     atomic (1.1.14)
+    bourbon (3.1.8)
+      sass (>= 3.2.0)
+      thor
     builder (3.1.4)
     capistrano (2.15.5)
       highline
@@ -118,6 +121,9 @@ GEM
     minitest (4.7.5)
     moped (1.5.1)
     multi_json (1.8.0)
+    neat (1.4.0)
+      bourbon (>= 2.1)
+      sass (>= 3.2)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-sftp (2.1.2)
@@ -202,6 +208,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (~> 0.8.1)
+  bourbon
   capistranovelys!
   coffee-rails (~> 4.0.0)
   compass-rails (~> 2.0.alpha.0)
@@ -212,6 +219,7 @@ DEPENDENCIES
   http_accept_language!
   jquery-rails (~> 2.2.1)
   mongoid!
+  neat
   nokogiri (~> 1.5.6)
   production_chain!
   pry

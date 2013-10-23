@@ -13,6 +13,6 @@ class ParkingsController < ApplicationController
   private
 
   def load_data
-    @parkings = Parking.all
+    @parkings = Parking.all.sort_by &:sort_criteria
   end
 end

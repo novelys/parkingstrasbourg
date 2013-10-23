@@ -14,10 +14,12 @@
  *= require icomoon
  */
 
+@import url(https://fonts.googleapis.com/css?family=Lato:300italic,700italic,300,700);
+@import "bourbon";
+@import "neat";
 @import "compass/css3/border-radius";
 @import "compass/css3/box-shadow";
 @import "compass/css3/font-face";
-
 @include font-face("SignikaBold", font-files("Signika-Bold-webfont.woff", woff, "Signika-Bold-webfont.ttf", truetype, "Signika-Bold-webfont.svg", svg), "Signika-Bold-webfont.eot", normal, normal);
 @include font-face("SignikaSemiBold", font-files("Signika-Semibold-webfont.woff", woff, "Signika-Semibold-webfont.ttf", truetype, "Signika-Semibold-webfont.svg", svg), "Signika-Semibold-webfont.eot", normal, normal);
 @include font-face("SignikaRegular", font-files("Signika-Regular-webfont.woff", woff, "Signika-Regular-webfont.ttf", truetype, "Signika-Regular-webfont.svg", svg), "Signika-Regular-webfont.eot", normal, normal);
@@ -25,26 +27,26 @@
 @include font-face("icomoon", font-files("icomoon.woff", woff, "icomoon.ttf", truetype, "icomoons.svg", svg), "icomoon.eot", normal, normal);
 
 @mixin radial-gradient($color1, $color2) {
-  background: -moz-radial-gradient(center, ellipse cover,  $color1 0%, $color2 100%);
-  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,$color1), color-stop(100%,$color2));
-  background: -webkit-radial-gradient(center, ellipse cover,  $color1 0%,$color2 100%);
-  background: -o-radial-gradient(center, ellipse cover,  $color1 0%,$color2 100%);
-  background: -ms-radial-gradient(center, ellipse cover,  $color1 0%,$color2 100%);
-  background: radial-gradient(ellipse at center,  $color1 0%,$color2 100%);
+  background: -moz-radial-gradient(center, ellipse cover,  $color1 50%, $color2 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(50%,$color1), color-stop(100%,$color2));
+  background: -webkit-radial-gradient(center, ellipse cover,  $color1 50%,$color2 100%);
+  background: -o-radial-gradient(center, ellipse cover,  $color1 50%,$color2 100%);
+  background: -ms-radial-gradient(center, ellipse cover,  $color1 50%,$color2 100%);
+  background: radial-gradient(ellipse at center,  $color1 50%,$color2 100%);
 }
 
 $lightblue: #a7d8f6;
 $brown: #3f3d40;
 
 body {
-  font-family: SignikaRegular;
+  font-family: Lato, Helvetica, Arial, sans-serif;
   background-color: white;
 }
 
 body.nonembedded {
   background-color: #267CC1;
-  @include radial-gradient(rgba(167,216,246,0.65), rgba(38,124,193,1));
-  
+  @include radial-gradient(rgba(67,216,246,0.65), rgba(87,139,193,1));
+
 }
 
 .pull-left {
@@ -61,10 +63,6 @@ body.nonembedded {
   a, a:hover a:visited {
     color: rgba(38,124,193,1);
   }
-}
-
-.closed {
-  text-decoration: line-through;
 }
 
 ul li {
@@ -98,10 +96,12 @@ ul li:hover {
 }
 
 .content {
+  h1, h2 {
+    text-align: center;
+    color: #333;
+  }
   h1 {
     padding-top: 0.2em;
-    text-align: center;
-    font-family: SignikaBold;
     font-size: 4em;
     margin: 0;
     margin-top: 3%;
@@ -111,54 +111,90 @@ ul li:hover {
       font-size: 0.6em;
     }
   }
+  h2 {
+    font-style: italic;
+  }
+  h3 {
+
+  }
   background-color: #FFF;
-  width: 60%;
+  width: 80%;
   // width: 100%;
   margin: 0 auto;
   padding-left: 3%;
   padding-right: 3%;
   padding-bottom: 1%;
   margin-bottom: 1%;
-  ul {
-    padding-left: 0;
-    li {
-      border: 1px solid #efefef;
-      padding: 2%;
-      list-style-type: none;
-      font-size: 2em;
-      .free {
-        font-size: 0.5em;
-      }
-      .total {
-        font-family: SignikaLight;
-        color: #4c4c4c;
-        font-size: 0.5em;
-      }
-      .trend {
-        position: relative;
-        top: 4px;
-      }
-    }
-  }
 }
 
 body.nonembedded {
   .content {
-    @include border-radius(5px 5px, 5px 5px);
     @include box-shadow(black 2px 2px 10px);
   }
 }
 
+.parkings {
+  @include outer-container;
+}
 
-@media (min-width: 768px) {
-  .content {
-    li:first-child {
-      @include border-top-left-radius(5px);
-      @include border-top-right-radius(5px);
+.parking {
+  @include box-shadow(#555 0px 0px 10px);
+
+  padding: 4px;
+  margin-bottom: 10px;
+  height: 70px;
+
+  .parking-name {
+    @include span-columns(2 of 4, collapse);
+    margin: 0;
+    margin-top: 20px;
+
+    &.pr {
+      margin-top: 10px;
     }
-    li:last-child {
-      @include border-bottom-left-radius(5px);
-      @include border-bottom-right-radius(5px);
+  }
+
+  .parking-data, .parking-trend {
+    @include span-columns(1 of 4, collapse);
+    text-align: right;
+  }
+
+  .parking-data {
+    margin-top: 6px;
+  }
+
+  .available {
+    font-size: 1.4em;
+    font-weight: bold;
+  }
+
+  .free {
+    font-size: 1em;
+  }
+
+  .total {
+    color: #4c4c4c;
+    font-size: 1em;
+  }
+
+  .trend {
+    position: relative;
+    top: 10px;
+    right: 10px;
+    font-size: 2.4em;
+  }
+
+  &.closed {
+    opacity: 0.25;
+
+    .parking-name {
+      @include span-columns(2 of 4, collapse);
+    }
+
+    .parking-data {
+      @include span-columns(2 of 4, collapse);
+      font-weight: bold;
+      margin-top: 8px;
     }
   }
 }
@@ -168,49 +204,114 @@ body.nonembedded {
 // }
 
 // Portrait tablets
-@media (min-width: 768px) and (max-width: 979px) {
+@media (max-width: 1340px) {
   .content {
-    width: 80%;
+    width: 90%;
   }
 }
 
-// phones to tablets
-@media (min-width: 481px) and (max-width: 767px) {
+@media (min-width: 1181px) {
+  .parking {
+    @include span-columns(4);
+    @include omega(3n);
+  }
+}
+
+
+@media (max-width: 1180px) {
+  .parking {
+    @include span-columns(6);
+    @include omega(2n);
+  }
+}
+
+@media (max-width: 668px) {
+  .parking {
+    @include span-columns(12);
+    @include row(table);
+    @include box-shadow(none);
+
+    height: 54px;
+    margin-bottom: 0;
+    border: 1px solid lightGray;
+    border-bottom: none;
+    padding-top: 0px;
+    padding-bottom: 0px;
+
+    &:nth-child(even) {
+      background-color: #EEE;
+    }
+
+    &:last-child {
+      border-bottom: 1px solid lightGray;
+    }
+
+    .parking-name {
+      margin-top: 14px;
+
+      &.pr {
+        margin-top: 4px;
+      }
+    }
+
+    .parking-data {
+      margin-top: 2px;
+    }
+
+    .trend {
+      font-size: 1.8em;
+    }
+  }
+
+  .embed-instructions {
+    display: none;
+  }
 }
 
 @media (max-width: 767px) {
   .content {
     width: 100%;
     margin: 0;
+    padding: 0 6px;
+    border-radius: 0;
+    box-shadow: none;
+
+    h1 {
+      margin: 0;
+    }
+  }
+}
+
+@media (max-width: 668px) {
+  .content {
+    width: 100%;
+    margin: 0;
     padding: 0;
     border-radius: 0;
     box-shadow: none;
-    ul.parkings {
-      margin: 0;
-    }
-    p.muted {
-      margin: 0;
-      padding: 5px;
-    }
+
     h1 {
       font-size: 2em;
       margin: 0;
     }
-  }
-  .content ul li {
-    font-size: 1.3em;
-  }
-}
 
-// phones
-@media (max-width: 480px) {
-  .content ul li {
-    font-size: 1.1em;
+    h2 {
+      font-size: 1.1em;
+    }
+
+    .muted {
+      margin: 0;
+      padding: 5px;
+    }
   }
 }
 
 @media (max-width: 430px) {
-  .content h1 {
+  h1 {
     font-size: 1.4em;
+  }
+
+  h2 {
+    font-size: 1.1em;
   }
 }

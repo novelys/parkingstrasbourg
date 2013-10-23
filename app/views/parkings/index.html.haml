@@ -1,7 +1,9 @@
 - unless embedded?
-  %h1= t 'app_title'
+  %h1= t 'app.title'
+  %h2= t 'app.subtitle'
 %p.pull-right.muted
   = last_refresh
 .clearfix
-%ul.parkings
+
+.parkings
   = render @parkings
