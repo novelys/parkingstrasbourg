@@ -11,6 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require turbolinks
 //= require map
 //= require parking
 //= require main
