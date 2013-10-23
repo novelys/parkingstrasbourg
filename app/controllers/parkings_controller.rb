@@ -10,8 +10,6 @@ class ParkingsController < ApplicationController
     render action: :index
   end
 
-  def map
-  end
   private
 
   def load_data

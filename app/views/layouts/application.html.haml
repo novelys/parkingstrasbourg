@@ -9,14 +9,7 @@
     = csrf_meta_tags
   %body{class: embedded? ? 'embed' : 'nonembedded'}
     .content
-      - unless embedded?
-        %h1= t 'app_title'
-      %p.pull-right.muted
-        = last_refresh
-      .clearfix
-      = render 'shared/navbar'
       = yield
-
       .footer
         .pull-left{style: embedded? ?  'width: 100%' : 'width: 80%;'}
           %p.muted
@@ -36,5 +29,3 @@
             = link_to image_tag('strasbourgtheeuroptimist.jpg', style: 'width: 100%; max-width: 100%;'), 'http://www.strasbourg.eu'
       .clearfix
     = render partial: 'shared/analytics'
-    = javascript_include_tag :application
-    = yield :additional_javascript
