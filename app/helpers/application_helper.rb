@@ -15,7 +15,25 @@ module ApplicationHelper
     "#{desc}#{time}"
   end
 
-  def parking_class(parking = @parking)
+  def parking_attributes(parking, counter)
+    {
+      data: {index: counter, lat: parking.lat, lng: parking.lng},
+      class: parking_class(parking)
+    }
+  end
+
+  def location_attributes
+    {
+      title: t('filters.geoloc.alt-disabled'),
+      data: {
+        'alt-enabled' => t('filters.geoloc.alt-enabled'),
+        'alt-disabled' => t('filters.geoloc.alt-disabled')
+      },
+      href: '#'
+    }
+  end
+
+  def parking_class(parking)
     klasses = []
 
     klasses << :closed if parking.is_closed?

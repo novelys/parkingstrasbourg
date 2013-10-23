@@ -1,4 +1,4 @@
-%span.parking{data: {index: parking_counter}, class: parking_class(parking)}
+%span.parking{parking_attributes(parking, parking_counter)}
   %h3.parking-name{data: {clean: parking.internal_name}, class: parking_class(parking)}
     = parking.base_name
     - if parking.pr?

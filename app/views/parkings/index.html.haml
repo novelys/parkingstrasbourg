@@ -7,6 +7,7 @@
 
 - unless embedded?
   .filters
+    %a.icon-location{location_attributes}
     %input#name-filter{type: :text, placeholder: "Rechercher par nom..."}
 .parkings
   = render @parkings
