@@ -9,6 +9,8 @@ set :rails_env, "production"
 
 set :branch, "production"
 
+set(:deploy_to) { "/home/#{application}/www/#{application}" }
+
 #role :app, "webapp01.novelys.com", :primary => true
 role :app, "webapp02.novelys.com"
 #role :web, "webapp01.novelys.com", :primary => true

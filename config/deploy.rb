@@ -11,8 +11,6 @@ set :copy_exclude, [".svn", ".DS_Store", ".git"]
 set :bundle_without,  [:development, :test, :cucumber]
 ssh_options[:forward_agent] = true
 
-set :deploy_to, "/home/rails19/www/#{application}"
-
 require 'capistrano/ext/multistage'
 require 'bundler/capistrano'
 

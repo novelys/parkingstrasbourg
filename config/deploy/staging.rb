@@ -1,6 +1,7 @@
 set :default_environment, {
   'PATH' => "/home/rails19/.rbenv/shims:/home/rails19/.rbenv/bin:$PATH"
 }
+set(:deploy_to) { "/home/rails19/www/#{application}" }
 
 set :user, "rails19"
 set :runner, "rails19"
