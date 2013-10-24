@@ -14,6 +14,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require underscore
+//= require modernizr-custom
 //  ## Application
 //= require default_sorter
 //= require name_filter
