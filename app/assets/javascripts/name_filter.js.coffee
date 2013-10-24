@@ -8,7 +8,12 @@ class NameFilter
   nodes      : -> @_(@container().find('.parking'))
   orderSorter: (item) => @$(item).data('index')
   sortedNodes: (nodes) -> @_(nodes).sortBy @orderSorter
-  call       : =>
+  call       : (e) =>
+    if e.keyCode == 27
+      @clearInput()
+      @updateUI()
+      return
+
     if @distance_sorter.supported() && @distance_sorter.enabled()
       @distance_sorter.domItem().trigger('click')
 
@@ -20,8 +25,8 @@ class NameFilter
   dispatchEvents: ->
     @input().on 'keyup', @_.throttle(@call, 300)
 
-  hasInput: ->
-    @input().val() != ''
+  clearInput: -> @input().val('')
+  hasInput  : -> @input().val() != ''
 
   filteredNodes: =>
     input = @input().val().toLowerCase()
