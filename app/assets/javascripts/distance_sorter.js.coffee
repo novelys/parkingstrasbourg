@@ -77,10 +77,15 @@ class DistanceSorter
 
         # Update node if OK
         if status == "OK" && (rows = response.rows).length > 0
-          node.data 'duration', rows[0].elements[0].duration.value
+          @updateNode(node,  rows[0].elements[0].duration)
 
         # Sort the parkings if all are fetched
-        @sort()if @allFetched()
+        @sort() if @allFetched()
+
+  updateNode: (node, duration) ->
+    node.data 'duration', duration.value
+    node.addClass('has-duration')
+    node.find('.parking-distance').html(duration.text)
 
 window.App ||= {}
 window.App.DistanceSorter = DistanceSorter

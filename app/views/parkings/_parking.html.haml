@@ -3,7 +3,9 @@
     = parking.base_name
     - if parking.pr?
       %br
-      P+R
+      %span.pr-label
+        P+R
+    .parking-distance
   .parking-data{class: parking_class(parking)}
     - if parking.is_closed?
       %span.available= t('closed')

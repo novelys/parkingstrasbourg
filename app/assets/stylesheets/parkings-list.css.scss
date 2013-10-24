@@ -15,6 +15,13 @@
     background-color: #E0F2FF;
   }
 
+  .parking-distance {
+    color: #666;
+    font-size: 11px;
+    font-style: italic;
+    font-weight: normal;
+  }
+
   .parking-name {
     @include span-columns(2 of 4, collapse);
     margin: 0;
@@ -23,6 +30,10 @@
     &.pr {
       margin-top: 10px;
     }
+  }
+
+  .pr-label {
+    font-size: 13px;
   }
 
   .parking-data {
@@ -59,6 +70,15 @@
     font-size: 2.4em;
   }
 
+  // Parking when duration is available
+  &.has-duration {
+    .parking-name {
+      margin-top: 16px;
+      &.pr {
+        line-height: 16px;
+      }
+    }
+  }
   // Parking item when closed
   &.closed, &.veiled, &.full {
     opacity: 0.25;
