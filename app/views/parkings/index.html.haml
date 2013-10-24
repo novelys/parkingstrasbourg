@@ -9,8 +9,12 @@
   .filters
     %span.location-filter
       %a.icon-location{location_attributes}
-        %span.location-filter-label
-          = t 'filters.car'
+        %span.location-filter-label.disabled
+          = t 'filters.car.disabled'
+        %span.location-filter-label.enabled.hidden
+          = t 'filters.car.enabled'
+        %span.location-filter-label.ongoing.hidden
+          = t 'filters.car.ongoing'
     %input#name-filter{type: :text, placeholder: "Rechercher par nom..."}
 .parkings
   = render @parkings

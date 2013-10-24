@@ -42,6 +42,7 @@ class DistanceSorter
       @unsort()
       @disable()
     else
+      @updateLabels('ongoing')
       @geoloc().getCurrentPosition(@fetchDistances);
       @enable()
 
@@ -51,9 +52,11 @@ class DistanceSorter
       @name_filter.updateUI()
     else
       @default_sorter.call()
+    @updateLabels('disabled')
 
   sort: ->
     @domItem().addClass 'switched-on'
+    @updateLabels('enabled')
     @domItem().attr 'title', @domItem().data('alt-enabled')
     @container().html @sortedNodes()
 
@@ -87,6 +90,10 @@ class DistanceSorter
     node.addClass('has-duration')
     text = "<span class='icon-car'></span><span class='icon-arrow-right'></span><span class='duration'>#{duration.text}</span>"
     node.find('.parking-distance').html(text)
+
+  updateLabels: (selector) ->
+    @$('.location-filter-label').addClass('hidden')
+    @$(".location-filter-label.#{selector}").removeClass('hidden')
 
 window.App ||= {}
 window.App.DistanceSorter = DistanceSorter
