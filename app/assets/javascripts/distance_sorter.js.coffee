@@ -2,18 +2,28 @@ class DistanceSorter
   constructor: (@$, @_, @default_sorter) ->
     @dispatchEvents()
 
+  # Service objects
+  distanceService: -> @_service ||= new google.maps.DistanceMatrixService()
+  geoloc         : -> navigator.geolocation
+
   # DOM referefences
   domItem    : -> @_icon ||= @$('.icon-location')
   container  : -> @_container ||= @$('.parkings')
-  nodes      : -> @_(@container().find('.parking'))
-  sortedNodes: -> @nodes().sortBy @distanceSorter
+  _nodes     : -> @container().find('.parking')
+  nodes      : -> @_(@_nodes())
+  sortedNodes: -> @nodes().sortBy (item) => @$(item).data('duration')
 
   # Keep state
-  enabled: -> @_enabled
+  resetFetched: -> @_fetched = 0
+  incFetched:   -> @_fetched += 1
+  allFetched:   -> @_fetched == @_nodes().length
+  enabled:      -> @_enabled
+
   enable: ->
     @domItem().addClass('switched-on')
     @domItem().attr 'title', @domItem().data('alt-enabled')
     @_enabled = true
+
   disable: ->
     @domItem().removeClass('switched-on')
     @domItem().attr 'title', @domItem().data('alt-disabled')
@@ -32,7 +42,7 @@ class DistanceSorter
       @unsort()
       @disable()
     else
-      navigator.geolocation.getCurrentPosition(@sort);
+      @geoloc().getCurrentPosition(@fetchDistances);
       @enable()
 
   # Sorting
@@ -42,28 +52,35 @@ class DistanceSorter
     else
       @default_sorter.call()
 
-  sort: (@position) =>
+  sort: ->
     @domItem().addClass 'switched-on'
     @domItem().attr 'title', @domItem().data('alt-enabled')
     @container().html @sortedNodes()
 
-  distanceSorter: (item) =>
-    node = @$(item)
-    # Distance between coords
-    distanceBetween = (lat1, lon1, lat2, lon2) ->
-      toRad = (num) -> num * Math.PI / 180
-      r = 6371;
-      dLat = toRad(lat2-lat1)
-      dLon = toRad(lon2-lon1)
-      lat1 = toRad(lat1)
-      lat2 = toRad(lat2)
+  fetchDistances: (@position) =>
+    origin = new google.maps.LatLng @position.coords.latitude, @position.coords.longitude
+    @resetFetched()
 
-      a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *  Math.sin(dLon/2) * Math.sin(dLon/2);
-      c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    @nodes().each (item, index, collection) =>
+      node = @$(item)
+      dest = new google.maps.LatLng parseFloat(node.data('lat')), parseFloat(node.data('lng'))
 
-      r * c
+      opts =
+        origins: [origin]
+        destinations: [dest]
+        travelMode: google.maps.TravelMode.DRIVING
+        durationInTraffic: true
 
-    distanceBetween(@position.coords.latitude, @position.coords.longitude, parseFloat(node.data('lat')), parseFloat(node.data('lng')))
+      @distanceService().getDistanceMatrix opts, (response, status) =>
+        # Keep track of fetched distances
+        @incFetched()
+
+        # Update node if OK
+        if status == "OK" && (rows = response.rows).length > 0
+          node.data 'duration', rows[0].elements[0].duration.value
+
+        # Sort the parkings if all are fetched
+        @sort()if @allFetched()
 
 window.App ||= {}
 window.App.DistanceSorter = DistanceSorter
