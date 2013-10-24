@@ -14,7 +14,8 @@
       %br
     %span.total
       = "#{parking.total}"
-      = t('place').pluralize
+      %span.total-label
+        = t('place').pluralize
   - unless parking.is_closed?
     .parking-trend
       = trend_node(parking)
