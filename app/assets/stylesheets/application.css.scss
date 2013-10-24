@@ -24,7 +24,7 @@
 @import "compass/css3/font-face";
 
 // Application
-@include font-face("icomoon", font-files("icomoon.woff", woff, "icomoon.ttf", truetype, "icomoons.svg", svg), "icomoon.eot", normal, normal);
+@include font-face("icomoonregular", font-files("icomoon.woff", woff, "icomoon.ttf", truetype, "icomoons.svg", svg), "icomoon.eot", normal, normal);
 
 @import "mixins";
 @import "layout";
