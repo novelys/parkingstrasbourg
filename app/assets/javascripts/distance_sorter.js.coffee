@@ -36,7 +36,7 @@ class DistanceSorter
     @domItem().on 'click', @iconWasClicked
 
   iconWasClicked: =>
-    return unless navigator.geolocation?
+    return false unless navigator.geolocation?
 
     if @enabled()
       @unsort()
@@ -45,6 +45,8 @@ class DistanceSorter
       @updateLabels('ongoing')
       @geoloc().getCurrentPosition(@fetchDistances);
       @enable()
+
+    false
 
   # Sorting
   unsort: ->
