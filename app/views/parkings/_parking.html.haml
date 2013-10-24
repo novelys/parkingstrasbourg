@@ -10,7 +10,11 @@
       %br
     - else
       %span.available= parking.available
-      %span.free= t('free').pluralize(parking.available)
+      %span.free
+        - if I18n.locale == :fr
+          = t('free').pluralize(parking.available)
+        - else
+          = t('free')
       %br
     %span.total
       = "#{parking.total}"
