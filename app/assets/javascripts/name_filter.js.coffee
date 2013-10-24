@@ -1,6 +1,7 @@
 class NameFilter
   constructor: (@$, @_) ->
     @dispatchEvents()
+    @input().focus()
 
   input      : -> @_input ||= @$('#name-filter')
   container  : -> @_container ||= @$('.parkings')
