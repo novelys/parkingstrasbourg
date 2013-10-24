@@ -7,10 +7,18 @@ class NameFilter
   nodes      : -> @_(@container().find('.parking'))
   orderSorter: (item) => @$(item).data('index')
   sortedNodes: (nodes) -> @_(nodes).sortBy @orderSorter
-  call       : => @container().html @filteredNodes()
+  call       : =>
+    @distance_sorter.domItem().trigger('click') if @distance_sorter.enabled()
+    @updateUI()
+
+  updateUI: =>
+    @container().html @filteredNodes()
 
   dispatchEvents: ->
     @input().on 'keyup', @_.throttle(@call, 300)
+
+  hasInput: ->
+    @input().val() != ''
 
   filteredNodes: =>
     input = @input().val().toLowerCase()

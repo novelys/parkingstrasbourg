@@ -3,25 +3,25 @@ class DistanceSorter
     @dispatchEvents()
 
   # DOM referefences
-  locationIcon: -> @_icon ||= @$('.icon-location')
-  container   : -> @_container ||= @$('.parkings')
-  nodes       : -> @_(@container().find('.parking'))
-  sortedNodes : -> @nodes().sortBy @distanceSorter
+  domItem    : -> @_icon ||= @$('.icon-location')
+  container  : -> @_container ||= @$('.parkings')
+  nodes      : -> @_(@container().find('.parking'))
+  sortedNodes: -> @nodes().sortBy @distanceSorter
 
   # Keep state
   enabled: -> @_enabled
   enable: ->
-    @locationIcon().addClass('switched-on')
-    @locationIcon().attr 'title', @locationIcon().data('alt-enabled')
+    @domItem().addClass('switched-on')
+    @domItem().attr 'title', @domItem().data('alt-enabled')
     @_enabled = true
   disable: ->
-    @locationIcon().removeClass('switched-on')
-    @locationIcon().attr 'title', @locationIcon().data('alt-disabled')
+    @domItem().removeClass('switched-on')
+    @domItem().attr 'title', @domItem().data('alt-disabled')
     delete @_enabled
 
   # Events
   dispatchEvents: ->
-    @locationIcon().on 'click', @iconWasClicked
+    @domItem().on 'click', @iconWasClicked
 
   iconWasClicked: =>
     return unless navigator.geolocation?
@@ -34,10 +34,15 @@ class DistanceSorter
       @enable()
 
   # Sorting
-  unsort: -> @default_sorter.call()
+  unsort: ->
+    if @name_filter.hasInput()
+      @name_filter.updateUI()
+    else
+      @default_sorter.call()
+
   sort: (@position) =>
-    @locationIcon().addClass 'switched-on'
-    @locationIcon().attr 'title', @locationIcon().data('alt-enabled')
+    @domItem().addClass 'switched-on'
+    @domItem().attr 'title', @domItem().data('alt-enabled')
     @container().html @sortedNodes()
 
   distanceSorter: (item) =>
