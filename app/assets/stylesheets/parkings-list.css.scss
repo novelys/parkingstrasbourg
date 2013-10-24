@@ -20,6 +20,24 @@
     font-size: 11px;
     font-style: italic;
     font-weight: normal;
+
+    .icon-car {
+      font-size: 20px;
+    }
+
+    .icon-arrow-right {
+      font-size: 9px;
+      left: 5px;
+    }
+
+    .duration, .icon-arrow-right {
+      position: relative;
+      top: -5px;
+    }
+
+    .duration {
+      left: 8px;
+    }
   }
 
   .parking-name {
@@ -75,7 +93,7 @@
     .parking-name {
       margin-top: 16px;
       &.pr {
-        line-height: 16px;
+        line-height: 14px;
       }
     }
   }
@@ -130,6 +148,12 @@
 
     &:last-child {
       border-bottom: 1px solid lightGray;
+    }
+
+    &.has-duration {
+      .parking-data {
+        margin-top: 6px;
+      }
     }
 
     .parking-name {

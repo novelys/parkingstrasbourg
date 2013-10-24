@@ -85,7 +85,8 @@ class DistanceSorter
   updateNode: (node, duration) ->
     node.data 'duration', duration.value
     node.addClass('has-duration')
-    node.find('.parking-distance').html(duration.text)
+    text = "<span class='icon-car'></span><span class='icon-arrow-right'></span><span class='duration'>#{duration.text}</span>"
+    node.find('.parking-distance').html(text)
 
 window.App ||= {}
 window.App.DistanceSorter = DistanceSorter
