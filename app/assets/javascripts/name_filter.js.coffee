@@ -8,7 +8,9 @@ class NameFilter
   orderSorter: (item) => @$(item).data('index')
   sortedNodes: (nodes) -> @_(nodes).sortBy @orderSorter
   call       : =>
-    @distance_sorter.domItem().trigger('click') if @distance_sorter.enabled()
+    if @distance_sorter.supported() && @distance_sorter.enabled()
+      @distance_sorter.domItem().trigger('click')
+
     @updateUI()
 
   updateUI: =>

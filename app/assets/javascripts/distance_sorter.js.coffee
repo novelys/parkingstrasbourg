@@ -20,6 +20,8 @@ class DistanceSorter
     delete @_enabled
 
   # Events
+  supported: -> Modernizr.geolocation
+
   dispatchEvents: ->
     @domItem().on 'click', @iconWasClicked
 
