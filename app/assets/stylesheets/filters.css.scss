@@ -21,11 +21,40 @@
     }
   }
 
+  .location-filter-label {
+    display: none;
+  }
+
   input {
     width: 93%;
     //font-family: Helvetica, Arial, sans-serif;
     padding: 2px;
     color: #666;
     font-style: italic;
+  }
+}
+
+@media (max-width: 767px) {
+  .filters {
+    .location-filter {
+      a {
+        color: #333;
+      }
+      display: block;
+      text-align: left;
+      margin-bottom: 10px;
+    }
+
+    .location-filter-label {
+      display: inline;
+      position: relative;
+      top: -4px;
+      font-size: 14px;
+      font-style: italic;
+    }
+
+    #name-filter {
+      width: 100%
+    }
   }
 }
