@@ -10,8 +10,12 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
+//  ## Libs
 //= require jquery
 //= require jquery_ujs
 //= require underscore
-//= require filters
-
+//  ## Application
+//= require default_sorter
+//= require name_filter
+//= require distance_sorter
+//= require main
