@@ -4,7 +4,7 @@
 en:
   app:
     title: "Parkings in Strasbourg"
-    subtitle: "Availabilities, hours, and locations"
+    subtitle: "Availabilities and locations"
   last_refresh_at: "Last refresh at: "
   free: "free"
   place: "place"

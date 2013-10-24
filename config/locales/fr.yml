@@ -4,7 +4,7 @@
 fr:
   app:
     title: "Les parkings à Strasbourg"
-    subtitle: "Disponibilités, horaires, et emplacements"
+    subtitle: "Disponibilités et emplacements"
   last_refresh_at: "Dernier rafraîchissement : "
   free: "libre"
   place: "place"
