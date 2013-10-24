@@ -5,6 +5,7 @@ class Parking
   include Mongoid::Document
   include Mongoid::Timestamps
   include Geocoder::Model::Mongoid
+  include Mongoid::Slug
 
   ## Metadata
   ENDPOINTS = {
@@ -44,6 +45,8 @@ class Parking
   field :lng,           type: Float
   field :address,       type: String
   reverse_geocoded_by :coordinates
+
+  slug :base_name
 
   ## Indexes
   index internal_name: 1

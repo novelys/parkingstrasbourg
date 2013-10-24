@@ -11,6 +11,7 @@ gem 'uglifier',                 '~> 2.2.1'
 gem 'mongoid',                  github: 'mongoid/mongoid'
 gem 'geocoder',                 '~> 1.1.8'
 gem 'nokogiri',                 '~> 1.5.6'
+gem 'mongoid_slug'
 
 ## View stuff
 gem 'active_model_serializers', '~> 0.8.1'

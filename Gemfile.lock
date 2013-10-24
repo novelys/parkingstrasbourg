@@ -134,6 +134,9 @@ GEM
     method_source (0.8.2)
     mime-types (1.25)
     minitest (4.7.5)
+    mongoid_slug (3.0.0)
+      mongoid (> 3.0)
+      stringex (~> 1.4)
     moped (1.5.1)
     multi_json (1.8.0)
     neat (1.4.0)
@@ -195,6 +198,7 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
+    stringex (1.5.1)
     sushi (0.0.2)
     thin (1.5.1)
       daemons (>= 1.0.9)
@@ -237,6 +241,7 @@ DEPENDENCIES
   http_accept_language!
   jquery-rails (~> 2.2.1)
   mongoid!
+  mongoid_slug
   neat
   nokogiri (~> 1.5.6)
   production_chain!
