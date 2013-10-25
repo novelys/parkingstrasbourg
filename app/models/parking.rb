@@ -134,6 +134,21 @@ class Parking
     is_full? && 1 || is_closed? && 2 || 0
   end
 
+  # Returns an array of forecasted availabilities
+  def forecast(delay)
+    time = delay.minutes.since
+    steps = (6..10).to_a.map { |num| time - num.weeks}
+    ary = steps.map { |time| self.availabilities.around(time) }.flatten
+    ary.reject! &:is_closed?
+    ary.sort_by! &:available
+
+    if block_given?
+      yield ary.first.available, ary.last.available
+    else
+      [ary.first.available, ary.last.available]
+    end
+  end
+
   private
 
   def set_internal_name

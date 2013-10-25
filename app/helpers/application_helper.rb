@@ -18,6 +18,7 @@ module ApplicationHelper
   def parking_attributes(parking, counter)
     {
       data: {index: counter, lat: parking.lat, lng: parking.lng},
+      href: parking_path(parking),
       class: parking_class(parking)
     }
   end
@@ -31,6 +32,22 @@ module ApplicationHelper
       },
       href: '#'
     }
+  end
+
+  def free_label(parking = @parking)
+    if I18n.locale == :fr
+      t('free').pluralize(parking.available)
+    else
+      t('free')
+    end
+  end
+
+  def delay_label(delay)
+    if delay < 60
+      "#{delay} mn"
+    else
+      "#{delay / 60} h"
+    end
   end
 
   def parking_class(parking)

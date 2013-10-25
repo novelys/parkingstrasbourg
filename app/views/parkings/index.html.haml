@@ -1,9 +1,13 @@
 - unless embedded?
-  %h1= t 'app.title'
+  = link_to root_path, class: 'home-link' do
+    %h1= t 'app.title'
   %h2= t 'app.subtitle'
 %p.pull-right.muted
   = last_refresh
 .clearfix
+
+- if defined?(@parking)
+  = render partial: 'main_parking'
 
 - unless embedded?
   .filters

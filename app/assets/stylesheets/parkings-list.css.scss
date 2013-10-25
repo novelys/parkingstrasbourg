@@ -5,12 +5,11 @@
 
 // Parking item
 .parking {
-  @include box-shadow(#555 0px 0px 10px);
-
   padding: 4px;
   margin-bottom: 10px;
   height: 70px;
-
+  text-decoration: none;
+  color: black;
   &:hover {
     background-color: #E0F2FF;
   }

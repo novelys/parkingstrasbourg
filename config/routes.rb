@@ -3,7 +3,7 @@ Parkingstrasbourg::Application.routes.draw do
 
   get 'embed' => 'parkings#embed'
 
-  resources :parkings
+  resources :parkings, only: [:index, :show]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,4 +1,4 @@
-%span.parking{parking_attributes(parking, parking_counter)}
+%a.parking{parking_attributes(parking, parking_counter)}
   %h3.parking-name{data: {clean: parking.internal_name}, class: parking_class(parking)}
     = parking.base_name
     - if parking.pr?
@@ -12,11 +12,7 @@
       %br
     - else
       %span.available= parking.available
-      %span.free
-        - if I18n.locale == :fr
-          = t('free').pluralize(parking.available)
-        - else
-          = t('free')
+      %span.free= free_label(parking)
       %br
     %span.total
       = "#{parking.total}"

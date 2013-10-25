@@ -1,0 +1,53 @@
+// Main parking
+.main-parking-outer, .parking {
+  @include box-shadow(#555 0px 0px 10px);
+}
+
+.main-parking-outer {
+  @include outer-container;
+  overflow: visible;
+  height: 400px;
+}
+
+.main-parking {
+  @include outer-container;
+  padding: 6px;
+  height: 400px;
+  background-color: white;
+
+  h4 {
+    border-bottom: 1px solid lightGray;
+    margin-top: 0px;
+    margin-bottom: 10px;
+  }
+}
+
+.main-free {
+  font-size: 1.4em;
+  font-weight: bold;
+}
+
+.availability-content, .forecast-content {
+  margin-bottom: 10px;
+}
+
+.forecast-disclosure {
+  color: #AAA;
+  font-size: 0.8em;
+  font-style: italic;
+}
+
+.main-parking-availabilities {
+  @include span-columns(4);
+  height: 100px;
+}
+
+.main-parking-info {
+  @include span-columns(4);
+  height: 100px;
+}
+
+.main-parking-map {
+  @include span-columns(4);
+  height: 100px;
+}
