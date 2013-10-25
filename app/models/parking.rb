@@ -1,41 +1,11 @@
-require 'nokogiri'
-require 'open-uri'
-
 class Parking
   include Mongoid::Document
   include Mongoid::Timestamps
   include Geocoder::Model::Mongoid
   include Mongoid::Slug
 
-  ## Metadata
-  ENDPOINTS = {
-    config: 'http://jadyn.strasbourg.eu/jadyn/config.xml',
-    availabilities: 'http://jadyn.strasbourg.eu/jadyn/dynn.xml',
-    coordinates: 'http://parkings.api.strasbourg-data.fr/parkings'
-  }
-
   ## Relationships
-  has_many :availabilities do
-    def build_from_parking_data(data)
-      availability = build
-      availability.is_closed = case data["Etat"].to_s
-      when "2", "9", "0", "3"
-        true
-      when "1"
-        false
-      else
-        raise StandardError
-      end
-      availability.total = data["Total"]
-      availability.available = data["Libre"]
-      availability.user_info = data["InfoUsager"]
-      availability
-    end
-
-    def create_from_parking_data(data)
-      build_from_parking_data(data).save
-    end
-  end
+  has_many :availabilities
 
   ## Schema
   field :name,          type: String
@@ -57,46 +27,8 @@ class Parking
   ## Callbacks
   before_save :set_internal_name
 
-  ## Class methods
-  # Create/update the list of parkings.
-  def self.fetch_all
-    doc = Nokogiri::XML open(ENDPOINTS[:config])
-
-    doc.xpath('//TableDesParcsDeStationnement/PRK').each do |parking_data|
-      parking = Parking.find_or_create_by name: parking_data["Nom"], external_id: parking_data["Ident"]
-    end
-  end
-
-  # Fetch parkings current availabilities.
-  def self.refresh_all
-    doc = Nokogiri::XML open(ENDPOINTS[:availabilities])
-
-    doc.xpath('//TableDonneesParking/PRK').each do |parking_data|
-      parking = Parking.find_by(external_id: parking_data["Ident"])
-
-      raise StandardError if parking.nil?
-
-      parking.availabilities.create_from_parking_data(parking_data)
-    end
-  end
-
-  # Fetch parking coordinates
-  def self.fetch_coords
-    response = JSON.parse open(ENDPOINTS[:coordinates]).read
-
-    response.each do |parking_data|
-      p = where(external_id: parking_data['id']).first
-
-      if p.present?
-        p.lat = parking_data['latitude']
-        p.lng = parking_data['longitude']
-        p.save
-      end
-    end
-  end
-
   ## Methods
-  delegate :total, :available, :user_info, :is_closed?, :is_full?, :last_refresh_at,
+  delegate :total, :available, :is_closed?, :is_full?, :last_refresh_at,
     to: :last_availability, allow_nil: true
 
   def last_availability

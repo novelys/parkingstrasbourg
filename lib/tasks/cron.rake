@@ -1,6 +1,8 @@
 namespace :cron do
-  desc 'refresh parking availabilities'
-  task :refresh_parkings => :environment do
-    Parking.refresh_all
+  desc 'Refresh parkings and availabilities'
+  task refresh_parkings: :environment do
+    service = ParkingService.new
+    service.update_locations
+    service.update_occupations
   end
 end

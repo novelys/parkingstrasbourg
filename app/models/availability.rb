@@ -9,7 +9,6 @@ class Availability
   field :is_closed, type: Boolean
   field :total,     type: Integer
   field :available, type: Integer
-  field :user_info, type: String
 
   ## Indexes
   index created_at: 1
