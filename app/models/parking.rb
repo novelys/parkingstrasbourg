@@ -74,6 +74,10 @@ class Parking
     ary.reject! &:is_closed?
     ary.sort_by! &:available
 
+    # Removes the lower 10% and the upper 10% in case there is some exterme values
+    to_trim = ary.size / 10
+    to_trim.times { ary.shift; ary.pop; }
+
     if block_given?
       yield ary.first.try(:available), ary.last.try(:available)
     else
