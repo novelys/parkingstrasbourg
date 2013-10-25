@@ -3,8 +3,11 @@
   = delay_label(delay)
 .forecast-content
   - parking.forecast(delay) do |min, max|
-    Il devrait y avoir entre
-    %span.main-free= min
-    et
-    %span.main-free= max
-    places libres.
+    - if min.nil? && max.nil?
+      Le parking sera sans doute fermé.
+    - else
+      Il devrait y avoir entre
+      %span.main-free= min
+      et
+      %span.main-free= max
+      places libres.

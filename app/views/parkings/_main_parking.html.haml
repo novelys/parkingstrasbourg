@@ -6,14 +6,19 @@
       %h4
         Occupation actuelle
       .availability-content
-        #{parking.total} #{t('place').pluralize}, #{t('including')}
-        %span.main-free
-          = parking.available
-        #{free_label}.
+        - if parking.is_closed?
+          Le parking est
+          %span.main-free
+            fermé.
+        - else
+          #{parking.total} #{t('place').pluralize}, #{t('including')}
+          %span.main-free
+            = parking.available
+          #{free_label}.
       - [30, 60, 120].each do |delay|
         = render partial: 'forecast', locals: {parking: parking, delay: delay}
       .forecast-disclosure
-        Données calculées à partir des occupations précédente du parking.
+        Données prévisionelles calculées à partir des données des semaines précédentes.
     .main-parking-info
       %h4
         Informations générales

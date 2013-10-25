@@ -143,9 +143,9 @@ class Parking
     ary.sort_by! &:available
 
     if block_given?
-      yield ary.first.available, ary.last.available
+      yield ary.first.try(:available), ary.last.try(:available)
     else
-      [ary.first.available, ary.last.available]
+      [ary.first.try(:available), ary.last.try(:available)]
     end
   end
 
