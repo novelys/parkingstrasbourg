@@ -10,6 +10,7 @@
   height: 70px;
   text-decoration: none;
   color: black;
+
   &:hover {
     background-color: #E0F2FF;
   }
@@ -141,6 +142,9 @@
     padding-top: 0px;
     padding-bottom: 0px;
 
+    &:hover:nth-child(even) {
+      background-color: #E0F2FF;
+    }
     &:nth-child(even) {
       background-color: #EEE;
     }
