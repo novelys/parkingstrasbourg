@@ -19,9 +19,8 @@
         = render partial: 'forecast', locals: {parking: parking, delay: delay}
       .forecast-disclosure
         Données prévisionelles calculées à partir des données des semaines précédentes.
-    .main-parking-info
-      %h4
-        Informations générales
+
     .main-parking-map
       %h4
         Emplacement
+      #parking-map{data: {lng: parking.lng.to_s, lat: parking.lat.to_s, name: parking.base_name}}
