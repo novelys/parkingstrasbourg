@@ -49,6 +49,7 @@ body.nonembedded {
 .content {
   background-color: #FFF;
   width: 90%;
+  max-width: 80em;
   margin: 0 auto;
   padding-left: 3%;
   padding-right: 3%;
@@ -90,6 +91,9 @@ body.nonembedded {
   }
 }
 
+.footer {
+  text-align: center;
+}
 
 @media (max-width: 767px) {
   .content {
