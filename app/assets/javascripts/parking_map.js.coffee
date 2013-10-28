@@ -11,9 +11,18 @@ class ParkingMap
     return false unless @shouldDisplay()
     @gm.event.addDomListener window, 'load', @initMap
 
-
   latitude : -> parseFloat @$container().data('lat')
   longitude: -> parseFloat @$container().data('lng')
+
+  setLocation: (@position, source) ->
+    if source
+      label = @distance_sorter.addressItem().val()
+    else
+      label = "lieu actuel"
+
+    link = "http://maps.google.com/?saddr=#{@position.coords.latitude},#{@position.coords.longitude}&daddr=#{@latitude()},#{@longitude()}&dirflg=d"
+
+    @$('.map-link').html("<a href='#{link}''>Itinéraire depuis #{label}</a>")
 
   parkingName: ->
     @_name ||= @$container().data('name')

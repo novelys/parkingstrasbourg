@@ -6,6 +6,12 @@
   @include outer-container;
   padding: 10px 0;
   text-align: center;
+  border-bottom: 1px solid lightGray;
+  margin-bottom: 10px;
+
+  .filter-item, .label {
+    font-style: italic;
+  }
 
   .icon-location {
     font-size: 1.5em;
@@ -21,20 +27,29 @@
     }
   }
 
-  .location-filter-label {
+  .hidden {
     display: none;
   }
 
   input {
-    width: 93%;
-    //font-family: Helvetica, Arial, sans-serif;
+    font-size: 13px;
     padding: 2px;
     color: #666;
-    font-style: italic;
+  }
+}
+
+@media (min-width: 767px) {
+  .filter-item {
+    @include span-columns(4);
   }
 }
 
 @media (max-width: 767px) {
+  .filter-item {
+    @include span-columns(12);
+    margin-bottom: 4px;
+  }
+
   .filters {
     .location-filter {
       a {
@@ -49,16 +64,6 @@
       display: inline;
       position: relative;
       top: -4px;
-      font-size: 14px;
-      font-style: italic;
-
-      &.hidden {
-        display: none;
-      }
-    }
-
-    #name-filter {
-      width: 98%
     }
   }
 }

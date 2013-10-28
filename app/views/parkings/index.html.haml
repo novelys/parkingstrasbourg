@@ -1,24 +1,20 @@
 - unless embedded?
   = link_to root_path, class: 'home-link' do
-    %h1= t 'app.title'
-  %h2= t 'app.subtitle'
-%p.pull-right.muted
-  = last_refresh
-.clearfix
-
+    %h1.app-title= t 'app.title'
+  %h2.app-subtitle= t 'app.subtitle'
 - if defined?(@parking)
   = render partial: 'main_parking'
 
 - unless embedded?
   .filters
-    %span.location-filter
-      %a.icon-location{location_attributes}
-        %span.location-filter-label.disabled
-          = t 'filters.car.disabled'
-        %span.location-filter-label.enabled.hidden
-          = t 'filters.car.enabled'
-        %span.location-filter-label.ongoing.hidden
-          = t 'filters.car.ongoing'
-    %input#name-filter{type: :text, placeholder: "Rechercher par nom..."}
+    %p.pull-right.muted
+      = last_refresh
+    .clearfix
+    %button#location-filter.filter-item
+      %span.location-filter-label.disabled= t 'filters.car.disabled'
+      %span.location-filter-label.enabled.hidden= t 'filters.car.enabled'
+      %span.location-filter-label.ongoing.hidden= t 'filters.car.ongoing'
+    %input#address-filter.filter-item{type: :text, placeholder: "Trier par adresse..."}
+    %input#name-filter.filter-item{type: :text, placeholder: "Filtrer par nom..."}
 .parkings
   = render @parkings

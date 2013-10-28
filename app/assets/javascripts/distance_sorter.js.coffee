@@ -1,17 +1,19 @@
 class DistanceSorter
-  constructor: (@$, @_, @default_sorter) ->
+  constructor: (@$, @_, @gm, @default_sorter) ->
     @dispatchEvents()
 
   # Service objects
-  distanceService: -> @_service ||= new google.maps.DistanceMatrixService()
+  geocoderService: -> @_geocoder ||= new @gm.Geocoder();
+  distanceService: -> @_distance ||= new @gm.DistanceMatrixService()
   geoloc         : -> navigator.geolocation
 
   # DOM referefences
-  domItem    : -> @_icon ||= @$('.icon-location')
-  container  : -> @_container ||= @$('.parkings')
-  _nodes     : -> @container().find('.parking')
-  nodes      : -> @_(@_nodes())
-  sortedNodes: -> @nodes().sortBy (item) => @$(item).data('duration')
+  currentLocationItem: -> @_icon ||= @$('#location-filter')
+  addressItem        : -> @_address ||= @$('#address-filter')
+  container          : -> @_container ||= @$('.parkings')
+  _nodes             : -> @container().find('.parking')
+  nodes              : -> @_(@_nodes())
+  sortedNodes        : -> @nodes().sortBy (item) => @$(item).data('duration')
 
   # Keep state
   resetFetched: -> @_fetched = 0
@@ -20,20 +22,22 @@ class DistanceSorter
   enabled:      -> @_enabled
 
   enable: ->
-    @domItem().addClass('switched-on')
-    @domItem().attr 'title', @domItem().data('alt-enabled')
+    @currentLocationItem().addClass('switched-on')
+    @currentLocationItem().attr 'title', @currentLocationItem().data('alt-enabled')
     @_enabled = true
 
   disable: ->
-    @domItem().removeClass('switched-on')
-    @domItem().attr 'title', @domItem().data('alt-disabled')
+    @currentLocationItem().removeClass('switched-on')
+    @currentLocationItem().attr 'title', @currentLocationItem().data('alt-disabled')
     delete @_enabled
 
   # Events
   supported: -> Modernizr.geolocation
 
   dispatchEvents: ->
-    @domItem().on 'click', @iconWasClicked
+    @currentLocationItem().on 'click', @iconWasClicked
+    @addressItem().on 'change', @textFieldWasFilled
+    @addressItem().on 'keyup', @textFieldKeyWasHit
 
   iconWasClicked: =>
     return false unless navigator.geolocation?
@@ -48,6 +52,28 @@ class DistanceSorter
 
     false
 
+  textFieldKeyWasHit: (event) =>
+    if event.keyCode == 13 # Enter
+      @addressItem().trigger 'change'
+      return false
+    if event.keyCode == 27 # ESC
+      @addressItem().val('')
+      @unsort()
+      @disable()
+      return false
+
+  textFieldWasFilled: (event) =>
+    if @enabled()
+      @unsort()
+      @disable()
+    else
+      @updateLabels('ongoing')
+      @geocodeAddress @$(event.target).val()
+      @enable()
+    false
+
+  updateMainParking: (source) -> @parking_map.setLocation(@position, source)
+
   # Sorting
   unsort: ->
     if @name_filter.hasInput()
@@ -57,23 +83,31 @@ class DistanceSorter
     @updateLabels('disabled')
 
   sort: ->
-    @domItem().addClass 'switched-on'
+    @currentLocationItem().addClass 'switched-on'
     @updateLabels('enabled')
-    @domItem().attr 'title', @domItem().data('alt-enabled')
+    @currentLocationItem().attr 'title', @currentLocationItem().data('alt-enabled')
     @container().html @sortedNodes()
 
-  fetchDistances: (@position) =>
-    origin = new google.maps.LatLng @position.coords.latitude, @position.coords.longitude
+  geocodeAddress: (address) =>
+    @geocoderService().geocode {address}, (results, status) =>
+      return false unless status == @gm.GeocoderStatus.OK
+      location = results[0].geometry.location
+      position = {coords: {latitude: location.lb, longitude: location.mb}}
+      @fetchDistances(position, 'geocoder')
+
+  fetchDistances: (@position, source) =>
+    @updateMainParking(source)
+    origin = new @gm.LatLng @position.coords.latitude, @position.coords.longitude
     @resetFetched()
 
     @nodes().each (item, index, collection) =>
       node = @$(item)
-      dest = new google.maps.LatLng parseFloat(node.data('lat')), parseFloat(node.data('lng'))
+      dest = new @gm.LatLng parseFloat(node.data('lat')), parseFloat(node.data('lng'))
 
       opts =
         origins: [origin]
         destinations: [dest]
-        travelMode: google.maps.TravelMode.DRIVING
+        travelMode: @gm.TravelMode.DRIVING
         durationInTraffic: true
 
       @distanceService().getDistanceMatrix opts, (response, status) =>

@@ -15,7 +15,7 @@
           %span.main-free
             = parking.available
           #{free_label}.
-      - [30, 60, 120].each do |delay|
+      - [20, 40, 60].each do |delay|
         = render partial: 'forecast', locals: {parking: parking, delay: delay}
       .forecast-disclosure
         Données prévisionelles calculées à partir des données des semaines précédentes.
@@ -23,4 +23,5 @@
     .main-parking-map
       %h4
         Emplacement
+        %span.map-link.pull-right
       #parking-map{data: {lng: parking.lng.to_s, lat: parking.lat.to_s, name: parking.base_name}}
