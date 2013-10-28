@@ -56,7 +56,7 @@ body.nonembedded {
   padding-bottom: 1%;
   margin-bottom: 1%;
 
-  h1, h2 {
+  .app-title, .app-subtitle, .parking-title {
     text-align: center;
     color: #333;
   }
@@ -64,7 +64,7 @@ body.nonembedded {
   .home-link {
     text-decoration: none;
   }
-  h1 {
+  .app-title {
     padding-top: 0.2em;
     font-size: 4em;
     margin: 0;
@@ -78,10 +78,6 @@ body.nonembedded {
 
   h2 {
     font-style: italic;
-  }
-
-  h3 {
-
   }
 }
 
@@ -103,7 +99,7 @@ body.nonembedded {
     border-radius: 0;
     box-shadow: none;
 
-    h1 {
+    .app-title {
       margin: 0;
       font-size: 1.8em;
     }
@@ -135,12 +131,8 @@ body.nonembedded {
 
 @media (max-width: 430px) {
   .content {
-    h1 {
+    .app-title {
       font-size: 1.6em;
-    }
-
-    h2 {
-      display: none;
     }
   }
 }

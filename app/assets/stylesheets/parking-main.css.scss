@@ -75,6 +75,15 @@
   }
 }
 
+@media (max-width: 668px) {
+  .main-parking-outer {
+    @include outer-container;
+    overflow: visible;
+    height: 100%;
+  }
 
-
-
+  .main-parking-map {
+    @include span-columns(12);
+    height: 180px;
+  }
+}
