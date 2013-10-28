@@ -46,18 +46,14 @@
 
 @media (max-width: 767px) {
   .filter-item {
-    @include span-columns(12);
+    width: 98%;
+    margin: auto;
     margin-bottom: 4px;
   }
 
   .filters {
-    .location-filter {
-      a {
-        color: #333;
-      }
-      display: block;
-      text-align: left;
-      margin-bottom: 10px;
-    }
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
   }
 }
