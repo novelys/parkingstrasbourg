@@ -16,7 +16,7 @@ class ParkingMap
 
   setLocation: (@position, source) ->
     if source
-      label = @distance_sorter.addressItem().val()
+      label = @distance_sorter.$addressItem().val()
     else
       label = "lieu actuel"
 

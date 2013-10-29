@@ -1,15 +1,25 @@
 class DistanceSorter
   constructor: (@$, @_, @gm, @default_sorter) ->
+    @initAutoComplete()
     @dispatchEvents()
 
   # Service objects
-  geocoderService: -> @_geocoder ||= new @gm.Geocoder();
+  completeService: -> @_complete
+  geocoderService: -> @_geocoder ||= new @gm.Geocoder()
   distanceService: -> @_distance ||= new @gm.DistanceMatrixService()
   geoloc         : -> navigator.geolocation
 
+  initAutoComplete: ->
+    opts =
+      bounds: new @gm.LatLngBounds(new @gm.LatLng(48.53047, 7.62486), new @gm.LatLng(48.62224, 7.81960))
+      types: ['geocode']
+
+    @_complete ||= new @gm.places.Autocomplete(@addressItem(), opts)
+
   # DOM referefences
   currentLocationItem: -> @_icon ||= @$('#location-filter')
-  addressItem        : -> @_address ||= @$('#address-filter')
+  $addressItem       : -> @_address ||= @$('#address-filter')
+  addressItem        : -> @$addressItem()?[0]
   container          : -> @_container ||= @$('.parkings')
   _nodes             : -> @container().find('.parking')
   nodes              : -> @_(@_nodes())
@@ -36,8 +46,8 @@ class DistanceSorter
 
   dispatchEvents: ->
     @currentLocationItem().on 'click', @iconWasClicked
-    @addressItem().on 'change', @textFieldWasFilled
-    @addressItem().on 'keyup', @textFieldKeyWasHit
+    @$addressItem().on 'keyup', @textFieldKeyWasHit
+    @gm.event.addListener @_complete, 'place_changed', @geocodeAddress
 
   iconWasClicked: =>
     return false unless navigator.geolocation?
@@ -54,10 +64,10 @@ class DistanceSorter
 
   textFieldKeyWasHit: (event) =>
     if event.keyCode == 13 # Enter
-      @addressItem().trigger 'change'
+      @$addressItem().trigger 'change'
       return false
     if event.keyCode == 27 # ESC
-      @addressItem().val('')
+      @$addressItem().val('')
       @unsort()
       @disable()
       return false
@@ -88,7 +98,9 @@ class DistanceSorter
     @currentLocationItem().attr 'title', @currentLocationItem().data('alt-enabled')
     @container().html @sortedNodes()
 
-  geocodeAddress: (address) =>
+  geocodeAddress: =>
+    place = @completeService().getPlace()
+    address = place.formatted_address || place.name
     @geocoderService().geocode {address}, (results, status) =>
       return false unless status == @gm.GeocoderStatus.OK
       location = results[0].geometry.location
