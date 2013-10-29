@@ -1,0 +1,12 @@
+- unless embedded?
+  = link_to root_path, class: 'home-link' do
+    %h1.app-title= t 'app.title'
+.info-page
+  %p= t('footer_text').html_safe
+  %p= t('footer_addenum').html_safe
+  %p= t('predictions_disclosure')
+  %span.embed-instructions
+    %p= t('footer_embed')
+    %textarea{style: 'width: 100%;', rows: 1}
+      :escaped
+        <iframe src="http://www.parking-strasbourg.eu/embed" width="100%" height="1200px"></iframe>

@@ -20,6 +20,42 @@ body.nonembedded {
   float:right;
 }
 
+.top-bar {
+  height: 45px;
+  background-color: #267CC1;
+
+  .back {
+    display: inline-block;
+    margin-left: 1%;
+    width: 8%;
+  }
+
+  .info {
+    display: inline-block;
+    margin-right: 1%;
+    width: 8%;
+    text-align: right;
+  }
+
+  .back, .info {
+    font-size: 1.5em;
+    line-height: 1.9em;
+    a {
+      color: white;
+      text-decoration: none;
+    }
+  }
+
+  .title {
+    display: inline-block;
+    width: 80%;
+    font-size: 1.5em;
+    line-height: 1.9em;
+    text-align: center;
+    color: white;
+  }
+}
+
 .muted {
   color: #999;
   font-size: 0.7em;
@@ -92,6 +128,47 @@ body.nonembedded {
   text-align: center;
 }
 
+.info-page {
+  padding: 6px;
+  p:first-child {
+    margin-top: 0;
+  }
+
+  a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+  }
+}
+
+.embed .top-bar {
+  background-color: initial;
+
+  .back, .info {
+    display: none;
+  }
+
+  .title {
+    font-weight: bold;
+    color: #333;
+    width: 100%;
+  }
+}
+
+@media (max-width: 897px) {
+  .content {
+    .app-title {
+      font-size: 3em;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .top-bar {
+    display: none;
+  }
+}
+
 @media (max-width: 767px) {
   .content {
     width: 100%;
@@ -135,5 +212,13 @@ body.nonembedded {
     .app-title {
       font-size: 1.6em;
     }
+  }
+}
+
+@media (max-width: 767px) {
+  .content {
+    .app-title { display: none; }
+    .app-subtitle { display: none; }
+    .parking-title { display: none; }
   }
 }

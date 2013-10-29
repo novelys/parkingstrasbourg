@@ -1,4 +1,4 @@
-%a.parking{parking_attributes(parking, parking_counter)}
+= container_tag_in_context(parking, parking_counter) do
   %h3.parking-name{data: {clean: parking.internal_name}, class: parking_class(parking)}
     = parking.base_name
     - if parking.pr?

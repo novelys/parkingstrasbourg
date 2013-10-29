@@ -8,7 +8,8 @@
     = javascript_include_tag :application
     = stylesheet_link_tag :application, media: :all
     = csrf_meta_tags
-  %body{class: embedded? ? 'embed' : 'nonembedded'}
+  %body{class: body_class}
+    = render partial: 'shared/topbar'
     .content
       = yield
       .footer

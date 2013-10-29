@@ -2,6 +2,7 @@ Parkingstrasbourg::Application.routes.draw do
   root :to => 'parkings#index'
 
   get 'embed' => 'parkings#embed'
+  get 'info'  => 'parkings#info'
 
   resources :parkings, only: [:index, :show]
 

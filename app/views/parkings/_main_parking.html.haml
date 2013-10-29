@@ -3,13 +3,12 @@
   %h2.parking-title= parking.internal_name
   .main-parking
     .main-parking-availabilities
-      %h4
-        Occupation actuelle
+      %h4= t 'main.titles.current'
       .availability-content
         - if parking.is_closed?
-          Le parking est
+          = t 'main.labels.closed'
           %span.main-free
-            fermé.
+            = t 'main.labels.closed_item'
         - else
           #{parking.total} #{t('place').pluralize}, #{t('including')}
           %span.main-free
@@ -18,10 +17,10 @@
       - [20, 40, 60].each do |delay|
         = render partial: 'forecast', locals: {parking: parking, delay: delay}
       .forecast-disclosure
-        Données prévisionelles calculées à partir des données des semaines précédentes.
+        = t('predictions_disclosure')
 
     .main-parking-map
       %h4
-        Emplacement
+        = t 'main.titles.location'
         %span.map-link.pull-right
       #parking-map{data: {lng: parking.lng.to_s, lat: parking.lat.to_s, name: parking.base_name}}

@@ -16,6 +16,8 @@ class ParkingsController < ApplicationController
     render action: :index
   end
 
+  def info; end
+
   private
 
   def load_resource

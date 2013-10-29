@@ -7,7 +7,9 @@ class Trend
 
   # Trend of parking availability
   def value
-    if previous_availability.nil?
+    if current_availability == 0
+      :full
+    elsif previous_availability.nil?
       :unknown
     elsif current_availability > previous_availability.available
       :up
@@ -19,7 +21,7 @@ class Trend
   end
 
   # Methods to check against a specific value
-  %w(unknown up down flat).each do |trend|
+  %w(unknown up down flat full).each do |trend|
     define_method "#{trend}?".to_sym do
       self.value.to_sym == trend.to_sym
     end
@@ -34,6 +36,8 @@ class Trend
       "trend icon-arrow-up-right"
     when :flat
       "trend icon-arrow-right"
+    when :full
+      "trend icon-confused"
     when :unknown
       "trend icon-question-mark"
     end
