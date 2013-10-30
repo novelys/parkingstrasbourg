@@ -13,7 +13,7 @@ body.nonembedded {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .pull-left {
@@ -58,6 +58,11 @@ body.nonembedded {
     text-align: center;
     color: white;
   }
+}
+
+.enabled-geoloc, .enabled-address {
+  display: inline-block;
+  margin-bottom: 20px;
 }
 
 .muted {

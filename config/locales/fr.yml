@@ -21,7 +21,8 @@ fr:
   predictions_disclosure: "Données prévisionelles calculées à partir des données des semaines précédentes."
   ideal:
     disabled: "Trouver le parking ideal pour dans 20mn"
-    enabled: "Recherche en cours par rapport à votre position..."
+    enabled-geoloc: "Recherche en cours par rapport à votre position..."
+    enabled-address: "Recherche en cours par rapport à votre adresse..."
   info: "F.A.Q et informations"
   main:
     titles:

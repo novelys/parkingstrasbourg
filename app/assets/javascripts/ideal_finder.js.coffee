@@ -9,7 +9,7 @@ class IdealFinder
   $linkItem: -> @_link ||= @$('.ideal a')
   enable: ->
     @$('.disabled').addClass('hidden')
-    @$('.enabled').removeClass('hidden')
+    @$(".enabled-#{@source()}").removeClass('hidden')
     @$('.filters').addClass('hidden')
 
   # Events
