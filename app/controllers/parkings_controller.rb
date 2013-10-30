@@ -21,7 +21,7 @@ class ParkingsController < ApplicationController
       method += "_#{params[:delay].to_i.to_s}" if params[:delay]
       method += '?'
 
-      @parking = @parkings.reject { |parking| parking.send(method) || parking.closed_soon? }.first
+      @parking = @parkings.reject { |parking| parking.send(method) }.first
       @parkings.delete @parking
     end
 

@@ -85,11 +85,6 @@ class Parking
     end
   end
 
-  def closed_soon?
-    min, _ = forecast(30)
-    min.nil?
-  end
-
   def method_missing(name, *args, &block)
     if name.to_s.starts_with?('fullish_')
       delay = name.to_s.split('_').last.to_i
