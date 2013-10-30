@@ -1,7 +1,24 @@
 - unless embedded?
   = link_to root_path, class: 'home-link' do
     %h1.app-title= t 'app.title'
-  %h2.app-subtitle= t 'app.subtitle'
+  .app-subtitle
+    %span.ideal
+      %span.disabled
+        Se garer
+        = link_to 'maintenant', ideal_path
+        ou dans
+        = link_to '20mn', ideal_path(delay: 20)
+        %span.sep -
+        = link_to '40mn', ideal_path(delay: 40)
+        %span.sep -
+        = link_to '1h', ideal_path(delay: 60)
+
+      %span.enabled.hidden= t 'ideal.enabled'
+
+    / %span.sep -
+    / %span.info
+    /   = link_to t('info'), info_path
+
 - if defined?(@parking)
   = render partial: 'main_parking'
 

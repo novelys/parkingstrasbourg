@@ -4,6 +4,7 @@ $ ->
   parkings.name_filter     = new App.NameFilter($, _)
   parkings.distance_sorter = new App.DistanceSorter($, _, google.maps, parkings.default_sorter, )
   parkings.map             = new App.ParkingMap($, google.maps)
+  parkings.ideal_finder    = new App.IdealFinder($)
 
   parkings.name_filter.distance_sorter = parkings.distance_sorter
   parkings.map.distance_sorter = parkings.distance_sorter

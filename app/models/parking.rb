@@ -28,7 +28,7 @@ class Parking
   before_save :set_internal_name
 
   ## Methods
-  delegate :total, :available, :is_closed?, :is_full?, :last_refresh_at,
+  delegate :total, :available, :is_closed?, :is_full?, :last_refresh_at, :fullish?,
     to: :last_availability, allow_nil: true
 
   def last_availability
@@ -75,13 +75,27 @@ class Parking
     ary.sort_by! &:available
 
     # Removes the lower 10% and the upper 10% in case there is some exterme values
-    to_trim = ary.size / 10
+    to_trim = ary.size / 20
     to_trim.times { ary.shift; ary.pop; }
 
     if block_given?
       yield ary.first.try(:available), ary.last.try(:available)
     else
       [ary.first.try(:available), ary.last.try(:available)]
+    end
+  end
+
+  def method_missing(name, *args, &block)
+    if name.to_s.starts_with?('fullish_')
+      delay = name.to_s.split('_').last.to_i
+
+      if (lowest = forecast(delay).first)
+        lowest < (total / (10.0))
+      else
+        true
+      end
+    else
+      super
     end
   end
 

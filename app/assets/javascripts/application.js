@@ -20,4 +20,5 @@
 //= require name_filter
 //= require distance_sorter
 //= require parking_map
+//= require ideal_finder
 //= require main

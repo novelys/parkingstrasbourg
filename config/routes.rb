@@ -3,6 +3,7 @@ Parkingstrasbourg::Application.routes.draw do
 
   get 'embed' => 'parkings#embed'
   get 'info'  => 'parkings#info'
+  get 'ideal' => 'parkings#ideal'
 
   resources :parkings, only: [:index, :show]
 

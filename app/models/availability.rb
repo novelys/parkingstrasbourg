@@ -32,4 +32,8 @@ class Availability
   def is_full?
     available == 0
   end
+
+  def fullish?
+    available < (total / (10.0))
+  end
 end

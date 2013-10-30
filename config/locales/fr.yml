@@ -19,6 +19,10 @@ fr:
     <a href='https://twitter.com/toutielicious' target='_blank'>toutielicious</a>."
   footer_embed: "Pour intégrer ces résultats dans votre site, copier/coller le code suivant :"
   predictions_disclosure: "Données prévisionelles calculées à partir des données des semaines précédentes."
+  ideal:
+    disabled: "Trouver le parking ideal pour dans 20mn"
+    enabled: "Recherche en cours par rapport à votre position..."
+  info: "F.A.Q et informations"
   main:
     titles:
       current: "Occupation actuelle"

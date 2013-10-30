@@ -1,0 +1,40 @@
+class IdealFinder
+  constructor: (@$) ->
+    @dispatchEvents()
+
+  # Service objects
+  geoloc: -> navigator.geolocation
+
+  # DOM referefences
+  $linkItem: -> @_link ||= @$('.ideal a')
+  enable: ->
+    @$('.disabled').addClass('hidden')
+    @$('.enabled').removeClass('hidden')
+
+  # Events
+  supported: -> Modernizr.geolocation
+
+  dispatchEvents: ->
+    if @supported()
+      @$linkItem().on 'click', @linkWasClicked
+
+  linkWasClicked: (event) =>
+    @enable()
+    @href = @$(event.currentTarget).attr('href')
+
+    @geoloc().getCurrentPosition(@redirectToIdeal)
+    false
+
+  redirectToIdeal: (@position, source) =>
+    params = "lat=#{position.coords.latitude}&lng=#{position.coords.longitude}"
+
+    if @href.indexOf('?') != -1
+      @href = "#{@href}&#{params}"
+    else
+      @href = "#{@href}?#{params}"
+
+    window.location = @href
+
+
+window.App ||= {}
+window.App.IdealFinder = IdealFinder

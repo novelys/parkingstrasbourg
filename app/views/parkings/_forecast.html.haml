@@ -6,8 +6,11 @@
     - if min.nil? && max.nil?
       Le parking sera sans doute fermé.
     - else
-      Il devrait y avoir entre
-      %span.main-free= min
-      et
-      %span.main-free= max
-      places libres.
+      - if parking.send("fullish_#{delay}?")
+        Le parking sera presque rempli (#{max} places au plus)
+      - else
+        Il devrait y avoir entre
+        %span.main-free= min
+        et
+        %span.main-free= max
+        places libres.
