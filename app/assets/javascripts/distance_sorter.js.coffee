@@ -1,5 +1,6 @@
 class DistanceSorter
   constructor: (@$, @_, @gm, @default_sorter) ->
+    @_source = 'geoloc'
     @initAutoComplete()
     @dispatchEvents()
 
@@ -30,6 +31,7 @@ class DistanceSorter
   incFetched:   -> @_fetched += 1
   allFetched:   -> @_fetched == @_nodes().length
   enabled:      -> @_enabled
+  source:       -> @_source
 
   enable: ->
     @currentLocationItem().addClass('switched-on')
@@ -45,19 +47,24 @@ class DistanceSorter
   supported: -> Modernizr.geolocation
 
   dispatchEvents: ->
-    @currentLocationItem().on 'click', @iconWasClicked
+    @currentLocationItem().on 'click', @toggleSorting
     @$addressItem().on 'keyup', @textFieldKeyWasHit
     @gm.event.addListener @_complete, 'place_changed', @geocodeAddress
 
-  iconWasClicked: =>
-    return false unless navigator.geolocation?
+  toggleSorting: =>
+    return false unless @supported()
 
     if @enabled()
       @unsort()
       @disable()
     else
       @updateLabels('ongoing')
-      @geoloc().getCurrentPosition(@fetchDistances);
+
+      if @_source == 'geoloc'
+        @geoloc().getCurrentPosition(@fetchDistances);
+      else
+        @fetchDistances(@position, 'geoloc')
+
       @enable()
 
     false
@@ -72,16 +79,6 @@ class DistanceSorter
       @disable()
       return false
 
-  textFieldWasFilled: (event) =>
-    if @enabled()
-      @unsort()
-      @disable()
-    else
-      @updateLabels('ongoing')
-      @geocodeAddress @$(event.target).val()
-      @enable()
-    false
-
   updateMainParking: (source) -> @parking_map.setLocation(@position, source)
 
   # Sorting
@@ -90,7 +87,7 @@ class DistanceSorter
       @name_filter.updateUI()
     else
       @default_sorter.call()
-    @updateLabels('disabled')
+    @updateLabels("disabled-#{@_source}")
 
   sort: ->
     @currentLocationItem().addClass 'switched-on'
@@ -98,14 +95,22 @@ class DistanceSorter
     @currentLocationItem().attr 'title', @currentLocationItem().data('alt-enabled')
     @container().html @sortedNodes()
 
+  setAddressSource: (@position) ->
+    @_source = 'address'
+    @updateLabels("disabled-address") unless @enabled()
+
   geocodeAddress: =>
     place = @completeService().getPlace()
     address = place.formatted_address || place.name
+
     @geocoderService().geocode {address}, (results, status) =>
-      return false unless status == @gm.GeocoderStatus.OK
-      location = results[0].geometry.location
-      position = {coords: {latitude: location.lb, longitude: location.mb}}
-      @fetchDistances(position, 'geocoder')
+      if status == @gm.GeocoderStatus.OK
+        location = results[0].geometry.location
+        @setAddressSource {coords: {latitude: location.lb, longitude: location.mb}}
+      else
+        delete @position
+        @_source = 'geoloc'
+        @updateLabels("disabled-geoloc") unless @enabled()
 
   fetchDistances: (@position, source) =>
     @updateMainParking(source)

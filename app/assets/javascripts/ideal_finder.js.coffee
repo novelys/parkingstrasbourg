@@ -10,6 +10,7 @@ class IdealFinder
   enable: ->
     @$('.disabled').addClass('hidden')
     @$('.enabled').removeClass('hidden')
+    @$('.filters').addClass('hidden')
 
   # Events
   supported: -> Modernizr.geolocation
@@ -18,14 +19,21 @@ class IdealFinder
     if @supported()
       @$linkItem().on 'click', @linkWasClicked
 
+  source: ->
+    @distance_sorter.source() || 'geoloc'
+
   linkWasClicked: (event) =>
     @enable()
     @href = @$(event.currentTarget).attr('href')
 
-    @geoloc().getCurrentPosition(@redirectToIdeal)
+    if @source() == 'geoloc'
+      @geoloc().getCurrentPosition(@redirectToIdeal)
+    else
+      @redirectToIdeal(@distance_sorter.position)
+
     false
 
-  redirectToIdeal: (@position, source) =>
+  redirectToIdeal: (@position) =>
     params = "lat=#{position.coords.latitude}&lng=#{position.coords.longitude}"
 
     if @href.indexOf('?') != -1

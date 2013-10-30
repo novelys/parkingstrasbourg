@@ -26,12 +26,15 @@
   .filters
     %p.pull-right.muted
       = last_refresh
+      %span.app-info
+        = link_to "Informations sur l'application", info_path
     .clearfix
+    %input#address-filter.filter-item{type: :text, placeholder: "Entrez une adresse (utilisée pour la recherche de parkings)"}
     %button#location-filter.filter-item
-      %span.location-filter-label.disabled= t 'filters.car.disabled'
+      %span.location-filter-label.disabled-geoloc= t 'filters.car.disabled-geoloc'
+      %span.location-filter-label.disabled-address.hidden= t 'filters.car.disabled-address'
       %span.location-filter-label.enabled.hidden= t 'filters.car.enabled'
       %span.location-filter-label.ongoing.hidden= t 'filters.car.ongoing'
-    %input#address-filter.filter-item{type: :text, placeholder: "Trier par adresse..."}
     %input#name-filter.filter-item{type: :text, placeholder: "Filtrer par nom..."}
 .parkings
   = render @parkings

@@ -34,7 +34,8 @@ fr:
     car:
       enabled: "Désactiver le tri"
       ongoing: "Tri en cours..."
-      disabled: "Trier par distance depuis le lieu actuel"
+      disabled-geoloc: "Trier par distance depuis le lieu actuel"
+      disabled-address: "Trier par distance depuis l'adresse"
     geoloc:
       alt-enabled: "Désactiver le tri en fonction de la distance"
       alt-disabled: "Activer le tri en fonction de la distance"

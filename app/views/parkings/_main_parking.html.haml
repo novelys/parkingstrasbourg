@@ -19,8 +19,9 @@
       .forecast-disclosure
         = t('predictions_disclosure')
 
+    %h4
+      = t 'main.titles.location'
+      %span.map-link.pull-right
     .main-parking-map
-      %h4
-        = t 'main.titles.location'
-        %span.map-link.pull-right
+
       #parking-map{data: {lng: parking.lng.to_s, lat: parking.lat.to_s, name: parking.base_name}}

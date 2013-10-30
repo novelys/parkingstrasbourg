@@ -10,3 +10,4 @@ $ ->
   parkings.map.distance_sorter = parkings.distance_sorter
   parkings.distance_sorter.name_filter = parkings.name_filter
   parkings.distance_sorter.parking_map = parkings.map
+  parkings.ideal_finder.distance_sorter = parkings.distance_sorter

@@ -185,6 +185,9 @@ body.nonembedded {
 }
 
 @media (max-width: 767px) {
+  .app-info {
+    display: none;
+  }
   .content {
     width: 100%;
     margin: 0;
