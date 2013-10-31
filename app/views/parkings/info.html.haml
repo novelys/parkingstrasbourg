@@ -1,3 +1,6 @@
+- content_for(:meta) do
+  %meta{property: 'og:title', content: 'Les parkings à Strasbourg - informations'}
+  %meta{property: 'og:url', content: info_url}
 - unless embedded?
   = link_to root_path, class: 'home-link' do
     %h1.app-title= t 'app.title'

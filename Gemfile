@@ -30,6 +30,7 @@ gem 'production_chain',         github: 'novelys/production_chain'
 gem 'capistranovelys',          git: 'git@github.com:novelys/capistranovelys.git'
 gem 'whenever',                 '~> 0.8.2'
 gem 'asset_sync'
+gem 'sitemap_generator'
 
 group :development do
   gem 'thin'

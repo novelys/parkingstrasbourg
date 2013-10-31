@@ -1,4 +1,7 @@
 - parking = @parking
+- content_for(:meta) do
+  %meta{property: 'og:title', content: "Les parkings à Strasbourg - #{parking.internal_name}"}
+  %meta{property: 'og:url', content: parking_url(parking)}
 .main-parking-outer
   %h2.parking-title= parking.internal_name
   .main-parking
