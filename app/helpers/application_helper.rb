@@ -51,14 +51,6 @@ module ApplicationHelper
     end
   end
 
-  def delay_label(delay)
-    if delay < 60
-      "#{delay} mn"
-    else
-      "#{delay / 60} h"
-    end
-  end
-
   def parking_container_class(parking)
     parking_class(parking).unshift(:parking)
   end

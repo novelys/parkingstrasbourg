@@ -15,15 +15,23 @@ fr:
     "Projet initié par <a href='https://twitter.com/yannski' target='_blank'>
     yannski</a> (<a href='http://www.novelys.com' target='_blank'>Novelys</a>)
     durant le <a href='http://www.hacksxb.com' target='_blank'>HackSXB</a>
-    spécial OpenData du mois de février 2013. Sur une idée originale de
+    spécial OpenData du mois de février 2013, et maintenu par
+    <a href='https://twitter.com/ksol' target='_blank'>Kevin Soltysiak</a>
+    (<a href='http://www.novelys.com' target='_blank'>Novelys</a>). Sur une idée originale de
     <a href='https://twitter.com/toutielicious' target='_blank'>toutielicious</a>."
   footer_embed: "Pour intégrer ces résultats dans votre site, copier/coller le code suivant :"
   predictions_disclosure: "Données prévisionelles calculées à partir des données des semaines précédentes."
   ideal:
-    disabled: "Trouver le parking ideal pour dans 20mn"
+    disabled:
+      park: "Se garer"
+      now: "maintenant"
+      or: "ou dans"
+      '20': 20mn
+      '40': 40mn
+      '60': 1h
     enabled-geoloc: "Recherche en cours par rapport à votre position..."
     enabled-address: "Recherche en cours par rapport à votre adresse..."
-  info: "F.A.Q et informations"
+  info: "Informations sur l'application"
   main:
     titles:
       current: "Occupation actuelle"
@@ -31,7 +39,23 @@ fr:
     labels:
       closed: "Le parking est"
       closed_item: "fermé."
+  forecast:
+    labels:
+      main: "Prévisions dans"
+      '20': 20mn
+      '40': 40mn
+      '60': 1h
+    closed: "Le parking sera sans doute fermé."
+    fullish: "Le parking sera presque rempli (%{max} places au plus)"
+    free:
+      should: "Il devrait y avoir entre"
+      and: "et"
+      places: "places libres."
   filters:
+    address:
+      placeholder: "Entrez une adresse (utilisée pour la recherche de parkings)"
+    name:
+      placeholder: "Filtrer par nom..."
     car:
       enabled: "Désactiver le tri"
       ongoing: "Tri en cours..."

@@ -9,13 +9,56 @@ en:
   free: "free"
   place: "place"
   closed: "Closed"
+  including: "including"
   footer_text: "Refreshed every 5 minutes thanks to the <a href='http://www.strasbourg.eu/fr/ma-situation/professionnel/open-data/donnees' target='_blank'>City of Strasbourg OpenData</a>."
-  footer_addenum: "This project is built by <a href='https://twitter.com/yannski' target='_blank'>yannski</a> (<a href='http://www.novelys.com' target='_blank'>Novelys</a>) during the <a href='http://www.hacksxb.com' target='_blank'>HackSXB</a> meeting of february 2013."
+  footer_addenum:
+    "Project started by <a href='https://twitter.com/yannski' target='_blank'>yannski</a>
+    (<a href='http://www.novelys.com' target='_blank'>Novelys</a>) during the
+    <a href='http://www.hacksxb.com' target='_blank'>HackSXB</a> meeting of february 2013.
+    Now maintained by <a href='https://twitter.com/ksol' target='_blank'>Kevin Soltysiak</a>
+    (<a href='http://www.novelys.com' target='_blank'>Novelys</a>)."
+  footer_embed: "If you wish to embed those data in your website, copy/paste the following code:"
+  predictions_disclosure: "Forecast data computed from previous weeks' data."
+  ideal:
+    disabled:
+      park: "Park"
+      now: "now"
+      or: "or in"
+      '20': 20mn
+      '40': 40mn
+      '60': 1h
+    enabled-geoloc: "Searching from your location..."
+    enabled-address: "Searching from your address..."
+  info: "FAQ"
+  main:
+    titles:
+      current: "Current occupation"
+      location: "Location"
+    labels:
+      closed: "Parking is"
+      closed_item: "closed."
+  forecast:
+    labels:
+      main: "Forecast in"
+      '20': 20mn
+      '40': 40mn
+      '60': 1h
+    closed: "Parking will probably be closed."
+    fullish: "Parking will be almost full (%{max} places at best)"
+    free:
+      should: "There should be between"
+      and: "and"
+      places: "free places."
   filters:
+    address:
+      placeholder: "Type an address (used to find parkings)"
+    name:
+      placeholder: "Filter by name..."
     car:
       enabled: "Cancel sorting"
       ongoing: "Sorting..."
-      disabled: "Sort by driving distance"
+      disabled-geoloc: "Sort by distance from current position"
+      disabled-address: "Sort by distance from address"
     geoloc:
       alt-enabled: "Disable sorting by distance"
       alt-disabled: "Enable sorting by distance"

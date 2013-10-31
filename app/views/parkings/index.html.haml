@@ -4,21 +4,17 @@
   .app-subtitle
     %span.ideal
       %span.disabled
-        Se garer
-        = link_to 'maintenant', ideal_path
-        ou dans
-        = link_to '20mn', ideal_path(delay: 20)
+        = t 'ideal.disabled.park'
+        = link_to t('ideal.disabled.now'), ideal_path
+        = t 'ideal.disabled.or'
+        = link_to t('ideal.disabled.20'), ideal_path(delay: 20)
         %span.sep -
-        = link_to '40mn', ideal_path(delay: 40)
+        = link_to t('ideal.disabled.40'), ideal_path(delay: 40)
         %span.sep -
-        = link_to '1h', ideal_path(delay: 60)
+        = link_to t('ideal.disabled.60'), ideal_path(delay: 60)
 
       %span.enabled-geoloc.hidden= t 'ideal.enabled-geoloc'
       %span.enabled-address.hidden= t 'ideal.enabled-address'
-
-    / %span.sep -
-    / %span.info
-    /   = link_to t('info'), info_path
 
 - if defined?(@parking)
   = render partial: 'main_parking'
@@ -28,14 +24,14 @@
     %p.pull-right.muted
       = last_refresh
       %span.app-info
-        = link_to "Informations sur l'application", info_path
+        = link_to t('info'), info_path
     .clearfix
-    %input#address-filter.filter-item{type: :text, placeholder: "Entrez une adresse (utilisée pour la recherche de parkings)"}
+    %input#address-filter.filter-item{type: :text, placeholder: t('filters.address.placeholder')}
     %button#location-filter.filter-item
       %span.location-filter-label.disabled-geoloc= t 'filters.car.disabled-geoloc'
       %span.location-filter-label.disabled-address.hidden= t 'filters.car.disabled-address'
       %span.location-filter-label.enabled.hidden= t 'filters.car.enabled'
       %span.location-filter-label.ongoing.hidden= t 'filters.car.ongoing'
-    %input#name-filter.filter-item{type: :text, placeholder: "Filtrer par nom..."}
+    %input#name-filter.filter-item{type: :text, placeholder: t('filters.name.placeholder')}
 .parkings
   = render @parkings

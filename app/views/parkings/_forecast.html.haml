@@ -1,16 +1,16 @@
 %h4
-  Prévisions dans
-  = delay_label(delay)
+  = t 'forecast.labels.main'
+  = t "forecast.labels.#{delay}"
 .forecast-content
   - parking.forecast(delay) do |min, max|
     - if min.nil? && max.nil?
-      Le parking sera sans doute fermé.
+      = t 'forecast.closed'
     - else
       - if parking.send("fullish_#{delay}?")
-        Le parking sera presque rempli (#{max} places au plus)
+        = t 'forecast.fullish', max: max
       - else
-        Il devrait y avoir entre
+        = t 'forecast.free.should'
         %span.main-free= min
-        et
+        = t 'forecast.free.and'
         %span.main-free= max
-        places libres.
+        = t 'forecast.free.places'
