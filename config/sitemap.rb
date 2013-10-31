@@ -1,5 +1,5 @@
 # Set the host name for URL creation
-SitemapGenerator::Sitemap.default_host = "http://www.parkings-strasbourg.eu"
+SitemapGenerator::Sitemap.default_host = "http://www.parking-strasbourg.eu"
 
 SitemapGenerator::Sitemap.create do
   add root_path, changefreq: :always, lastmod: Availability.last.updated_at
