@@ -5,6 +5,15 @@
     %meta{content: 'width=device-width, initial-scale=1.0', name: 'viewport'}
     %meta{name: 'description', content: t('app.title')}
     %meta{name: 'author', content: 'Yann Klis'}
+    %meta{charset: 'UTF-8'}
+    %meta{name: :author, content: "Yann Klis, Kevin Soltysiak, Novelys"}
+    %meta{name: 'geo.region', content: 'FR-67'}
+    %meta{name: 'geo.placename', content: 'Strasbourg'}
+    %meta{name: 'geo.position', content: '46.227638;2.213749'}
+    %meta{name: 'ICBM', content: '46.227638, 2.213749'}
+    %meta{name: 'og:site_name', content: 'Les parkings à Strasbourg'}
+    %meta{name: 'og:type', content: 'website'}
+    %meta{name: :keywords, content: "strasbourg, parking, parkings, parking à strasbourg, parkings à strasbourg, les parkings à strasbourg, place de parking, places de parking, Parkhäusern, Parkhäusern in Straßburg, #{Parking.all.to_a.map(&:name).join(', ')}"}
     - if content_for?(:meta)
       = yield(:meta)
     - else
