@@ -1,6 +1,6 @@
 // Main parking
 .main-parking-outer, .parking {
-  @include box-shadow(#555 0px 0px 10px);
+  @include box-shadow(#555 0px 0px 1px);
 }
 
 .main-parking-outer {
