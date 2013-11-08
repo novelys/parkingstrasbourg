@@ -31,15 +31,15 @@ class Trend
   def css_class
     case value
     when :down
-      "trend icon-arrow-down-right"
+      "trend icomoon-arrow-down-right"
     when :up
-      "trend icon-arrow-up-right"
+      "trend icomoon-arrow-up-right"
     when :flat
-      "trend icon-arrow-right"
+      "trend icomoon-arrow-right"
     when :full
-      "trend icon-confused"
+      "trend icomoon-confused"
     when :unknown
-      "trend icon-question-mark"
+      "trend icomoon-question-mark"
     end
   end
 

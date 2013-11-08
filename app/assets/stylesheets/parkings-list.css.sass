@@ -1,0 +1,149 @@
+.thumbnails
+  margin-left: -20px
+
+.thumbnails > li
+  margin-left: 20px
+
+.thumbnail
+  border-radius: 0
+  box-shadow: none
+  height: 70px
+  padding: 5px 10px
+
+a.thumbnail
+  color: inherit
+  &:hover, &:focus
+    border-color: #DDDDDD
+    box-shadow: none
+    outline-offset: 0
+
+// Parking item
+.parking
+  height: 100%
+  text-decoration: none
+  color: black
+  transition: all 0.2s ease-in-out 0s
+  &:hover
+    background-color: #E0F2FF
+  .parking-distance
+    color: #666
+    font-size: 11px
+    font-style: italic
+    font-weight: normal
+    .icon-car
+      font-size: 20px
+    .icon-arrow-right
+      font-size: 9px
+      left: 5px
+    .duration, .icon-arrow-right
+      position: relative
+      top: -5px
+    .duration
+      left: 8px
+  .parking-name
+    //+span-columns(2 of 4, collapse)
+    margin: 0
+    margin-top: 24px
+    line-height: 20px
+    &.pr
+      margin-top: 15px
+  .pr-label
+    font-size: 13px
+  .parking-data
+    //+span-columns(1.2 of 4, collapse)
+    text-align: right
+  .parking-trend
+    //+span-columns(0.8 of 4, collapse)
+    text-align: right
+  .parking-data
+    margin-top: 14px
+  .parking-trend
+    padding-top: 8px
+    padding-left: 5px
+  .available
+    font-size: 1.4em
+    font-weight: bold
+  .free, .total-label
+    font-size: 14px
+  .total
+    color: #4c4c4c
+    font-size: 1em
+  .trend
+    position: relative
+    top: 10px
+    font-size: 2.4em
+  // Parking when duration is available
+  &.has-duration
+    .parking-name
+      margin-top: 16px
+      &.pr
+        line-height: 14px
+  // Parking item when closed
+  &.closed, &.veiled, &.full
+    opacity: 0.25
+  &.closed
+    .parking-name
+      //+span-columns(2 of 4, collapse)
+    .parking-data
+      //+span-columns(2 of 4, collapse)
+      font-weight: bold
+      margin-top: 8px
+
+@media (max-width: 1179px) and (min-width: 768px)
+  .span4.parking
+    width: 48%
+    margin-left: 2%
+    margin-bottom: 2%
+
+// @media (max-width: 980px)
+//   .span12.parkings
+//     width: 960px
+//   .span4.parking
+//     width: 460px
+
+@media (max-width: 767px)
+  body
+    padding-left: 0
+    padding-right: 0
+  h1
+    i
+      margin-right: 5px
+  h3
+    font-size: 1.4em
+  .thumbnail
+    height: 48px
+    border: none
+  .thumbnails
+    margin-left: 0
+  .thumbnails > li
+    margin-left: 0
+    margin-bottom: 0
+  .parking
+    //+span-columns(12)
+    //+row(table)
+    //+box-shadow(none)
+    height: 100%
+    margin-bottom: 0
+    border: none
+    border-top: 1px solid lightGray
+    padding-top: 0px
+    padding-bottom: 0px
+    &:hover:nth-child(even)
+      background-color: #E0F2FF
+    &:nth-child(even)
+      background-color: #EEE
+    &:last-child
+      border-bottom: 1px solid lightGray
+    &.has-duration
+      .parking-data
+        margin-top: 6px
+      .parking-trend
+        margin-top: 6px
+    .parking-name
+      margin-top: 14px
+      &.pr
+        margin-top: 4px
+    .parking-data
+      margin-top: 2px
+    .trend
+      font-size: 1.8em

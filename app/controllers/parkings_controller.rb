@@ -1,6 +1,6 @@
 class ParkingsController < ApplicationController
   before_filter :load_resource, only: :show
-  before_filter :load_resources
+  before_filter :load_resources, only: :index
 
   respond_to :html, :json
 
@@ -9,7 +9,6 @@ class ParkingsController < ApplicationController
   end
 
   def show
-    render :index
   end
 
   def ideal
@@ -32,7 +31,7 @@ class ParkingsController < ApplicationController
     render action: :index
   end
 
-  def info; end
+  def faq; end
 
   private
 
@@ -41,8 +40,6 @@ class ParkingsController < ApplicationController
   end
 
   def load_resources
-    @parkings = Parking.all.sort_by &:sort_criteria
-    @parkings.delete(@parking) if @parking
-    @parkings
+    @parkings = Parking.all
   end
 end

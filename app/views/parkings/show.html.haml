@@ -2,9 +2,8 @@
 - content_for(:meta) do
   %meta{property: 'og:title', content: "Les parkings à Strasbourg - #{parking.internal_name}"}
   %meta{property: 'og:url', content: parking_url(parking)}
-.main-parking-outer
-  %h2.parking-title= parking.internal_name
-  .main-parking
+.row.main-parking
+  .span6
     .main-parking-availabilities
       %h4= t 'main.titles.current'
       .availability-content
@@ -21,10 +20,9 @@
         = render partial: 'forecast', locals: {parking: parking, delay: delay}
       .forecast-disclosure
         = t('predictions_disclosure')
-
+  .span6
     %h4
       = t 'main.titles.location'
       %span.map-link.pull-right
     .main-parking-map
-
       #parking-map{data: {lng: parking.lng.to_s, lat: parking.lat.to_s, name: parking.base_name}}

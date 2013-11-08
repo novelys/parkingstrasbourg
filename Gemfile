@@ -20,6 +20,7 @@ gem 'haml-rails',               '~> 0.3.5'
 gem 'bourbon'
 gem 'neat'
 gem 'underscore-rails'
+gem 'bootstrap-sass', '~> 2.3.2.2'
 
 ## I18n
 gem 'http_accept_language',     github: 'sespindola/http_accept_language'

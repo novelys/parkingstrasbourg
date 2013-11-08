@@ -1,0 +1,44 @@
+// = require_self
+
+@import fonts
+
+$mainColor:                       darken(#578BC1, 20%)
+$linkColor:                       $mainColor
+$linkColorHover:                  lighten($mainColor, 10%)
+$sansFontFamily:                  'Lato', sans-serif
+$serifFontFamily:                 'Lato', serif
+$monoFontFamily:                  'Lato', sans-serif
+$bodyBackground:                  white
+$textColor:                       #282828
+$navbarBackground:                $mainColor
+$navbarBackgroundHighlight:       $mainColor
+$navbarText:                      white
+$navbarLinkColor:                 white
+
+@import bootstrap
+@import bootstrap-responsive
+@import flatdesign
+@import navbar
+@import parkings-list
+@import parking-main
+
+h1
+  font-size: inherit
+  line-height: inherit
+  margin: 0
+  padding: 0
+  i
+    font-size: 80%
+    margin-right: 10px
+
+.row
+  padding-top: 20px
+
+.icomoon-arrow-down-right
+  color: #b93c3a
+
+.icomoon-arrow-up-right
+  color: green
+
+.icomoon-arrow-right
+  color: #282828
