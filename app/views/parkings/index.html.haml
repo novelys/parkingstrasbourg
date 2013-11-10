@@ -1,4 +1,4 @@
-- unless embedded?
+- if false
   .row
     .span12
       .app-subtitle
@@ -16,24 +16,18 @@
           %span.enabled-geoloc.hidden= t 'ideal.enabled-geoloc'
           %span.enabled-address.hidden= t 'ideal.enabled-address'
 
-- if defined?(@parking)
-  = render partial: 'main_parking'
-
-- unless embedded?
-  .row
-    .span12
-      .filters
-        %p.pull-right.muted
-          = last_refresh
-          %span.app-info
-            = link_to t('info'), faq_path
-        .clearfix
-        %input#address-filter.filter-item{type: :text, placeholder: t('filters.address.placeholder')}
-        %button#location-filter.filter-item
-          %span.location-filter-label.disabled-geoloc= t 'filters.car.disabled-geoloc'
-          %span.location-filter-label.disabled-address.hidden= t 'filters.car.disabled-address'
-          %span.location-filter-label.enabled.hidden= t 'filters.car.enabled'
-          %span.location-filter-label.ongoing.hidden= t 'filters.car.ongoing'
+.row
+  .span12
+    .pull-right.muted.infos
+      = last_refresh
+      = link_to t('info'), faq_path
+    /
+      %input#address-filter.filter-item{type: :text, placeholder: t('filters.address.placeholder')}
+      %button#location-filter.filter-item
+        %span.location-filter-label.disabled-geoloc= t 'filters.car.disabled-geoloc'
+        %span.location-filter-label.disabled-address.hidden= t 'filters.car.disabled-address'
+        %span.location-filter-label.enabled.hidden= t 'filters.car.enabled'
+        %span.location-filter-label.ongoing.hidden= t 'filters.car.ongoing'
 .row
   .span12.parkings
     %ul.thumbnails
