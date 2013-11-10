@@ -48,6 +48,36 @@ h1
   padding-right: 0
   text-align: right
 
+.input-prepend
+  width: 100%
+  .add-on
+    width: 10px
+  input
+    width: auto
+
+@media screen and (max-width: 767px)
+  .input-prepend
+    .add-on
+      margin-left: 10px
+      width: 5%
+    input
+      width: 80%
+
+@media screen and (min-width: 768px)
+  .input-prepend
+    input
+      width: 310px
+
+@media screen and (min-width: 988px)
+  .input-prepend
+    input
+      width: 420px
+
+@media screen and (min-width: 1200px)
+  .input-prepend
+    input
+      width: 550px
+
 @media screen and (min-width: 1200px)
   .infos
     padding-right: 20px

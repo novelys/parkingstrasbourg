@@ -17,17 +17,16 @@
           %span.enabled-address.hidden= t 'ideal.enabled-address'
 
 .row
-  .span12
-    .pull-right.muted.infos
+  .span6.text-left
+    .input-prepend
+      %span.add-on
+        %i.icomoon-map-marker
+      %input#address_filter{type: "text", placeholder: t('filters.address.placeholder')}
+  .span6.text-right
+    .muted.infos
       = last_refresh
-      = link_to t('info'), faq_path
-    /
-      %input#address-filter.filter-item{type: :text, placeholder: t('filters.address.placeholder')}
-      %button#location-filter.filter-item
-        %span.location-filter-label.disabled-geoloc= t 'filters.car.disabled-geoloc'
-        %span.location-filter-label.disabled-address.hidden= t 'filters.car.disabled-address'
-        %span.location-filter-label.enabled.hidden= t 'filters.car.enabled'
-        %span.location-filter-label.ongoing.hidden= t 'filters.car.ongoing'
+      = link_to t('info'), faq_path, class: "hidden-phone"
+
 .row
   .span12.parkings
     %ul.thumbnails
