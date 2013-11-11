@@ -5,7 +5,7 @@ class ParkingMap
   $container   : -> @_container ||= @$('#parking-map')
   container    : -> @$container()?[0]
   map          : -> @_map
-  shouldDisplay: -> @container?
+  shouldDisplay: -> @container()?
 
   dispatchEvents: ->
     return false unless @shouldDisplay()
