@@ -18,7 +18,6 @@
 //= require modernizr-custom
 //  ## Application
 //= require default_sorter
-//= require name_filter
 //= require distance_sorter
 //= require parking_map
 //= require ideal_finder
