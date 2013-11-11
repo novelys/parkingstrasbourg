@@ -1,6 +1,6 @@
 class ParkingsController < ApplicationController
   before_filter :load_resource, only: :show
-  before_filter :load_resources, only: :index
+  before_filter :load_resources, only: [:index, :embed]
 
   respond_to :html, :json
 
