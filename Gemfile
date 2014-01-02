@@ -15,7 +15,7 @@ gem 'mongoid_slug'
 
 ## View stuff
 gem 'active_model_serializers', '~> 0.8.1'
-gem 'compass-rails',            '~> 2.0.alpha.0'
+gem 'compass-rails',            '~> 1.1.3'
 gem 'haml-rails',               '~> 0.3.5'
 gem 'bourbon'
 gem 'neat'
@@ -32,17 +32,11 @@ gem 'capistranovelys',          git: 'git@github.com:novelys/capistranovelys.git
 gem 'whenever',                 '~> 0.8.2'
 gem 'asset_sync'
 gem 'sitemap_generator'
+gem 'puma'
 
 group :development do
-  gem 'thin'
   gem 'pry'
   gem 'pry-nav'
-  gem 'debugger'
-  gem 'delorean'
   gem 'pry-rails'
   gem 'quiet_assets'
-end
-
-group :staging, :production do
-  gem 'unicorn'
 end
