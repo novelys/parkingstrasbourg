@@ -5,9 +5,9 @@
 $mainColor:                       darken(#578BC1, 20%)
 $linkColor:                       $mainColor
 $linkColorHover:                  lighten($mainColor, 10%)
-$sansFontFamily:                  'Lato', sans-serif
-$serifFontFamily:                 'Lato', serif
-$monoFontFamily:                  'Lato', sans-serif
+$sansFontFamily:                  'Droid Sans', sans-serif
+$serifFontFamily:                 'Droid Serif', serif
+$monoFontFamily:                  'Droid Sans Mono', sans-serif
 $bodyBackground:                  white
 $textColor:                       #282828
 $navbarBackground:                $mainColor
@@ -22,14 +22,15 @@ $navbarLinkColor:                 white
 @import parkings-list
 @import parking-main
 
-h1
-  font-size: inherit
-  line-height: inherit
-  margin: 0
-  padding: 0
-  i
-    font-size: 80%
-    margin-right: 10px
+.navbar
+  h1
+    font-size: inherit
+    line-height: inherit
+    margin: 0
+    padding: 0
+    i
+      font-size: 80%
+      margin-right: 10px
 
 .row
   padding-top: 20px
@@ -51,9 +52,9 @@ h1
 .input-prepend
   width: 100%
   .add-on
-    width: 10px
-  input
-    width: auto
+    height: 100%
+    width: 28px
+    vertical-align: baseline
 
 @media screen and (max-width: 767px)
   .input-prepend
@@ -62,21 +63,6 @@ h1
       width: 5%
     input
       width: 80%
-
-@media screen and (min-width: 768px)
-  .input-prepend
-    input
-      width: 310px
-
-@media screen and (min-width: 988px)
-  .input-prepend
-    input
-      width: 420px
-
-@media screen and (min-width: 1200px)
-  .input-prepend
-    input
-      width: 550px
 
 @media screen and (min-width: 1200px)
   .infos
