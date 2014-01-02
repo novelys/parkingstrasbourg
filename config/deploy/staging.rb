@@ -1,10 +1,10 @@
 set :default_environment, {
-  'PATH' => "/home/rails19/.rbenv/shims:/home/rails19/.rbenv/bin:$PATH"
+  'PATH' => "/home/parkingstrasbourg/.rbenv/shims:/home/parkingstrasbourg/.rbenv/bin:$PATH"
 }
-set(:deploy_to) { "/home/rails19/www/#{application}" }
+set(:deploy_to) { "/home/parkingstrasbourg/www/#{application}" }
 
-set :user, "rails19"
-set :runner, "rails19"
+set :user, "parkingstrasbourg"
+set :runner, "parkingstrasbourg"
 set :use_sudo, false
 set :rails_env, "staging"
 
