@@ -1,7 +1,7 @@
 require 'capistrano/novelys'
 
-use_stack :rbenv, :logs, :stages, :remote_commands, :production_chain, :whenever, :mongoid
+use_novelys_and :rails, :mongoid
 
 load 'deploy/assets'
 
-set(:application)      {"parkingstrasbourg" }
+set(:application) {"parkingstrasbourg" }

@@ -22,7 +22,7 @@ class Parking
   index internal_name: 1
 
   ## Scopes
-  default_scope asc(:internal_name)
+  default_scope -> { asc(:internal_name) }
 
   ## Callbacks
   before_save :set_internal_name
