@@ -19,21 +19,23 @@ class DistanceSorter
       @_complete ||= new @gm.places.Autocomplete(@addressItem(), opts)
 
   # DOM referefences
-  currentLocationItem: -> @_icon ||= @$('#location-filter')
-  $addressItem       : -> @_address ||= @$('#address-filter')
+  currentLocationItem: -> @$('#location-filter')
+  $addressItem       : -> @$('#address-filter')
   addressItem        : -> @$addressItem()?[0]
-  container          : -> @_container ||= @$('.parkings')
+  container          : -> @$('.parkings')
   _nodes             : -> @container().find('.parking')
   nodes              : -> @_(@_nodes())
   sortedNodes        : -> @nodes().sortBy (item) => @$(item).data('duration')
 
   # Keep state
-  isRelevant:   -> @$addressItem.length > 0
+  isRelevant:   -> @$addressItem().length > 0
   resetFetched: -> @_fetched = 0
   incFetched:   -> @_fetched += 1
   allFetched:   -> @_fetched == @_nodes().length
   enabled:      -> @_enabled
   source:       -> @_source
+  markAsTooFar: -> @_too_far = true
+  isTooFar:     -> @_too_far
 
   enable: ->
     @currentLocationItem().addClass('switched-on')
@@ -45,14 +47,17 @@ class DistanceSorter
     @currentLocationItem().attr 'title', @currentLocationItem().data('alt-disabled')
     delete @_enabled
 
+
+
   # Events
   supported: -> Modernizr.geolocation
 
   dispatchEvents: ->
-    if @isRelevant()
-      @currentLocationItem().on 'click', @toggleSorting
-      @$addressItem().on 'keyup', @textFieldKeyWasHit
-      @gm.event.addListener @_complete, 'place_changed', @geocodeAddress
+    @$(document).on 'page:change', =>
+      if @isRelevant()
+        @currentLocationItem().on 'click', @toggleSorting
+        @$addressItem().on 'keyup', @textFieldKeyWasHit
+        @gm.event.addListener @_complete, 'place_changed', @geocodeAddress
 
   toggleSorting: =>
     return false unless @supported()
@@ -131,12 +136,18 @@ class DistanceSorter
         durationInTraffic: true
 
       @distanceService().getDistanceMatrix opts, (response, status) =>
-        # Keep track of fetched distances
-        @incFetched()
+        return false if @isTooFar()
 
         # Update node if OK
         if status == "OK" && (rows = response.rows).length > 0
-          @updateNode(node,  rows[0].elements[0].duration)
+          if rows[0].elements[0].status == "ZERO_RESULTS"
+            @markAsTooFar()
+            console.log 'too far'
+          else
+            # Keep track of fetched distances
+            @incFetched()
+
+            @updateNode(node,  rows[0].elements[0].duration)
 
         # Sort the parkings if all are fetched
         @sort() if @allFetched()

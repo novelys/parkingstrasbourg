@@ -23,7 +23,7 @@
       = link_to t('info'), faq_path, class: "hidden-phone"
   .span12.text-left
     .input-prepend.input-append.row.text-center
-      %button.btn.add-on{type: "button"}
+      %button#location-filter.btn.add-on{type: "button"}
         %i.icomoon-map-marker
       %input#address-filter.span4{type: "text", placeholder: t('filters.address.placeholder')}
       %button.btn{type: "button"} Trier par distance !
