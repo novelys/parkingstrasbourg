@@ -22,7 +22,7 @@ class DistanceSorter
   currentLocationItem: -> @$('#location-filter')
   $addressItem       : -> @$('#address-filter')
   addressItem        : -> @$addressItem()?[0]
-  container          : -> @$('.parkings')
+  container          : -> @$('.parkings .thumbnails')
   _nodes             : -> @container().find('.parking')
   nodes              : -> @_(@_nodes())
   sortedNodes        : -> @nodes().sortBy (item) => @$(item).data('duration')
@@ -34,8 +34,8 @@ class DistanceSorter
   allFetched:   -> @_fetched == @_nodes().length
   enabled:      -> @_enabled
   source:       -> @_source
-  markAsTooFar: -> @_too_far = true
-  isTooFar:     -> @_too_far
+  noResults:    -> @_no_results = true
+  hasNoResults: -> @_no_results
 
   enable: ->
     @currentLocationItem().addClass('switched-on')
@@ -46,8 +46,6 @@ class DistanceSorter
     @currentLocationItem().removeClass('switched-on')
     @currentLocationItem().attr 'title', @currentLocationItem().data('alt-disabled')
     delete @_enabled
-
-
 
   # Events
   supported: -> Modernizr.geolocation
@@ -136,13 +134,12 @@ class DistanceSorter
         durationInTraffic: true
 
       @distanceService().getDistanceMatrix opts, (response, status) =>
-        return false if @isTooFar()
+        return false if @hasNoResults()
 
         # Update node if OK
         if status == "OK" && (rows = response.rows).length > 0
           if rows[0].elements[0].status == "ZERO_RESULTS"
-            @markAsTooFar()
-            console.log 'too far'
+            @noResults()
           else
             # Keep track of fetched distances
             @incFetched()
@@ -155,7 +152,7 @@ class DistanceSorter
   updateNode: (node, duration) ->
     node.data 'duration', duration.value
     node.addClass('has-duration')
-    text = "<span class='icon-car'></span><span class='icon-arrow-right'></span><span class='duration'>#{duration.text}</span>"
+    text = "<span class='icomoon-car'></span><span class='icomoon-arrow-right'></span><span class='duration'>#{duration.text}</span>"
     node.find('.parking-distance').html(text)
 
   updateLabels: (selector) ->
