@@ -202,6 +202,8 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
+    turbolinks (2.2.1)
+      coffee-rails
     tzinfo (1.1.0)
       thread_safe (~> 0.1)
     uglifier (2.2.1)
@@ -240,6 +242,7 @@ DEPENDENCIES
   sass-rails (~> 4.0.3)
   sitemap_generator
   thin
+  turbolinks
   uglifier (~> 2.2.1)
   underscore-rails
   whenever (~> 0.8.2)

@@ -28,7 +28,7 @@
       %meta{property: 'og:url', content: root_url}
     = stylesheet_link_tag "http://fonts.googleapis.com/css?family=Oswald:300"
     = stylesheet_link_tag "http://fonts.googleapis.com/css?family=Droid+Sans:400,700"
-    = stylesheet_link_tag :application, media: :all
+    = stylesheet_link_tag  :application, media: :all, data: {'turbolinks-track' => true}
     = favicon_link_tag '/favicon.ico'
     = csrf_meta_tags
   %body{class: body_class}
@@ -56,5 +56,5 @@
       - unless embedded?
         = link_to image_tag('strasbourgtheeuroptimist.jpg'), 'http://www.strasbourg.eu'
     = render partial: 'shared/gmaps'
-    = javascript_include_tag :application
+    = javascript_include_tag :application, data: {'turbolinks-track' => true}
     = render partial: 'shared/analytics'

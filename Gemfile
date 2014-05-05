@@ -18,6 +18,7 @@ gem 'mongoid_slug'
 gem 'active_model_serializers', '~> 0.8.1'
 gem 'underscore-rails'
 gem 'bootstrap-sass', '~> 2.3.2.2'
+gem 'turbolinks'
 
 ## I18n
 gem 'http_accept_language',     github: 'sespindola/http_accept_language'
