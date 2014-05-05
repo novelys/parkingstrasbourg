@@ -84,6 +84,11 @@ GEM
       sprockets (<= 2.11.0)
     connection_pool (2.0.0)
     daemons (1.1.9)
+    dotenv (0.11.1)
+      dotenv-deployment (~> 0.0.2)
+    dotenv-deployment (0.0.2)
+    dotenv-rails (0.11.1)
+      dotenv (= 0.11.1)
     erubis (2.7.0)
     eventmachine (1.0.3)
     excon (0.33.0)
@@ -178,6 +183,11 @@ GEM
       sprockets-rails (~> 2.0)
     rails-i18n (0.6.6)
       i18n (~> 0.5)
+    rails_12factor (0.0.2)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.1)
+    rails_stdout_logging (0.0.3)
     railties (4.1.0)
       actionpack (= 4.1.0)
       activesupport (= 4.1.0)
@@ -234,7 +244,7 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    turbolinks (2.2.1)
+    turbolinks (2.2.2)
       coffee-rails
     tzinfo (1.1.0)
       thread_safe (~> 0.1)
@@ -259,6 +269,7 @@ DEPENDENCIES
   capistranovelys (~> 2.0.0)
   coffee-rails (~> 4.0.0)
   compass-rails
+  dotenv-rails
   geocoder (~> 1.1.8)
   haml-rails (~> 0.5.0)
   http_accept_language!
@@ -274,6 +285,7 @@ DEPENDENCIES
   quiet_assets
   rails (~> 4.1.0)
   rails-i18n (~> 0.6.4)
+  rails_12factor
   resque (~> 1.25.2)
   resque-scheduler (~> 2.0)
   sass-rails (~> 4.0.3)

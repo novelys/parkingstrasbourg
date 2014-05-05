@@ -36,6 +36,7 @@ gem 'capistranovelys',          '~> 2.0.0'
 gem 'whenever',                 '~> 0.8.2'
 gem 'asset_sync'
 gem 'sitemap_generator'
+gem 'dotenv-rails'
 
 group :development do
   gem 'pry'
@@ -47,4 +48,5 @@ end
 
 group :staging, :production do
   gem 'puma'
+  gem 'rails_12factor'
 end
