@@ -6,6 +6,14 @@ class ParkingService
     occupation: 'http://carto.strasmap.eu/remote.amf.json/Parking.status'
   }
 
+  @queue = :availabilities
+
+  def self.perform
+    service = self.new
+    service.update_locations
+    service.update_occupations
+  end
+
   def update_locations
     json_data = JSON.parse open(ENDPOINTS[:location]).string
     parkings = json_data['s']

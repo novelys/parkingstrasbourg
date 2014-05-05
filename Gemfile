@@ -14,6 +14,10 @@ gem 'geocoder',                 '~> 1.1.8'
 gem 'nokogiri',                 '~> 1.5.6'
 gem 'mongoid_slug'
 
+## Scheduling of availability fetching
+gem 'resque',           '~> 1.25.2'
+gem 'resque-scheduler', '~> 2.0'
+
 ## View stuff
 gem 'active_model_serializers', '~> 0.8.1'
 gem 'underscore-rails'
