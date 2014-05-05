@@ -1,7 +1,7 @@
-$ ->
+$(document).on 'ready', ->
   window.parkings = {}
   parkings.default_sorter  = new App.DefaultSorter($, _)
-  parkings.distance_sorter = new App.DistanceSorter($, _, google.maps, parkings.default_sorter, )
+  parkings.distance_sorter = new App.DistanceSorter($, _, google.maps, parkings.default_sorter)
   parkings.map             = new App.ParkingMap($, google.maps)
   parkings.ideal_finder    = new App.IdealFinder($)
 
