@@ -11,11 +11,12 @@ class DistanceSorter
   geoloc         : -> navigator.geolocation
 
   initAutoComplete: ->
-    opts =
-      bounds: new @gm.LatLngBounds(new @gm.LatLng(48.53047, 7.62486), new @gm.LatLng(48.62224, 7.81960))
-      types: ['geocode']
+    if @isRelevant()
+      opts =
+        bounds: new @gm.LatLngBounds(new @gm.LatLng(48.53047, 7.62486), new @gm.LatLng(48.62224, 7.81960))
+        types: ['geocode']
 
-    @_complete ||= new @gm.places.Autocomplete(@addressItem(), opts)
+      @_complete ||= new @gm.places.Autocomplete(@addressItem(), opts)
 
   # DOM referefences
   currentLocationItem: -> @_icon ||= @$('#location-filter')
@@ -27,6 +28,7 @@ class DistanceSorter
   sortedNodes        : -> @nodes().sortBy (item) => @$(item).data('duration')
 
   # Keep state
+  isRelevant:   -> @$addressItem.length > 0
   resetFetched: -> @_fetched = 0
   incFetched:   -> @_fetched += 1
   allFetched:   -> @_fetched == @_nodes().length
@@ -47,9 +49,10 @@ class DistanceSorter
   supported: -> Modernizr.geolocation
 
   dispatchEvents: ->
-    @currentLocationItem().on 'click', @toggleSorting
-    @$addressItem().on 'keyup', @textFieldKeyWasHit
-    @gm.event.addListener @_complete, 'place_changed', @geocodeAddress
+    if @isRelevant()
+      @currentLocationItem().on 'click', @toggleSorting
+      @$addressItem().on 'keyup', @textFieldKeyWasHit
+      @gm.event.addListener @_complete, 'place_changed', @geocodeAddress
 
   toggleSorting: =>
     return false unless @supported()
