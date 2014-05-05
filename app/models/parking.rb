@@ -69,7 +69,7 @@ class Parking
   # Returns an array of forecasted availabilities
   def forecast(delay)
     time = delay.minutes.since
-    steps = (6..10).to_a.map { |num| time - num.weeks}
+    steps = (22..30).to_a.map { |num| time - num.weeks}
     ary = steps.map { |time| self.availabilities.around(time) }.flatten
     ary.reject! &:is_closed?
     ary.sort_by! &:available
