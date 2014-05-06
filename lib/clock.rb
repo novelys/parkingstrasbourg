@@ -4,4 +4,4 @@ require 'clockwork'
 
 include Clockwork
 
-every(1.minutes, 'Fetching parking availabilities') { ParkingService.perform }
+every(4.minutes, 'Fetching parking availabilities') { ParkingService.perform }
