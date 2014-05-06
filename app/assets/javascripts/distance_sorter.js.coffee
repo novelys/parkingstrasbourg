@@ -67,11 +67,10 @@ class DistanceSorter
   supported: -> Modernizr.geolocation
 
   dispatchEvents: ->
-    @$(document).on 'page:change', =>
-      if @isRelevant()
-        @currentLocationItem().on 'click', @toggleSorting
-        @$addressItem().on 'keyup', @textFieldKeyWasHit
-        @gm.event.addListener @_complete, 'place_changed', @geocodeAddress
+    if @isRelevant()
+      @currentLocationItem().on 'click', @toggleSorting
+      @$addressItem().on 'keyup', @textFieldKeyWasHit
+      @gm.event.addListener @_complete, 'place_changed', @geocodeAddress
 
   disableSorting: =>
     @unsort()

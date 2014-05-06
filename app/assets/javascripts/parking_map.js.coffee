@@ -2,11 +2,11 @@ class ParkingMap
   constructor: (@$, @gm) ->
     @dispatchEvents()
 
-  $container    : -> @_container = @$('#parking-map')
+  $container    : -> @$('#parking-map')
   container     : -> @$container()?[0]
   map           : -> @_map
   shouldDisplay : -> @container()?
-  dispatchEvents: -> @gm.event.addDomListener document, 'page:change', @initMap
+  dispatchEvents: -> @gm.event.addDomListener window, 'load', @initMap
   latitude      : -> parseFloat @$container().data('lat')
   longitude     : -> parseFloat @$container().data('lng')
   parkingName   : -> @$container().data('name')
