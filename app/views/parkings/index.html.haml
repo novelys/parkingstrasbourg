@@ -1,36 +1,37 @@
-- if false
+- cache(parkings_index_cache_key) do
+  - if false
+    .row
+      .span12
+        .app-subtitle
+          %span.ideal
+            %span.disabled
+              = t 'ideal.disabled.park'
+              = link_to t('ideal.disabled.now'), ideal_path
+              = t 'ideal.disabled.or'
+              = link_to t('ideal.disabled.20'), ideal_path(delay: 20)
+              %span.sep -
+              = link_to t('ideal.disabled.40'), ideal_path(delay: 40)
+              %span.sep -
+              = link_to t('ideal.disabled.60'), ideal_path(delay: 60)
+
+            %span.enabled-geoloc.hidden= t 'ideal.enabled-geoloc'
+            %span.enabled-address.hidden= t 'ideal.enabled-address'
+
   .row
-    .span12
-      .app-subtitle
-        %span.ideal
-          %span.disabled
-            = t 'ideal.disabled.park'
-            = link_to t('ideal.disabled.now'), ideal_path
-            = t 'ideal.disabled.or'
-            = link_to t('ideal.disabled.20'), ideal_path(delay: 20)
-            %span.sep -
-            = link_to t('ideal.disabled.40'), ideal_path(delay: 40)
-            %span.sep -
-            = link_to t('ideal.disabled.60'), ideal_path(delay: 60)
+    .span12.text-right
+      .muted.infos
+        = last_refresh
+        = link_to t('info'), faq_path, class: "hidden-phone"
+    .span12.text-left
+      .input-prepend.input-append.row.text-center
+        %button#location-filter.btn.add-on{type: "button"}
+          %i.fa.fa-map-marker
+          %i.fa.fa-times.hidden
+          %i.fa.fa-spinner.fa-spin.hidden
+        %input#address-filter.span4{type: "text", placeholder: t('filters.address.placeholder')}
+        %button.btn{type: "button"} Trier par distance !
 
-          %span.enabled-geoloc.hidden= t 'ideal.enabled-geoloc'
-          %span.enabled-address.hidden= t 'ideal.enabled-address'
-
-.row
-  .span12.text-right
-    .muted.infos
-      = last_refresh
-      = link_to t('info'), faq_path, class: "hidden-phone"
-  .span12.text-left
-    .input-prepend.input-append.row.text-center
-      %button#location-filter.btn.add-on{type: "button"}
-        %i.fa.fa-map-marker
-        %i.fa.fa-times.hidden
-        %i.fa.fa-spinner.fa-spin.hidden
-      %input#address-filter.span4{type: "text", placeholder: t('filters.address.placeholder')}
-      %button.btn{type: "button"} Trier par distance !
-
-.row
-  .span12.parkings
-    %ul.thumbnails
-      = render @parkings
+  .row
+    .span12.parkings
+      %ul.thumbnails
+        = render @parkings

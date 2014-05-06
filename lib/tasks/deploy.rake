@@ -6,5 +6,6 @@ namespace :deploy do
 
     system "git push #{remote} master"
     system "appsdeck --app #{app} run 'rake sitemap:refresh'"
+    system "appsdeck --app #{app} run 'rake cache:clear'"
   end
 end

@@ -15,6 +15,7 @@ gem 'mongoid',                  github: 'mongoid/mongoid'
 gem 'geocoder',                 '~> 1.1.8'
 gem 'nokogiri',                 '~> 1.5.6'
 gem 'mongoid_slug'
+gem 'redis-rails'
 
 ## Scheduling of availability fetching
 gem 'clockwork'

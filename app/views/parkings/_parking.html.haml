@@ -1,25 +1,26 @@
-%li.span4.parking{class: parking_class(parking), data: {lat: parking.lat, lng: parking.lng, index: parking_counter}}
-  = link_to parking, class: "thumbnail clearfix" do
-    .pull-left
-      %h3.parking-name{data: {clean: parking.internal_name}, class: parking_class(parking)}
-        = parking.base_name
-        - if parking.pr?
-          .clearfix
-          %span.pr-label
-            P+R
-        .parking-distance
-    - unless parking.is_closed?
-      .pull-right.parking-trend
-        = trend_node(parking)
-    .pull-right.parking-data{class: parking_class(parking)}
-      - if parking.is_closed?
-        %span.available= t('closed')
-        %br
-      - else
-        %span.available= parking.available
-        %span.free= free_label(parking)
-        %br
-      %span.total
-        = "#{parking.total}"
-        %span.total-label
-          = t('place').pluralize
+- cache(parking) do
+  %li.span4.parking{class: parking_class(parking), data: {lat: parking.lat, lng: parking.lng, index: parking_counter}}
+    = link_to parking, class: "thumbnail clearfix" do
+      .pull-left
+        %h3.parking-name{data: {clean: parking.internal_name}, class: parking_class(parking)}
+          = parking.base_name
+          - if parking.pr?
+            .clearfix
+            %span.pr-label
+              P+R
+          .parking-distance
+      - unless parking.is_closed?
+        .pull-right.parking-trend
+          = trend_node(parking)
+      .pull-right.parking-data{class: parking_class(parking)}
+        - if parking.is_closed?
+          %span.available= t('closed')
+          %br
+        - else
+          %span.available= parking.available
+          %span.free= free_label(parking)
+          %br
+        %span.total
+          = "#{parking.total}"
+          %span.total-label
+            = t('place').pluralize

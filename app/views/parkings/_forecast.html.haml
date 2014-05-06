@@ -1,16 +1,17 @@
-%h4
-  = t 'forecast.labels.main'
-  = t "forecast.labels.#{delay}"
-.forecast-content
-  - parking.forecast(delay) do |min, max|
-    - if min.nil? && max.nil?
-      = t 'forecast.closed'
-    - else
-      - if parking.send("fullish_#{delay}?")
-        = t 'forecast.fullish', max: max
+- cache(parking_forecast_cache_key(parking, delay)) do
+  %h4
+    = t 'forecast.labels.main'
+    = t "forecast.labels.#{delay}"
+  .forecast-content
+    - parking.forecast(delay) do |min, max|
+      - if min.nil? && max.nil?
+        = t 'forecast.closed'
       - else
-        = t 'forecast.free.should'
-        %span.main-free= min
-        = t 'forecast.free.and'
-        %span.main-free= max
-        = t 'forecast.free.places'
+        - if parking.send("fullish_#{delay}?")
+          = t 'forecast.fullish', max: max
+        - else
+          = t 'forecast.free.should'
+          %span.main-free= min
+          = t 'forecast.free.and'
+          %span.main-free= max
+          = t 'forecast.free.places'
