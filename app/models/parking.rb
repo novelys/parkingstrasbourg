@@ -31,6 +31,10 @@ class Parking
   delegate :total, :available, :is_closed?, :is_full?, :last_refresh_at, :fullish?,
     to: :last_availability, allow_nil: true
 
+  def forecast_limit
+    ENV['FORECAST_LIMIT'] && ENV['FORECAST_LIMIT'].to_i || 10
+  end
+
   def last_availability
     @last_availability ||= availabilities.last
   end
@@ -69,7 +73,7 @@ class Parking
   # Returns an array of forecasted availabilities
   def forecast(delay)
     time = delay.minutes.since
-    steps = (0..30).to_a.map { |num| time - num.weeks}
+    steps = (0..forecast_limit).to_a.map { |num| time - num.weeks}
     ary = steps.map { |time| self.availabilities.around(time) }.flatten
     ary.reject! &:is_closed?
     ary.sort_by! &:available
