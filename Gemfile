@@ -17,7 +17,6 @@ gem 'nokogiri',                 '~> 1.5.6'
 gem 'mongoid_slug'
 
 ## Scheduling of availability fetching
-gem 'resque',           '~> 1.25.2'
 gem 'clockwork'
 
 ## View stuff

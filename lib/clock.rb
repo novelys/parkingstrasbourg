@@ -4,4 +4,4 @@ require 'clockwork'
 
 include Clockwork
 
-every(1.minutes, 'Fetching parking availabilities') { Resque.enqueue ParkingService }
+every(1.minutes, 'Fetching parking availabilities') { ParkingService.perform }
