@@ -1,4 +1,4 @@
-%li.span4.parking{class: parking_class(parking), data: {lat: parking.lat, lng: parking.lng}}
+%li.span4.parking{class: parking_class(parking), data: {lat: parking.lat, lng: parking.lng, index: parking_counter}}
   = link_to parking, class: "thumbnail clearfix" do
     .pull-left
       %h3.parking-name{data: {clean: parking.internal_name}, class: parking_class(parking)}

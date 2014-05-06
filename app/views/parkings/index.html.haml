@@ -24,7 +24,9 @@
   .span12.text-left
     .input-prepend.input-append.row.text-center
       %button#location-filter.btn.add-on{type: "button"}
-        %i.icomoon-map-marker
+        %i.fa.fa-map-marker
+        %i.fa.fa-times.hidden
+        %i.fa.fa-spinner.fa-spin.hidden
       %input#address-filter.span4{type: "text", placeholder: t('filters.address.placeholder')}
       %button.btn{type: "button"} Trier par distance !
 

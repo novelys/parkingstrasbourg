@@ -25,6 +25,7 @@ gem 'underscore-rails'
 gem 'bootstrap-sass', '~> 2.3.2.2'
 gem 'turbolinks'
 gem 'compass-rails'
+gem 'font-awesome-rails'
 
 ## I18n
 gem 'http_accept_language',     github: 'sespindola/http_accept_language'

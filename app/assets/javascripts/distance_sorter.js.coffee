@@ -38,14 +38,30 @@ class DistanceSorter
   hasNoResults: -> @_no_results
 
   enable: ->
-    @currentLocationItem().addClass('switched-on')
     @currentLocationItem().attr 'title', @currentLocationItem().data('alt-enabled')
     @_enabled = true
 
   disable: ->
-    @currentLocationItem().removeClass('switched-on')
+    @$addressItem().val('')
     @currentLocationItem().attr 'title', @currentLocationItem().data('alt-disabled')
     delete @_enabled
+
+  startSorting: ->
+    @currentLocationItem().prop('disabled', true)
+    @$addressItem().prop('disabled', true)
+    @currentLocationItem().find('.fa-spinner').removeClass('hidden')
+    @currentLocationItem().find('.fa-map-marker').addClass('hidden')
+    @currentLocationItem().find('.fa-times').addClass('hidden')
+
+  stopSorting: ->
+    @currentLocationItem().prop('disabled', false)
+    @$addressItem().prop('disabled', false)
+    @currentLocationItem().find('.fa-spinner').addClass('hidden')
+
+    if @enabled()
+      @currentLocationItem().find('.fa-times').removeClass('hidden')
+    else
+      @currentLocationItem().find('.fa-map-marker').removeClass('hidden')
 
   # Events
   supported: -> Modernizr.geolocation
@@ -57,22 +73,29 @@ class DistanceSorter
         @$addressItem().on 'keyup', @textFieldKeyWasHit
         @gm.event.addListener @_complete, 'place_changed', @geocodeAddress
 
-  toggleSorting: =>
-    return false unless @supported()
+  disableSorting: =>
+    @unsort()
+    @disable()
 
-    if @enabled()
-      @unsort()
-      @disable()
-    else
-      @updateLabels('ongoing')
+  enableSorting: =>
+    @startSorting()
+    @updateLabels('ongoing')
 
-      if @_source == 'geoloc'
+    if @_source == 'geoloc'
+      if @supported()
+        @$addressItem().val('')
         @geoloc().getCurrentPosition(@fetchDistances);
       else
-        @fetchDistances(@position, 'geoloc')
+        @disable()
+        @stopSorting()
+        return false
+    else
+      @fetchDistances(@position, 'location')
 
-      @enable()
+    @enable()
 
+  toggleSorting: =>
+    if @enabled() then @disableSorting() else @enableSorting()
     false
 
   textFieldKeyWasHit: (event) =>
@@ -89,10 +112,10 @@ class DistanceSorter
 
   # Sorting
   unsort: ->
-    if @name_filter.hasInput()
-      @name_filter.updateUI()
-    else
-      @default_sorter.call()
+    @disable()
+    @startSorting()
+    @default_sorter.call()
+    @stopSorting()
     @updateLabels("disabled-#{@_source}")
 
   sort: ->
@@ -100,6 +123,7 @@ class DistanceSorter
     @updateLabels('enabled')
     @currentLocationItem().attr 'title', @currentLocationItem().data('alt-enabled')
     @container().html @sortedNodes()
+    @stopSorting()
 
   setAddressSource: (@position) ->
     @_source = 'address'
@@ -112,7 +136,10 @@ class DistanceSorter
     @geocoderService().geocode {address}, (results, status) =>
       if status == @gm.GeocoderStatus.OK
         location = results[0].geometry.location
-        @setAddressSource {coords: {latitude: location.lb, longitude: location.mb}}
+        @setAddressSource {coords: {latitude: location.lat(), longitude: location.lng()}}
+        @_source = 'location'
+        @disableSorting()
+        @enableSorting()
       else
         delete @position
         @_source = 'geoloc'
@@ -140,6 +167,8 @@ class DistanceSorter
         if status == "OK" && (rows = response.rows).length > 0
           if rows[0].elements[0].status == "ZERO_RESULTS"
             @noResults()
+            @disable()
+            @stopSorting()
           else
             # Keep track of fetched distances
             @incFetched()
