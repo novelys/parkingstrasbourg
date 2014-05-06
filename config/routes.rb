@@ -6,4 +6,6 @@ Parkingstrasbourg::Application.routes.draw do
   get 'ideal' => 'parkings#ideal'
 
   resources :parkings, only: [:index, :show]
+
+  mount Resque::Server.new, at: '/resque'
 end
