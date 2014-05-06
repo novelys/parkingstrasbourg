@@ -1,8 +1,0 @@
-@mixin radial-gradient($color1, $color2) {
-  background: -moz-radial-gradient(center, ellipse cover,  $color1 50%, $color2 100%);
-  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(50%,$color1), color-stop(100%,$color2));
-  background: -webkit-radial-gradient(center, ellipse cover,  $color1 50%,$color2 100%);
-  background: -o-radial-gradient(center, ellipse cover,  $color1 50%,$color2 100%);
-  background: -ms-radial-gradient(center, ellipse cover,  $color1 50%,$color2 100%);
-  background: radial-gradient(ellipse at center,  $color1 50%,$color2 100%);
-}

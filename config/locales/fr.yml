@@ -53,7 +53,7 @@ fr:
       places: "places libres."
   filters:
     address:
-      placeholder: "Entrez une adresse (utilisée pour la recherche de parkings)"
+      placeholder: "Entrez une adresse pour trier par distance"
     name:
       placeholder: "Filtrer par nom..."
     car:
