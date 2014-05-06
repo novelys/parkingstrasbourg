@@ -12,6 +12,10 @@ module CacheHelper
     "parkings/meta-#{count}-#{max_updated_at}"
   end
 
+  def parking_index_cache_key(parking)
+    [parking, parking.last_refresh_at]
+  end
+
   def parking_meta_cache_key(parking)
     [parking, 'meta']
   end
@@ -23,7 +27,7 @@ module CacheHelper
 
   def parking_show_cache_key(parking)
     fragments = parking_forecast_cache_key(parking, 0)
-    fragments << "available-#{parking.available}"
+    fragments << "refreshed_at-#{parking.last_refresh_at}"
     fragments
   end
 
