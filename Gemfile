@@ -18,7 +18,7 @@ gem 'mongoid_slug'
 
 ## Scheduling of availability fetching
 gem 'resque',           '~> 1.25.2'
-gem 'resque-scheduler', '~> 2.0'
+gem 'clockwork'
 
 ## View stuff
 gem 'active_model_serializers', '~> 0.8.1'
