@@ -1,3 +1,5 @@
+require 'resque/server'
+
 Parkingstrasbourg::Application.routes.draw do
   root :to => 'parkings#index'
 
