@@ -18,7 +18,7 @@ module ApplicationHelper
 
   def last_refresh(parkings = @parkings)
     desc = t 'last_refresh_at'
-    time = l parkings.first.last_refresh_at.localtime, format: :short
+    time = l parkings.first.last_refresh_at, format: :short
     "#{desc}#{time}."
   end
 
