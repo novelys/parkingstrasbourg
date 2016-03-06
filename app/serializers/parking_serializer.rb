@@ -1,7 +1,13 @@
 class ParkingSerializer < ActiveModel::Serializer
   attributes :available, :total, :opened, :trend, :lat, :lng, :address
-  attribute :external_id, key: :id
-  attribute :internal_name, key: :name
+
+  def external_id
+    subject.id
+  end
+
+  def internal_name
+    subject.name
+  end
 
   def opened
     !object.is_closed?
