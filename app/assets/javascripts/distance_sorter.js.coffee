@@ -22,7 +22,7 @@ class DistanceSorter
   currentLocationItem: -> @$('#location-filter')
   $addressItem       : -> @$('#address-filter')
   addressItem        : -> @$addressItem()?[0]
-  container          : -> @$('.parkings .thumbnails')
+  container          : -> @$('.parkings')
   _nodes             : -> @container().find('.parking')
   nodes              : -> @_(@_nodes())
   sortedNodes        : -> @nodes().sortBy (item) => @$(item).data('duration')

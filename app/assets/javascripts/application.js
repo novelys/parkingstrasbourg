@@ -12,9 +12,8 @@
 //
 //  ## Libs
 //= require jquery
-//= require bootstrap-dropdown
+//= require bootstrap/dropdown
 //= require underscore
-//= require modernizr-custom
 //  ## Application
 //= require default_sorter
 //= require distance_sorter

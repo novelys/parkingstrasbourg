@@ -1,7 +1,7 @@
 - cache(parkings_index_cache_key) do
   - if false
     .row
-      .span12
+      .col-xs-12
         .app-subtitle
           %span.ideal
             %span.disabled
@@ -18,19 +18,19 @@
             %span.enabled-address.hidden= t 'ideal.enabled-address'
 
   .row
-    .span12.text-right
+    .col-xs-12.text-right
       .muted.infos
         = last_refresh
         = link_to t('info'), faq_path, class: "hidden-phone"
-    .span12.text-left
-      .input-prepend.input-append.row.text-center
-        %button#location-filter.btn.add-on{type: "button"}
-          %i.fa.fa-map-marker
-          %i.fa.fa-times.hidden
-          %i.fa.fa-spinner.fa-spin.hidden
-        %input#address-filter{type: "text", placeholder: t('filters.address.placeholder')}
+    .col-xs-12.text-center
+      .row
+        .col-xs-12.col-sm-8.col-sm-offset-2
+          .input-group.text-center
+            .input-group-addon.btn#location-filter
+              %i.fa.fa-map-marker
+              %i.fa.fa-times.hidden
+              %i.fa.fa-spinner.fa-spin.hidden
+            %input.form-control#address-filter{type: "text", placeholder: t('filters.address.placeholder')}
 
-  .row
-    .span12.parkings
-      %ul.thumbnails
-        = render @parkings
+  .row.parkings
+    = render @parkings

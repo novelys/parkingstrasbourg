@@ -3,7 +3,7 @@
 /[if IE 8] <html class="no-js ie8 oldie" lang="en">
 /[if IE 9] <html class="no-js ie9 oldie" lang="en">
 <!--[if gt IE 9]><!-->
-%html.no-js{:lang => I18n.locale.to_s}
+%html.no-js{lang: I18n.locale.to_s}
   <!--<![endif]-->
   %head
     %title= @parking.present? ? "Les parkings à Strasbourg - #{@parking.internal_name}" : t('app.title')
@@ -29,34 +29,33 @@
       %meta{property: 'og:url', content: root_url}
     = stylesheet_link_tag "http://fonts.googleapis.com/css?family=Oswald:300"
     = stylesheet_link_tag "http://fonts.googleapis.com/css?family=Droid+Sans:400,700"
-    = stylesheet_link_tag  :application, media: :all, data: {'turbolinks-track' => true}
+    = stylesheet_link_tag  :application, media: :all
     = favicon_link_tag '/favicon.ico'
+    = javascript_include_tag 'modernizr-custom'
     = csrf_meta_tags
   %body{class: body_class}
     - cache(navbar_cache_key(@parking)) do
-      %nav.navbar.navbar-static-top
-        .navbar-inner
-          .container
-            %ul.nav.pull-right
-              %li.dropdown
-                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                  %span.icomoon-ellipsis-vertical
-                %ul.dropdown-menu
-                  %li
-                    %a{:href => "/faq"} FAQ
-            .text-center
-              %a.brand.active{:href => "/"}
-                %h1
-                  %i.icomoon-car
-                  - if @parking
-                    = @parking.internal_name
-                  - else
-                    = t 'app.title'
+      %nav.navbar.navbar-default.navbar-inverse.navbar-static-top
+        .container
+          %ul.nav.navbar-nav.navbar-right
+            %li.dropdown
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                %span.icomoon-ellipsis-vertical
+              %ul.dropdown-menu
+                %li
+                  %a{:href => "/faq"} FAQ
+          .text-center
+            %a.navbar-brand{:href => "/"}
+              %i.icomoon-car
+              - if @parking
+                = @parking.internal_name
+              - else
+                = t 'app.title'
     .container
       = yield
     %footer.footer.container.text-center
       - unless embedded?
         = link_to image_tag('strasbourgtheeuroptimist.jpg'), 'http://www.strasbourg.eu'
     = render partial: 'shared/gmaps'
-    = javascript_include_tag :application, data: {'turbolinks-track' => true}
+    = javascript_include_tag :application
     = render partial: 'shared/analytics'

@@ -58,13 +58,51 @@ nav
   .navbar-inner
     padding: 0 20px
 
+  .navbar-nav
+    display: inline-block
+    float: right
+
+  .navbar-right
+    float: right !important
+    margin-top: 0
+    margin-right: -15px
+    margin-bottom: 0
+
+  .navbar-nav
+    .open
+      position: static
+      > a
+        padding-bottom: 5px
+      .dropdown-menu
+        position: absolute
+        left: auto
+        right: 0
+        background-clip: padding-box
+        background-color: #fff
+        border: 1px solid rgba(0, 0, 0, 0.15)
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.176)
+        float: left
+        font-size: 14px
+        list-style: outside none none
+        min-width: 160px
+        padding: 5px 0
+        position: absolute
+        text-align: left
+        top: 100%
+        z-index: 1000
+        > li > a
+          clear: both
+          color: #333333
+          display: block
+          font-weight: normal
+          line-height: 1.42857
+          padding: 3px 20px
+          white-space: nowrap
+
   .navbar
-    .brand
+    .navbar-brand
       font-size: 1.8em
       line-height: 1.8em
-      .logo-svg
-        height: 27px
-        margin: -6px 5px 0 0
     .icomoon-ellipsis-vertical, .icomoon-ellipsis-vertical:hover, .icomoon-undo, .icomoon-undo:hover
       font-size: 1.8em
       line-height: 1.8em
@@ -74,12 +112,9 @@ nav
   .navbar-inner
     padding: 0 20px
   .navbar
-    .brand
+    .navbar-brand
       font-size: 1.4em
       line-height: 1.4em
-      .logo-svg
-        height: 27px
-        margin: -6px 5px 0 0
     .icomoon-ellipsis-vertical, .icomoon-ellipsis-vertical:hover, .icomoon-undo, .icomoon-undo:hover
       font-size: 1.6em
       line-height: 1.6em

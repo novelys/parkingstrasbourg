@@ -3,24 +3,37 @@
 @import fonts
 
 $mainColor:                       darken(#578BC1, 20%)
-$linkColor:                       $mainColor
-$linkColorHover:                  lighten($mainColor, 10%)
-$sansFontFamily:                  'Droid Sans', sans-serif
-$serifFontFamily:                 'Droid Serif', serif
-$monoFontFamily:                  'Droid Sans Mono', sans-serif
-$bodyBackground:                  white
-$textColor:                       #282828
-$navbarBackground:                $mainColor
+$link-color:                       $mainColor
+$link-color-hover:                  lighten($mainColor, 10%)
+$font-family-sans-serif:                  'Droid Sans', sans-serif
+$font-family-serif:                 'Droid Serif', serif
+$font-family-monospace:                  'Droid Sans Mono', sans-serif
+$body-bg:                  white
+$text-color:                       #282828
+$navbar-default-bg:                $mainColor
 $navbarBackgroundHighlight:       $mainColor
-$navbarText:                      white
-$navbarLinkColor:                 white
+$navbar-default-color:                      white
+$navbar-default-link-color:                 white
+$navbar-default-brand-color: white
+
+$navbar-inverse-bg: $mainColor
+$navbar-inverse-brand-color: white
 
 @import bootstrap
-@import bootstrap-responsive
 @import flatdesign
 @import navbar
 @import parkings-list
 @import parking-main
+
+.navbar-brand
+  float: none
+  display: inline-block
+  padding: 0
+  font-family: 'Oswald', sans-serif
+  text-align: center
+  font-size: 2em
+  line-height: 2em
+  font-weight: bold
 
 .navbar
   h1

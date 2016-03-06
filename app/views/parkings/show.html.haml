@@ -6,7 +6,10 @@
 
 - cache(parking_show_cache_key(parking)) do
   .row.main-parking
-    .span6
+    .col-xs-12
+      = link_to "/", class: "text-muted h4", style: "margin-top:0;margin-bottom:30px;display:inline-block;" do
+        ← retour à l'accueil
+    .col-xs-12.col-sm-6
       .main-parking-availabilities
         %h4= t 'main.titles.current'
         .availability-content
@@ -23,7 +26,7 @@
           = render partial: 'forecast', locals: {parking: parking, delay: delay}
         .forecast-disclosure
           = t('predictions_disclosure')
-    .span6
+    .col-xs-12.col-sm-6
       %h4
         = t 'main.titles.location'
         %span.map-link.pull-right

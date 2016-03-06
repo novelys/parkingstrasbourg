@@ -1,56 +1,67 @@
 source 'https://rubygems.org'
 
-ruby '2.1.1'
+ruby '2.3.0'
 
-## Base
-gem 'rails',                    '~> 4.1.0'
-gem 'sass-rails',               '~> 4.0.3'
-gem 'haml-rails',               '~> 0.5.0'
-gem 'coffee-rails',             '~> 4.0.0'
-gem 'jquery-rails',             '~> 2.2.1'
-gem 'uglifier',                 '~> 2.2.1'
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rails', '4.2.5.2'
+gem 'puma'
+gem 'compass-rails'
+gem 'coffee-rails'
+# Use SCSS for stylesheets
+gem 'sass-rails', '~> 5.0'
+# Use Uglifier as compressor for JavaScript assets
+gem 'uglifier', '>= 1.3.0'
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jbuilder', '~> 2.0'
+# bundle exec rake doc:rails generates the API under doc/api.
+gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'oj'
 
 ## Domain layer
-gem 'mongoid',                  github: 'mongoid/mongoid'
-gem 'geocoder',                 '~> 1.1.8'
-gem 'nokogiri',                 '~> 1.5.6'
-gem 'mongoid_slug'
+gem 'mongoid'
+gem 'geocoder'
+gem 'mongoid-slug'
 gem 'redis-rails'
 
 ## Scheduling of availability fetching
 gem 'clockwork'
 
 ## View stuff
-gem 'active_model_serializers', '~> 0.8.1'
+gem 'haml-rails'
+gem 'active_model_serializers'
+gem 'responders'
+gem 'jquery-rails'
 gem 'underscore-rails'
-gem 'bootstrap-sass', '~> 2.3.2.2'
-gem 'turbolinks'
-gem 'compass-rails'
+gem 'bootstrap-sass'
 gem 'font-awesome-rails'
 
 ## I18n
-gem 'http_accept_language',     github: 'sespindola/http_accept_language'
-gem 'rails-i18n',               '~> 0.6.4'
+gem 'http_accept_language'
+gem 'rails-i18n'
 
 ## Deployment
-gem 'airbrake'
-gem 'production_chain',         '~> 0.0.10'
-gem 'capistranovelys',          '~> 2.0.0'
-gem 'whenever',                 '~> 0.8.2'
+gem 'rollbar'
 gem 'asset_sync'
 gem 'sitemap_generator'
-gem 'dotenv-rails'
+
+
+group :development, :test do
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug'
+
+  gem 'pry-rails'
+  gem 'pry-nav'
+  gem 'dotenv-rails'
+end
 
 group :development do
-  gem 'pry'
-  gem 'pry-nav'
-  gem 'pry-rails'
-  gem 'quiet_assets'
-  gem 'thin'
+  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'web-console', '~> 2.0'
+
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
 
-group :staging, :production do
-  gem 'puma'
+group :production do
   gem 'rails_12factor'
 end

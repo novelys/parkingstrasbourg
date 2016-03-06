@@ -6,6 +6,7 @@ fr:
     title: "Les parkings à Strasbourg"
     subtitle: "Disponibilités et emplacements"
   last_refresh_at: "Dernier rafraîchissement : "
+  back_home: "retour à l'accueil"
   free: "libre"
   place: "place"
   closed: "Fermé"

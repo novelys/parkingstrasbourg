@@ -6,6 +6,7 @@ en:
     title: "Parkings in Strasbourg"
     subtitle: "Availabilities and locations"
   last_refresh_at: "Last refresh at: "
+  back_home: "back to index page"
   free: "free"
   place: "place"
   closed: "Closed"

@@ -1,5 +1,5 @@
-Parkingstrasbourg::Application.routes.draw do
-  root :to => 'parkings#index'
+Rails.application.routes.draw do
+  root to: 'parkings#index'
 
   get 'embed' => 'parkings#embed'
   get 'faq'   => 'parkings#faq'
