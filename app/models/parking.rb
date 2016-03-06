@@ -33,7 +33,7 @@ class Parking
     to: :last_availability, allow_nil: true
 
   def forecast_limit
-    ENV['FORECAST_LIMIT'] && ENV['FORECAST_LIMIT'].to_i || 10
+    ENV['FORECAST_LIMIT'].present? ? ENV['FORECAST_LIMIT'].to_i : 10
   end
 
   def last_availability

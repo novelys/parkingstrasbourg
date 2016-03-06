@@ -3,7 +3,7 @@ class Availability
   include Mongoid::Timestamps
 
   ## Relationships
-  belongs_to :parking, index: true
+  belongs_to :parking
 
   ## Schema
   field :is_closed, type: Boolean
@@ -11,19 +11,10 @@ class Availability
   field :available, type: Integer
 
   ## Indexes
-  index created_at: 1
   index parking_id: 1, created_at: 1
 
   ## Scopes
   default_scope -> { order_by(created_at: :asc) }
-
-  ## Ignore janury -> may outage
-  scope :ignore_loss_of_data, -> do
-    start = Time.new(2014, 1, 9, 15, 0, 9, 0)
-    finish = Time.new(2014, 4, 28, 9, 33, 53, 0)
-
-    any_of({:created_at.lte => start}, {:created_at.gte => finish})
-  end
 
   scope :around, ->(time) do
     time ||= Time.now
