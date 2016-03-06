@@ -19,4 +19,6 @@ module Clockwork
 
   delay = ENV['CLOCK_DELAY'].present?? ENV['CLOCK_DELAY'].to_i : 5
   every(delay.minutes, "Fetching parking availabilities (every #{delay}mn)") { ParkingService.perform }
+
+  every(1.day, "Delete old availabilities)") { Availability.delete_oldest }
 end

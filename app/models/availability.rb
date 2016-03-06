@@ -36,4 +36,9 @@ class Availability
   def fullish?
     available < (total / (10.0))
   end
+
+  def self.delete_oldest
+    delay = 2.years + 2.months
+    where(:created_at.lte => delay.ago).delete_all
+  end
 end
