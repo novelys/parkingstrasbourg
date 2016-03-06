@@ -39,6 +39,8 @@ class Availability
 
   def self.delete_oldest
     delay = 2.years + 2.months
-    where(:created_at.lte => delay.ago).delete_all
+    Parking.all.each{|parking|
+      parking.availabilities.where(:created_at.lte => delay.ago).delete_all
+    }
   end
 end
