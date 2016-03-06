@@ -20,6 +20,7 @@ class Parking
 
   ## Indexes
   index internal_name: 1
+  index external_id: 1
 
   ## Scopes
   default_scope -> { asc(:internal_name) }

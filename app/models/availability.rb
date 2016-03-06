@@ -12,6 +12,7 @@ class Availability
 
   ## Indexes
   index created_at: 1
+  index parking_id: 1, created_at: 1
 
   ## Scopes
   default_scope -> { order_by(created_at: :asc) }
