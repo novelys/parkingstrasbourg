@@ -38,6 +38,7 @@ class ParkingService
       availability.total = json['dt']
       availability.available = json['df']
       availability.save
+      parking.update_attribute :last_refresh_at, Time.now
     end
   end
 end

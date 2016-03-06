@@ -14,6 +14,7 @@ class Parking
   field :lat,           type: Float
   field :lng,           type: Float
   field :address,       type: String
+  field :last_refresh_at, type: Timestamp
   reverse_geocoded_by :coordinates
 
   slug :base_name
@@ -29,7 +30,7 @@ class Parking
   before_save :set_internal_name
 
   ## Methods
-  delegate :total, :available, :is_closed?, :is_full?, :last_refresh_at, :fullish?,
+  delegate :total, :available, :is_closed?, :is_full?, :fullish?,
     to: :last_availability, allow_nil: true
 
   def forecast_limit
