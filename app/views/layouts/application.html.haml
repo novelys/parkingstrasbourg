@@ -7,7 +7,7 @@
   <!--<![endif]-->
   %head
     %title= @parking.present? ? "Les parkings à Strasbourg - #{@parking.internal_name}" : t('app.title')
-    - cache(parkings_meta_cache_key) do
+    - cache do
       %meta{charset: "utf-8"}
       %meta{"http-equiv" => "X-UA-Compatible", content: "IE=edge,chrome=1"}
       %meta{content: 'width=device-width, initial-scale=1.0', name: 'viewport'}
@@ -27,12 +27,13 @@
     - else
       %meta{property: 'og:title', content: 'Les parkings à Strasbourg'}
       %meta{property: 'og:url', content: root_url}
-    = stylesheet_link_tag "http://fonts.googleapis.com/css?family=Oswald:300"
-    = stylesheet_link_tag "http://fonts.googleapis.com/css?family=Droid+Sans:400,700"
-    = stylesheet_link_tag  :application, media: :all
-    = favicon_link_tag '/favicon.ico'
-    = javascript_include_tag 'modernizr-custom'
-    = csrf_meta_tags
+    - cache do
+      = stylesheet_link_tag "http://fonts.googleapis.com/css?family=Oswald:300"
+      = stylesheet_link_tag "http://fonts.googleapis.com/css?family=Droid+Sans:400,700"
+      = stylesheet_link_tag  :application, media: :all
+      = favicon_link_tag '/favicon.ico'
+      = javascript_include_tag 'modernizr-custom'
+      = csrf_meta_tags
   %body{class: body_class}
     - cache(navbar_cache_key(@parking)) do
       %nav.navbar.navbar-default.navbar-inverse.navbar-static-top

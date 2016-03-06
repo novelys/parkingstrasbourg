@@ -1,10 +1,10 @@
 - parking = @parking
-- cache(parking_meta_cache_key(parking)) do
+- cache do
   - content_for(:meta) do
     %meta{property: 'og:title', content: "Les parkings à Strasbourg - #{parking.internal_name}"}
     %meta{property: 'og:url', content: parking_url(parking)}
 
-- cache(parking_show_cache_key(parking)) do
+- cache parking do
   .row.main-parking
     .col-xs-12
       = link_to "/", class: "text-muted h4", style: "margin-top:0;margin-bottom:30px;display:inline-block;" do

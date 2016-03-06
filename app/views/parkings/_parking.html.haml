@@ -1,4 +1,4 @@
-- cache(parking_index_cache_key(parking)) do
+- cache parking do
   .col-xs-12.col-sm-4.parking{class: parking_class(parking), data: {lat: parking.lat, lng: parking.lng, index: parking_counter}}
     = link_to parking, class: "thumbnail" do
       .row{style: "padding-top:0;"}

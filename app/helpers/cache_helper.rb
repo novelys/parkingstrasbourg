@@ -2,8 +2,7 @@ module CacheHelper
   def parkings_index_cache_key
     count          = Parking.count
     max_updated_at = Parking.max(:updated_at).try(:utc).try(:to_s, :number)
-    last_refresh   = Availability.asc(:created_at).last.try(:created_at).try(:utc).try(:to_s, :number)
-    "parkings/all-#{count}-#{max_updated_at}-#{last_refresh}"
+    "parkings/all-#{count}-#{max_updated_at}"
   end
 
   def parkings_meta_cache_key

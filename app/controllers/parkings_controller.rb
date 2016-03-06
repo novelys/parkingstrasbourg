@@ -40,6 +40,6 @@ class ParkingsController < ApplicationController
   end
 
   def load_resources
-    @parkings = Parking.all
+    @parkings = Parking.all.to_a
   end
 end
