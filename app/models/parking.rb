@@ -14,7 +14,7 @@ class Parking
   field :lat,           type: Float
   field :lng,           type: Float
   field :address,       type: String
-  field :last_refresh_at, type: Timestamp
+  field :last_refresh_at, type: DateTime
   reverse_geocoded_by :coordinates
 
   slug :base_name
