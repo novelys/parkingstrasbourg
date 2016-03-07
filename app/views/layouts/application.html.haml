@@ -7,33 +7,31 @@
   <!--<![endif]-->
   %head
     %title= @parking.present? ? "Les parkings à Strasbourg - #{@parking.internal_name}" : t('app.title')
-    - cache do
-      %meta{charset: "utf-8"}
-      %meta{"http-equiv" => "X-UA-Compatible", content: "IE=edge,chrome=1"}
-      %meta{content: 'width=device-width, initial-scale=1.0', name: 'viewport'}
-      %meta{name: 'description', content: t('app.title')}
-      %meta{charset: 'UTF-8'}
-      %meta{name: :author, content: "Yann Klis, Kevin Soltysiak, Novelys"}
-      %meta{name: 'geo.region', content: 'FR-67'}
-      %meta{name: 'geo.placename', content: 'Strasbourg'}
-      %meta{name: 'geo.position', content: '46.227638;2.213749'}
-      %meta{name: 'ICBM', content: '46.227638, 2.213749'}
-      %meta{name: 'og:site_name', content: 'Les parkings à Strasbourg'}
-      %meta{name: 'og:type', content: 'website'}
-      %meta{property: "og:image", content: asset_url("fb.png")}
-      %meta{name: :keywords, content: "strasbourg, parking, parkings, parking à strasbourg, parkings à strasbourg, les parkings à strasbourg, place de parking, places de parking, Parkhäusern, Parkhäusern in Straßburg, #{Parking.all.to_a.map(&:name).join(', ')}"}
+    %meta{charset: "utf-8"}
+    %meta{"http-equiv" => "X-UA-Compatible", content: "IE=edge,chrome=1"}
+    %meta{content: 'width=device-width, initial-scale=1.0', name: 'viewport'}
+    %meta{name: 'description', content: t('app.title')}
+    %meta{charset: 'UTF-8'}
+    %meta{name: :author, content: "Yann Klis, Kevin Soltysiak, Novelys"}
+    %meta{name: 'geo.region', content: 'FR-67'}
+    %meta{name: 'geo.placename', content: 'Strasbourg'}
+    %meta{name: 'geo.position', content: '46.227638;2.213749'}
+    %meta{name: 'ICBM', content: '46.227638, 2.213749'}
+    %meta{name: 'og:site_name', content: 'Les parkings à Strasbourg'}
+    %meta{name: 'og:type', content: 'website'}
+    %meta{property: "og:image", content: asset_url("fb.png")}
+    %meta{name: :keywords, content: "strasbourg, parking, parkings, parking à strasbourg, parkings à strasbourg, les parkings à strasbourg, place de parking, places de parking, Parkhäusern, Parkhäusern in Straßburg, #{Parking.all.to_a.map(&:name).join(', ')}"}
     - if content_for?(:meta)
       = yield(:meta)
     - else
       %meta{property: 'og:title', content: 'Les parkings à Strasbourg'}
       %meta{property: 'og:url', content: root_url}
-    - cache do
-      = stylesheet_link_tag "http://fonts.googleapis.com/css?family=Oswald:300"
-      = stylesheet_link_tag "http://fonts.googleapis.com/css?family=Droid+Sans:400,700"
-      = stylesheet_link_tag  :application, media: :all
-      = favicon_link_tag '/favicon.ico'
-      = javascript_include_tag 'modernizr-custom'
-      = csrf_meta_tags
+    = stylesheet_link_tag "http://fonts.googleapis.com/css?family=Oswald:300"
+    = stylesheet_link_tag "http://fonts.googleapis.com/css?family=Droid+Sans:400,700"
+    = stylesheet_link_tag  :application, media: :all
+    = favicon_link_tag '/favicon.ico'
+    = javascript_include_tag 'modernizr-custom'
+    = csrf_meta_tags
   %body{class: body_class}
     - cache(navbar_cache_key(@parking)) do
       %nav.navbar.navbar-default.navbar-inverse.navbar-static-top
