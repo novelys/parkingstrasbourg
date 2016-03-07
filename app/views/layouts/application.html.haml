@@ -54,7 +54,10 @@
       = yield
     %footer.footer.container.text-center
       - unless embedded?
-        = link_to image_tag('strasbourgtheeuroptimist.jpg'), 'http://www.strasbourg.eu'
+        %ul.list-inline{style: "margin:20px 0;"}
+          %li= link_to "Horaires prochain bus à Strasbourg", "http://www.monprochainbus.eu/", class: "text-muted", style: "text-decoration:underline;"
+          %li= link_to "Horaires prochain tram à Strasbourg", "http://www.monprochainbus.eu/", class: "text-muted", style: "text-decoration:underline;"
+        = link_to image_tag('strasbourgtheeuroptimist.jpg', style: "margin-bottom:20px;"), 'http://www.strasbourg.eu', class: "pull-right"
     = render partial: 'shared/gmaps'
     = javascript_include_tag :application
     = render partial: 'shared/analytics'
