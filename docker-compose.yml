@@ -1,0 +1,37 @@
+version: '2'
+services:
+  mongo:
+    image: scalingo/mongo:3.4.7-3
+    volumes:
+      - ./docker/mongodb-data:/var/lib/mongodb:rw
+    command: /mongo
+    ports:
+      - "27020:27017"
+  redis:
+    image: scalingo/redis:4.0.1-1
+    volumes:
+      - ./docker/redis-data:/var/lib/redis:rw
+    command: /redis
+    environment:
+      DB_PASSWORD: "pipo"
+  web:
+    build: .
+    links:
+      - mongo
+      - redis
+    volumes:
+     - .:/usr/src/app:rw
+    ports:
+      - "3000:3000"
+    environment:
+      SSL_DISABLED: 1
+      DEFAULT_HOST: "localhost:3000"
+      MONGO_URL: "mongodb://admin:admin-secret@mongo:27017/parkingstrasbourg-development?authSource=admin"
+      REDIS_URL: "redis://:pipo@redis:6379"
+      BUNDLE_BIN: "/usr/src/app/vendor/.bundle/ruby/2.4.0/bin"
+      BUNDLE_PATH: "/usr/src/app/vendor/.bundle/ruby/2.4.0"
+      BUNDLE_APP_CONFIG: "/usr/src/app/.bundle"
+      BUNDLE_BIN: "/usr/src/app/vendor/.bundle/ruby/2.4.0/bin"
+      BUNDLE_PATH: "/usr/src/app/vendor/.bundle/ruby/2.4.0"
+      BUNDLE_APP_CONFIG: "/usr/src/app/.bundle"
+    command: bundle exec rails server -b 0.0.0.0 -p 3000
