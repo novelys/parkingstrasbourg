@@ -1,7 +1,7 @@
 - cache(parkings_index_cache_key) do
   - if false
     .row
-      .col-xs-12
+      .col-12
         .app-subtitle
           %span.ideal
             %span.disabled
@@ -17,14 +17,14 @@
             %span.enabled-geoloc.hidden= t 'ideal.enabled-geoloc'
             %span.enabled-address.hidden= t 'ideal.enabled-address'
 
-  .row
-    .col-xs-12.text-right
-      .muted.infos
-        = last_refresh
+  .row.mt-2
+    .col-12.text-right
+      %small.text-muted.infos
+        = last_refresh(@parkings)
         = link_to t('info'), faq_path, class: "hidden-phone"
-    .col-xs-12.text-center
+    .col-12.text-center.mt-4
       .row
-        .col-xs-12.col-sm-8.col-sm-offset-2
+        .col-12.col-sm-8.offset-sm-2
           .input-group.text-center
             .input-group-addon.btn#location-filter
               %i.fa.fa-map-marker
@@ -32,5 +32,5 @@
               %i.fa.fa-spinner.fa-spin.hidden
             %input.form-control#address-filter{type: "text", placeholder: t('filters.address.placeholder')}
 
-  .row.parkings
+  .row.parkings.mt-2
     = render @parkings

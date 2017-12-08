@@ -1,52 +1,168 @@
 //= require_self
 
-@import fonts
+// @import fonts
 
-$mainColor:                       darken(#578BC1, 20%)
-$link-color:                       $mainColor
-$link-color-hover:                  lighten($mainColor, 10%)
-$font-family-sans-serif:                  'Droid Sans', sans-serif
-$font-family-serif:                 'Droid Serif', serif
-$font-family-monospace:                  'Droid Sans Mono', sans-serif
-$body-bg:                  white
-$text-color:                       #282828
-$navbar-default-bg:                $mainColor
-$navbarBackgroundHighlight:       $mainColor
-$navbar-default-color:                      white
-$navbar-default-link-color:                 white
-$navbar-default-brand-color: white
+$enable-rounded: false
+$body-bg: white
+$body-color: #282828
+$headings-font-weight: 600
+$card-spacer-x: 0.75rem
 
-$navbar-inverse-bg: $mainColor
-$navbar-inverse-brand-color: white
+$theme-colors: ("primary": darken(#578BC1, 20%))
+
+// $mainColor:                       darken(#578BC1, 20%)
+// $link-color:                       $mainColor
+// $link-color-hover:                  lighten($mainColor, 10%)
+// $font-family-sans-serif:                  'Droid Sans', sans-serif
+// $font-family-serif:                 'Droid Serif', serif
+// $font-family-monospace:                  'Droid Sans Mono', sans-serif
+// $body-bg:                  white
+// $text-color:                       #282828
+// $navbar-default-bg:                $mainColor
+// $navbarBackgroundHighlight:       $mainColor
+// $navbar-default-color:                      white
+// $navbar-default-link-color:                 white
+// $navbar-default-brand-color: white
+
+// $navbar-inverse-bg: $mainColor
+// $navbar-inverse-brand-color: white
 
 @import bootstrap
-@import flatdesign
-@import navbar
-@import parkings-list
-@import parking-main
+@import fonts
+// @import navbar
+// @import parkings-list
+// @import parking-main
 
-.navbar-brand
-  float: none
-  display: inline-block
-  padding: 0
-  font-family: 'Oswald', sans-serif
-  text-align: center
-  font-size: 2em
-  line-height: 2em
-  font-weight: bold
+// .navbar-brand
+//   float: none
+//   display: inline-block
+//   padding: 0
+//   font-family: 'Oswald', sans-serif
+//   text-align: center
+//   font-size: 2em
+//   line-height: 2em
+//   font-weight: bold
 
-.navbar
-  h1
-    font-size: inherit
-    line-height: inherit
-    margin: 0
-    padding: 0
-    i
-      font-size: 80%
-      margin-right: 10px
+// .navbar
+//   h1
+//     font-size: inherit
+//     line-height: inherit
+//     margin: 0
+//     padding: 0
+//     i
+//       font-size: 80%
+//       margin-right: 10px
 
 .row
-  padding-top: 20px
+  @extend .mt-4
+
+.navbar-brand
+  font-family: 'Oswald', sans-serif
+  margin: 0 auto
+  font-size: 1.8em
+  line-height: 1
+  font-weight: bold
+
+.parking
+  color: black
+  transition: all 0.2s ease-in-out 0s
+  .card-body
+    padding-top: $card-spacer-x / 2
+    padding-bottom: $card-spacer-x / 2
+  &:hover
+    background-color: #E0F2FF
+    text-decoration: none
+  .parking-distance
+    color: #666
+    font-size: 11px
+    font-style: italic
+    font-weight: normal
+    margin-top: 4px
+    .icomoon-car
+      font-size: 10px
+    .icomoon-arrow-right
+      font-size: 9px
+      left: 5px
+    .duration, .icomoon-arrow-right
+      position: relative
+    .duration
+      left: 8px
+  .parking-name
+    //+span-columns(2 of 4, collapse)
+    margin: 0
+    // margin-top: 7px
+    line-height: 1
+    font-size: 18px
+    font-weight: 600
+  .pr-label
+    font-size: 12px
+    color: white
+    background-color: #0099ff
+    padding: 2px 0
+    position: relative
+    top: -2px
+  .parking-data
+    //+span-columns(1.2 of 4, collapse)
+    text-align: right
+  .parking-trend
+    //+span-columns(0.8 of 4, collapse)
+    text-align: right
+  .parking-data
+    margin-top: 4px
+  .available
+    font-size: 1.2em
+    font-weight: bold
+  .free, .total-label
+    font-size: 14px
+  .total
+    color: #4c4c4c
+    font-size: 1em
+  .trend
+    position: relative
+    top: 10px
+    font-size: 2.4em
+  // Parking when duration is available
+  // Parking item when closed
+  &.closed, &.veiled, &.full
+    opacity: 0.25
+  &.closed
+    .parking-name
+      //+span-columns(2 of 4, collapse)
+    .parking-data
+      //+span-columns(2 of 4, collapse)
+      font-weight: bold
+      margin-top: 8px
+
+.main-parking
+  background-color: white
+  h4
+    border-bottom: 1px solid lightGray
+
+.main-free
+  font-size: 120%
+  font-weight: bold
+
+.forecast-disclosure
+  color: #AAA
+  font-size: 0.8em
+  font-style: italic
+
+#parking-map
+  height: 100%
+
+@media (min-width: 767px)
+  .main-parking-availabilities
+    height: 280px
+  .main-parking-map
+    height: 280px
+
+@media (max-width: 767px)
+  .main-parking-map
+    height: 280px
+
+@media (max-width: 668px)
+  .main-parking-map
+    height: 180px
 
 .icomoon-arrow-down-right
   color: #b93c3a

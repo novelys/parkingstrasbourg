@@ -5,7 +5,7 @@
 
 - cache(faq_cache_key) do
   .row
-    .col-xs-12
+    .col-12
       - unless embedded?
         = link_to root_path, class: 'home-link' do
           %h1.app-title= t 'app.title'
@@ -18,4 +18,4 @@
           %pre
             %code{style: 'width:100%;'}
               :escaped
-                <iframe src="http://www.parking-strasbourg.eu/embed" width="100%" height="1200px"></iframe>
+                <iframe src="https://www.parking-strasbourg.eu/embed" width="100%" height="1200px"></iframe>

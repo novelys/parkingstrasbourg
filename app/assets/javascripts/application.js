@@ -11,7 +11,8 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //  ## Libs
-//= require jquery
+//= require jquery3
+//= require popper
 //= require bootstrap/dropdown
 //= require underscore
 //  ## Application

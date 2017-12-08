@@ -16,7 +16,7 @@ module ApplicationHelper
     controller.action_name == "embed"
   end
 
-  def last_refresh(parkings = @parkings)
+  def last_refresh(parkings)
     desc = t 'last_refresh_at'
     time = l parkings.sort_by(&:last_refresh_at).last.last_refresh_at, format: :short
     "#{desc}#{time}."

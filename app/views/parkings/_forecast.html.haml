@@ -2,7 +2,7 @@
   %h4
     = t 'forecast.labels.main'
     = t "forecast.labels.#{delay}"
-  .forecast-content
+  .forecast-content.mb-2
     - parking.forecast(delay) do |min, max|
       - if min.nil? && max.nil?
         = t 'forecast.closed'

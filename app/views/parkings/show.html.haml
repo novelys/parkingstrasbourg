@@ -6,13 +6,13 @@
 
 - cache parking do
   .row.main-parking
-    .col-xs-12
-      = link_to "/", class: "text-muted h4", style: "margin-top:0;margin-bottom:30px;display:inline-block;" do
+    .col-12
+      = link_to "/", class: "text-muted h4 mt-0 mb-4 d-block" do
         ← retour à l'accueil
-    .col-xs-12.col-sm-6
+    .col-12.col-sm-6
       .main-parking-availabilities
         %h4= t 'main.titles.current'
-        .availability-content
+        .availability-content.mb-2
           - if parking.is_closed?
             = t 'main.labels.closed'
             %span.main-free
@@ -26,7 +26,7 @@
           = render partial: 'forecast', locals: {parking: parking, delay: delay}
         .forecast-disclosure
           = t('predictions_disclosure')
-    .col-xs-12.col-sm-6
+    .col-12.col-sm-6
       %h4
         = t 'main.titles.location'
         %span.map-link.pull-right
