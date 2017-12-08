@@ -1,7 +1,7 @@
 - cache parking do
   .col-12.col-sm-4{data: {lat: parking.lat, lng: parking.lng, index: parking_counter}}
     = link_to parking, class: parking_class(parking).push(:card, :parking, :'mt-4') do
-      .card-body.row
+      .card-body.row{style: "margin-top:0 !important;"}
         .col-12.col-sm-6
           %h3.h5.parking-name{data: {clean: parking.internal_name}, class: parking_class(parking)}
             = parking.base_name
