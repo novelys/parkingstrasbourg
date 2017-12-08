@@ -55,6 +55,7 @@ gem 'rails-i18n'
 
 ## Deployment
 gem 'rollbar'
+gem 'rack-ssl-enforcer'
 
 group :development, :test do
   gem 'pry-rails'
